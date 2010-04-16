@@ -1,0 +1,130 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="indexMaster.master.cs" Inherits="Templet_indexMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>中商购物|网站联盟</title>
+    <link href="~/Css/common.css" rel="stylesheet" type="text/css" />
+    <link href="~/Css/intro.css" rel="stylesheet" type="text/css" />
+    <script src="Js/jquery-1.4.min.js" type="text/javascript"></script>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="wraper">
+		<div id="header">
+			<span class="logo"><img src="Images/logo.jpg" alt="" /></span>
+			<span class="logotitle"><img src="Images/logotext.jpg" alt="" /></span>
+			<p><a hidefocus="true" href="/" class="graya">返回中商首页</a></p>
+		</div>
+		<div id="maincont">
+		<div id="left">
+			<!--左豆腐块样式开始--->
+			<div class="leftarc">
+				<div class="la_title">联盟会员登录</div>
+				<div class="la_cont">
+					<!--登录开始-->
+					<div id="notlog">
+						    <table border="0">
+							    <tr><td width="50px">用户名：</td><td><input type="text" name="username" id="txtusername" value="" maxlength="20" class="logtxt" /></td></tr>
+							    <tr><td>密码：</td><td><input type="password" name="pwd" id="txtpwd" value="" maxlength="20" class="logtxt" /></td></tr>
+							    <tr><td>验证码：</td><td><input type="text" name="vcode" id="txtvcode" value="" maxlength="4" class="logvcode" /><img src="http://union.vancl.com/controls/images.aspx?t=1" alt="点此更换图片" class="vcodeimg" onclick="this.src+=1" /></td></tr>
+						    </table>
+						    <div class="logbtn"><input type="submit" name="btnsubmit" id="btnsubmit" value="登&nbsp;录" /><a href="register.aspx">注&nbsp;册</a></div>
+					</div>
+					<!--登录结束-->
+					<div id="loged" style="display:none;">
+						<p>尊敬的客户，欢迎您！</p>
+						<p>手机号：<span class="lboxspan1">13927452361</span></p>
+						<p>您的账户余额：<span class="lboxspan2">366.65元</span></p>
+						<p>其它项目：<span class="lboxspan2">*****</span></p>
+						<div class="logbtn"><input type="button" name="btnlogout" id="btnlogout" value="退&nbsp;出" /></div>
+					</div>
+				</div>
+			</div>
+			<!--左豆腐块样式结束-->
+			<div class="leftarc">
+				<div class="la_title">联盟公告</div>
+				<div class="la_cont">
+					<ul>
+						<li><a hidefocus="true" href="#">1月份佣金已付</a></li>
+						<li><a hidefocus="true" href="#">重要通知：中商网佣金计算规则及…</a></li>
+						<li><a hidefocus="true" href="#">网让代购规范价格制度</a></li>
+						<li><a hidefocus="true" href="#">关于网让代购命名的声明</a></li>
+						<li><a hidefocus="true" href="#">对网店合作的声明</a></li>
+					</ul>
+					<p class="txtright"><a hidefocus="true" href="#" class="graya">更多>></a></p>
+				</div>
+			</div>
+			<div class="leftarc">
+				<div class="la_title">1月份业绩排行</div>
+				<div class="la_cont">
+					<ul>
+						<li><a hidefocus="true" href="#">1月份佣金已付</a></li>
+						<li><a hidefocus="true" href="#">重要通知：中商网佣金计算规则及…</a></li>
+						<li><a hidefocus="true" href="#">网让代购规范价格制度</a></li>
+						<li><a hidefocus="true" href="#">关于网让代购命名的声明</a></li>
+						<li><a hidefocus="true" href="#">对网店合作的声明</a></li>
+					</ul>
+					<p class="txtright"><a hidefocus="true" href="#" class="graya">更多>></a></p>
+				</div>
+			</div>
+		</div>
+		<div id="cont">
+			<!--导航开始-->
+			<ul id="navi">
+				<li><span><a hidefocus="true" href="members.aspx">联盟会员</a></span></li>
+				<li><span><a hidefocus="true" href="terms.aspx">加盟协议</a></span></li>
+				<li><span><a hidefocus="true" href="profits.aspx">加盟收益</a></span></li>
+				<li><span><a hidefocus="true" href="condition.aspx">加盟条件</a></span></li>
+				<li><span><a hidefocus="true" href="detail.aspx">合作详情</a></span></li>
+				<li><span><a hidefocus="true" href="index.aspx">联盟首页</a></span></li>
+			</ul>
+			<!--导航结束-->
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+            
+            </asp:ContentPlaceHolder>
+		</div>
+	</div>
+	<div id="footer">
+		<div class="detail">
+			<div class="detwrap">
+				<!--页脚豆腐块样式-->
+				<div class="footdet_top">中商网站联盟优势</div>
+				<div class="footdet_cont">
+					<ul>
+						<li>商品信息及时、准确；</li>
+						<li>人员专业，联盟运作经验丰富，行业口碑好，值得信赖；</li>
+						<li>免费注册，免费加盟，佣金收益行业最高； </li>
+						<li>业绩记录准确、实时、公正、按时支付不拖欠；</li>
+						<li>信息反馈及时，良性互动，合作氛围活跃。</li>
+					</ul>
+				</div>
+				<!--页脚豆腐块样式结束-->
+			</div>
+			<div class="detwrap">
+				<div class="footdet_top">常见问题</div>
+				<div class="footdet_cont">
+					<ul>
+						<li>网站加盟及合作步骤</li>
+						<li>网店加盟及合作步骤</li>
+						<li>如何上架中商的产品？</li>
+						<li>顾客要求退货怎么办？</li>
+						<li>商品标价及令人有所规定吗？</li>
+					</ul>
+					<p class="txtright"><a hidefocus="true" href="#" class="graya">更多>></a></p>
+				</div>
+			</div>
+			<div class="detwrap">
+				<div class="footdet_top">联系方式</div>
+				<div class="footdet_cont">cont</div>
+			</div>
+		</div>
+	</div>
+    </div>
+    </form>
+</body>
+</html>

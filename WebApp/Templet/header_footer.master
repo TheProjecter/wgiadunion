@@ -1,0 +1,66 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="header_footer.master.cs" Inherits="Templet_header_footer" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>中商购物|网站联盟</title>
+    <link href="~/Css/common.css" rel="stylesheet" type="text/css" />
+    <link href="~/Css/intro.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="wraper">
+		<div id="header">
+			<span class="logo"><img src="Images/logo.jpg" alt="" /></span>
+			<span class="logotitle"><img src="Images/logotext.jpg" alt="" /></span>
+			<p><a hidefocus="true" href="/" class="graya">返回中商首页</a></p>
+		</div>
+		<div id="maincont">
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+            
+            </asp:ContentPlaceHolder>
+		</div>
+	    <div id="footer">
+		    <div class="detail">
+			    <div class="detwrap">
+				    <!--页脚豆腐块样式-->
+				    <div class="footdet_top">中商网站联盟优势</div>
+				    <div class="footdet_cont">
+					    <ul>
+						    <li>商品信息及时、准确；</li>
+						    <li>人员专业，联盟运作经验丰富，行业口碑好，值得信赖；</li>
+						    <li>免费注册，免费加盟，佣金收益行业最高； </li>
+						    <li>业绩记录准确、实时、公正、按时支付不拖欠；</li>
+						    <li>信息反馈及时，良性互动，合作氛围活跃。</li>
+					    </ul>
+				    </div>
+				    <!--页脚豆腐块样式结束-->
+			    </div>
+			    <div class="detwrap">
+				    <div class="footdet_top">常见问题</div>
+				    <div class="footdet_cont">
+					    <ul>
+						    <li>网站加盟及合作步骤</li>
+						    <li>网店加盟及合作步骤</li>
+						    <li>如何上架中商的产品？</li>
+						    <li>顾客要求退货怎么办？</li>
+						    <li>商品标价及令人有所规定吗？</li>
+					    </ul>
+					    <p class="txtright"><a hidefocus="true" href="#" class="graya">更多>></a></p>
+				    </div>
+			    </div>
+			    <div class="detwrap">
+				    <div class="footdet_top">联系方式</div>
+				    <div class="footdet_cont">cont</div>
+			    </div>
+		    </div>
+	    </div>
+    </div>
+    </form>
+</body>
+</html>
+

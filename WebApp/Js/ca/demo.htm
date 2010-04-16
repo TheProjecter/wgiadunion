@@ -1,0 +1,48 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/xml; charset=gbk" />
+<title>My97DatePicker Demo</title>
+<style>
+body{ font-size:12px}
+</style>
+<script type="text/javascript" src="WdatePicker.js"></script>
+<script>
+</script>
+</head>
+<body >
+简单调用：<input type="text" id="t1" class="Wdate" onfocus="WdatePicker();"/>
+出现时间选项：<input type="text" id="t2" class="Wdate" onfocus="WdatePicker({dateFmt:'yyyy/MM/dd HH:mm:ss',lang:'zh-tw'});"/>
+双月：<input type="text" id="t3" class="Wdate" onfocus="WdatePicker({doubleCalendar:'true'});"/>
+提示语言：<input type="text" id="t2" class="Wdate" onfocus="WdatePicker({lang:'zh-tw'});"/>可见只要一个设了语言全页都用这种语言
+<br/>
+开始日期：<input type="text" id="tpre" class="Wdate" onfocus="WdatePicker({minDate:'%y-%M-%d'});" title='只能选今天以后'/>
+结束日期：<input type="text" id="taft" class="Wdate" onfocus="WdatePicker({doubleCalendar:'true',minDate:'#F{$dp.$D(\'tpre\')||\'%y-%M-%d\'}',maxDate:'#F{$dp.$D(\'tpre\',{d:20});}'});" title='必须晚于开始日期，不能超过20天'/>
+最大日期：<input type="text" id="tt" class="Wdate" onfocus="WdatePicker({maxDate:'%y-%M-#{%d+5}'});"/>
+<br/>
+缺省起始日期：<input type="text" id="t4" class="Wdate" onfocus="WdatePicker({skin:'YcloudRed',startDate:'1985-06-01'});"/>
+固定起始日期：<input type="text" id="t5" class="Wdate" onfocus="WdatePicker({skin:'YcloudRed',startDate:'1985-06-01',alwaysUseStartDate:'true'});" value='2000-03-05'/>
+日期联动：<input id="d5221" class="Wdate" type="text" onFocus="var d5222=$dp.$('d5222');WdatePicker({onpicked:function(){d5222.focus();},maxDate:'#F{$dp.$D(\'d5222\')}'})"/>
+<input id="d5222" class="Wdate" type="text" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'d5221\')}'})"/>
+<div>
+分割时间：
+<input type="text" id="d523_y" size="5"/> 年
+<input type="text" id="d523_M" size="3"/> 月
+<input type="text" id="d523_d" size="3"/> 日
+<input type="text" id="d523_HH" size="3"/> 时
+<input type="text" id="d523_mm" size="3"/> 分
+<input type="text" id="d523_ss" size="3"/> 秒 
+<input type="text" id="d523" /> 
+<img onclick="WdatePicker({el:'d523',dateFmt:'yyyy-MM-dd HH:mm:ss',onpicked:pickedFunc})" src="skin/datePicker.gif" width="16" height="22" align="absmiddle" style="cursor:pointer"/>
+</div>
+</body>
+</html>
+<script>
+function pickedFunc(){
+$dp.$('d523_y').value=$dp.cal.getP('y');
+$dp.$('d523_M').value=$dp.cal.getP('M');
+$dp.$('d523_d').value=$dp.cal.getP('d');
+$dp.$('d523_HH').value=$dp.cal.getP('H');
+$dp.$('d523_mm').value=$dp.cal.getP('m');
+$dp.$('d523_ss').value=$dp.cal.getP('s');
+}
+</script>

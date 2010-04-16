@@ -1,0 +1,27 @@
+E:\Visual Studio 2008\Projects\adunion\DALFactory\bin\Debug\wgiAdUnionSystem.DALFactory.dll
+E:\Visual Studio 2008\Projects\adunion\DALFactory\bin\Debug\wgiAdUnionSystem.DALFactory.pdb
+E:\Visual Studio 2008\Projects\adunion\DALFactory\bin\Debug\wgiAdUnionSystem.IDAL.dll
+E:\Visual Studio 2008\Projects\adunion\DALFactory\bin\Debug\wgiAdUnionSystem.Model.dll
+E:\Visual Studio 2008\Projects\adunion\DALFactory\bin\Debug\wgiAdUnionSystem.Model.pdb
+E:\Visual Studio 2008\Projects\adunion\DALFactory\bin\Debug\wgiAdUnionSystem.IDAL.pdb
+E:\Visual Studio 2008\Projects\adunion\DALFactory\obj\Debug\ResolveAssemblyReference.cache
+E:\Visual Studio 2008\Projects\adunion\DALFactory\obj\Debug\wgiAdUnionSystem.DALFactory.dll
+E:\Visual Studio 2008\Projects\adunion\DALFactory\obj\Debug\wgiAdUnionSystem.DALFactory.pdb
+C:\Users\geng\Desktop\walker\test\adunion\DALFactory\bin\Debug\wgiAdUnionSystem.DALFactory.dll
+C:\Users\geng\Desktop\walker\test\adunion\DALFactory\bin\Debug\wgiAdUnionSystem.DALFactory.pdb
+C:\Users\geng\Desktop\walker\test\adunion\DALFactory\bin\Debug\wgiAdUnionSystem.IDAL.dll
+C:\Users\geng\Desktop\walker\test\adunion\DALFactory\bin\Debug\wgiAdUnionSystem.Model.dll
+C:\Users\geng\Desktop\walker\test\adunion\DALFactory\bin\Debug\wgiAdUnionSystem.Model.pdb
+C:\Users\geng\Desktop\walker\test\adunion\DALFactory\bin\Debug\wgiAdUnionSystem.IDAL.pdb
+C:\Users\geng\Desktop\walker\test\adunion\DALFactory\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\geng\Desktop\walker\test\adunion\DALFactory\obj\Debug\wgiAdUnionSystem.DALFactory.dll
+C:\Users\geng\Desktop\walker\test\adunion\DALFactory\obj\Debug\wgiAdUnionSystem.DALFactory.pdb
+D:\projects\adunion\DALFactory\bin\Debug\wgiAdUnionSystem.DALFactory.dll
+D:\projects\adunion\DALFactory\bin\Debug\wgiAdUnionSystem.DALFactory.pdb
+D:\projects\adunion\DALFactory\bin\Debug\wgiAdUnionSystem.IDAL.dll
+D:\projects\adunion\DALFactory\bin\Debug\wgiAdUnionSystem.Model.dll
+D:\projects\adunion\DALFactory\bin\Debug\wgiAdUnionSystem.Model.pdb
+D:\projects\adunion\DALFactory\bin\Debug\wgiAdUnionSystem.IDAL.pdb
+D:\projects\adunion\DALFactory\obj\Debug\ResolveAssemblyReference.cache
+D:\projects\adunion\DALFactory\obj\Debug\wgiAdUnionSystem.DALFactory.dll
+D:\projects\adunion\DALFactory\obj\Debug\wgiAdUnionSystem.DALFactory.pdb

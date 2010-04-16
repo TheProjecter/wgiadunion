@@ -1,0 +1,70 @@
+@charset "utf-8";
+
+/*common*/
+#maincont{ background:url(../images/2x2line.gif) 200px 0 scroll repeat-y;}
+#left{width:190px; float:left;}
+#cont{width:750px; float:left; clear:right; margin-left:24px;}
+#header .graya:hover{text-decoration:none;}
+
+/*loginbox*/
+.loginbox{ margin-bottom:15px;}
+.loginbox h3{background:url("../Images/yellow_title.gif") no-repeat scroll 0 0 transparent; color:#8E4201; height:28px; line-height:28px; padding:0 1em; font-size:12px;}
+.loginbox .mbmbox, .leftmenu .menubox{border:1px solid #d2bfb0; border-width:0 1px 1px; padding:10px 5px; overflow:hidden;}
+.loginbox .mbmbox p{color:#555; height:20px; line-height:20px; padding-left:8px;}
+.loginbox .mbmbox p .lboxspan1{color:#0167b2; font-weight:600;}
+.loginbox .mbmbox p .lboxspan2{ color:#ff5900}
+.loginbox .mbmbox p span.timespan{ display:inline-block; width:20px; overflow:visible; white-space:nowrap; color:#ff5900;}
+
+/*loginform*/
+.loginbox table tr{height:28px; line-height:28px;}
+.loginbox .logtxt{width:118px; color:gray;}
+.loginbox .logvcode{width:50px; color:gray;}
+.loginbox .vcodeimg{vertical-align:bottom; margin-left:10px;}
+.loginbox .logbtn{width:100%; text-align:center;}
+.loginbox .logbtn input, .loginbox .logbtn a{display:inline-block; font-size:1.2em; margin:5px 10px; background:url(../Images/btn.jpg) no-repeat; width:69px; height:22px; line-height:22px; border:none; font-family:微软雅黑,宋体; color:#333;}
+.loginbox .logbtn a:hover{text-decoration:none;}
+
+/*leftmenu*/
+.leftmenu{margin-bottom:15px;}
+.leftmenu h3{background:url("../Images/yellow_title.gif") no-repeat scroll 0 -30px transparent; color:#8E4201; height:28px; line-height:28px; padding:0 1em; font-size:12px;}
+.leftmenu .menubox{padding: 15px;}
+.leftmenu .menubox dt, .leftmenu .menubox dd{cursor:default;}
+.leftmenu .menubox dd a{display:block;}
+.leftmenu .menubox dd a:hover{text-decoration:none;}
+.leftmenu .menubox dt, .leftmenu .menubox dd{height:28px; line-height:24px; border-bottom:dotted 1px #d2bfb0; }
+.leftmenu .menubox dt div, .leftmenu .menubox dd a{ height:21px; border:1px solid #fff; font-weight:600; color:#444; background:url(../Images/imgSprite01.gif) 137px -372px no-repeat; padding-left:8px; margin:3px 0;}
+.leftmenu .menubox dt:hover div, .leftmenu .menubox dd:hover a{background-color:#ffe2c5; background-position:137px -320px; border-color:#ffb56d;}
+.leftmenu .menubox dd{margin-left:10px; display:none;}
+.leftmenu .menubox dd a{ font-weight:normal; background-position:127px -372px;}
+.leftmenu .menubox dd:hover a{background-position:127px -320px;}
+
+.leftmenu .menubox li{ margin:auto auto 10px 15px;}
+.leftmenu .menubox li a{color:#555;}
+
+/*rightcontent*/
+#cont .conthead{ height:18px; font-size:1.2em; font-weight:800; border-bottom:solid 1px #ef6f03; padding:0 7px 0 10px; color:#333; margin-top:5px;}
+#cont .conthead span{ color:#666; float:right; font-size:12px; font-weight:normal;}
+
+/*index conent*/
+#cont .ctbody_index{border:1px #ef6f03 solid; margin-top:15px; padding:10px 8px; overflow:hidden;}
+#cont .ctbody_index div{ width:336px; background:#fbf6f2; border:#f8fbea 1px solid; float:left; margin:auto 8px 8px auto; padding:10px; height:105px;}
+#cont .ctbody_index ul{padding:10px 0; border-top:#efd5bf 1px solid; margin-top:5px;}
+#cont .ctbody_index li{ float:left; list-style-position:inside; margin-left:10px; white-space:nowrap; margin-bottom:5px;}
+#cont .ctbody_index li a{color:#dd4e00;}
+
+/*content content*/
+#cont .ctbody_cnt{ padding:10px 0;}
+#cont .ctbody_cnt div{padding:10px;}
+#cont .ctbody_cnt h3{ padding:0 10px; background:#fae8d1; color:#984f08; height:26px; line-height:26px; font-size:13px; border-bottom:#d0aa7a solid 1px;}
+
+/*footer*/
+#footer{ border-top:1px solid #ccc; margin:15px 0 5px 0; padding:10px; color:#666;}
+#footer .ft_detail a{color:#666;}
+
+/*ajax input check area*/
+span.onshow,span.onerror,span.onfocus,span.oncorrect{ display:inline-block; height:22px; line-height:22px; color:Gray; padding-left:23px; margin-left:5px; background:url(../Images/ajaxcheck/onShow.gif) no-repeat;}
+span.onerror{background-image:url(../Images/ajaxcheck/onError.gif); color:#a00; font-weight:600;}
+span.onfocus{background-image:url(../Images/ajaxcheck/onFocus.gif); color:#33f; font-weight:600;}
+span.oncorrect{background-image:url(../Images/ajaxcheck/onCorrect.gif); color:#fff!important;}
+
+

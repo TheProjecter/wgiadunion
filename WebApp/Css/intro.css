@@ -1,0 +1,54 @@
+﻿@charset "utf-8";
+
+/*common*/
+#left{width:220px; float:left;}
+#cont{width:746px; float:left; clear:right; margin-left:14px;}
+
+/*left rectangle*/
+.leftarc{width:220px; border:#565662 1px solid; margin-bottom:15px;}
+.leftarc .la_title{ height:20px; line-height:20px; padding-left:10px; margin:1px; background:#575563; color:#fff; font-weight:600;}
+.leftarc .la_cont{padding:7px;}
+.leftarc .la_cont ul a{ color:#900; text-decoration:none;}
+.leftarc .la_cont ul a:hover{ text-decoration:underline;}
+.leftarc .la_cont ul li{margin-bottom:5px;}
+.leftarc table tr{height:28px; line-height:28px;}
+.leftarc .logtxt{width:140px; color:gray;}
+.leftarc .logvcode{width:70px; color:gray;}
+.leftarc .vcodeimg{vertical-align:bottom; margin-left:10px;}
+.leftarc .logbtn{width:100%; text-align:center;}
+.leftarc .logbtn input, .leftarc .logbtn a{display:inline-block;color:#333; font-size:1.2em; margin:5px 10px; background:url(../Images/btn.jpg) no-repeat; width:69px; height:22px; line-height:22px; border:none; font-family:微软雅黑,宋体}
+.leftarc .logbtn a:hover{ text-decoration:none;}
+#loged p{ padding-left:20px; height:22px; line-height:22px;}
+#loged p .lboxspan1{color:#0167b2; font-weight:600;}
+#loged p .lboxspan2{color:#ff5900;}
+
+/*tab*/
+#navi{list-style:none; border-bottom:3px solid #565662; overflow:hidden;}
+#navi li{ background:url(../Images/tab.jpg) 0 -61px no-repeat; float:right; height:28px; margin-left:3px;}
+#navi li span{display:inline-block; height:28px; background:url(../Images/tab.jpg) right bottom no-repeat;}
+#navi li span a{ background:url(../Images/tab.jpg) 0 -91px repeat-x; margin:0 7px; display:inline-block; height:28px; text-decoration:none; color:#565662; line-height:28px; padding:0 4px; font-family:微软雅黑,宋体; font-size:1.2em}
+#navi li.curtab, #navi li:hover{ background-position:0 0;}
+#navi li.curtab span, #navi li:hover span{background-position:right -30px;}
+#navi li.curtab span a, #navi li:hover span a{ background:#565662; color:#fff;}
+
+/*content*/
+#rca_body{ width:100%; margin-top:10px;}
+#rca_body .btop{ height:3px; background:url(../Images/rca_top.gif) no-repeat;}
+#rca_body .bbot{ height:3px; background:url(../Images/rca_bot.jpg) no-repeat;}
+#rca_body .bmid{border-left:1px solid #ccc; border-right:1px solid #ccc; padding:15px;}
+
+/*register*/
+#maincont .reginfo .infowraper{border:#888 solid 1px; margin:10px auto; width:99%;}
+#maincont .reginfo .infowraper .ptitle{ height:30px; line-height:30px; padding-left:10px; margin:1px; background:#7a7f89; color:#fff; font-weight:600;}
+#maincont .reginfo table{margin:30px;}
+#maincont .reginfo .pterms{width:90%; line-height: 22px; padding:15px auto;}
+#maincont .reginfo .divterms{overflow-y: scroll; border: 1px solid rgb(127, 157, 185); padding: 10px; height: 470px; margin:20px 30px;}
+#maincont .readterms{margin-left:30px;}
+
+/*footer*/
+#footer .detail{ width:100%; height:247px; background:url(../Images/footer.jpg) no-repeat; overflow:hidden;}
+#footer .detail .detwrap{width:310px; height:228px; float:left; margin:10px 8px;}
+#footer .detail .detwrap:first-child{margin-left:10px;}
+#footer .detail div .footdet_top{ border-bottom:1px solid #a10000; height:40px; line-height:40px!important; width:290px; margin:0 auto; font:800 1em 宋体; color:#555 }
+#footer .detail div .footdet_cont{ height:170px; width:290px; margin:10px auto;}
+#footer .detail li{ color:#555; line-height:24px; margin-left:12px; list-style:square; *margin-left:15px;}
