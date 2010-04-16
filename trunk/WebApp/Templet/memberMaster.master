@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="memberMaster.master.cs" Inherits="Templet_memberMaster" %>
+
+<%@ Register src="../Controls/login_member.ascx" tagname="login_member" tagprefix="uc1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>中商购物|网站联盟|用户中心</title>
+    <link href="~/Css/common.css" rel="stylesheet" type="text/css" />
+    <link href="~/Css/mem_com.css" rel="stylesheet" type="text/css" />
+    <script src="/Js/jquery-1.4.min.js" type="text/javascript"></script>
+    <script src="/Js/member.js" type="text/javascript"></script>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="formdotnet" runat="server">
+    <div id="wraper">
+		<div id="header">
+			<span class="logo"><img src="/images/logo.jpg" alt="" onclick="location.href='/index.aspx';" style="cursor:pointer;" /></span>
+			<span class="logotitle"><img src="/images/logotext.jpg" alt="" /></span>
+			<p><a hidefocus="true" href="/member/Default.aspx" class="graya">返回会员首页</a></p>
+		</div>
+		<div id="maincont">
+		<div id="left">
+<uc1:login_member ID="Muser" runat="server" />
+&nbsp;<div class="leftmenu">
+				<h3>会员操作菜单</h3>
+				<div class="menubox">
+					<dl>
+						<dt><div>广告列表</div></dt>
+						<dd><a href="adverlist.aspx">推荐广告主</a></dd>
+						<dd><a href="adlist.aspx">推荐广告</a></dd>
+					</dl>
+					<dl>
+						<dt><div>查看报表</div></dt>
+						<dd><a href="reports.aspx">查看报表</a></dd>
+						<dd><a href="cpsreports.aspx">CPS明细表</a></dd>
+						<dd><a href="lostreports.aspx">丢单明细表</a></dd>
+					</dl>
+					<dl>
+						<dt><div>信息中心</div></dt>
+						<dd><a href="notices.aspx">网站公告</a></dd>
+						<dd><a href="messages.aspx">站内信</a></dd>
+					</dl>
+					<dl>
+						<dt><div>个人设置</div></dt>
+						<dd><a href="account.aspx">账号信息</a></dd>
+						<dd><a href="bank.aspx">银行信息</a></dd>
+						<dd><a href="sites.aspx">网站信息</a></dd>
+						<dd><a href="changepwd.aspx">更改密码</a></dd>
+					</dl>
+					<dl>
+						<dt><div>财务管理</div></dt>
+						<dd><a href="applyfee">申请佣金</a></dd>
+						<dd><a href="feelist">结付查询</a></dd>
+					</dl>
+				</div>
+			</div>
+			<div class="leftmenu">
+				<h3>常用操作</h3>
+				<div class="menubox">
+					<ul>
+						<li><a href="#">常用操作一</a></li>
+						<li><a href="#">常用操作一</a></li>
+						<li><a href="#">常用操作一</a></li>
+						<li><a href="#">常用操作一</a></li>
+						<li><a href="#">常用操作一</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="cont">
+
+			<!--内容区首页样式结束-->
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+            
+            </asp:ContentPlaceHolder>
+		</div>
+	</div>
+	<div id="footer">
+		<div class="ft_detail">
+			<a hidefocus="true" href="#">法律声明</a>&nbsp;|&nbsp;
+			<a hidefocus="true" href="#">联系我们</a>&nbsp;|&nbsp;
+			<a hidefocus="true" href="#">服务热线</a>&nbsp;|&nbsp;
+			<a hidefocus="true" href="#">网站地图</a>&nbsp;|&nbsp;
+			<a hidefocus="true" href="#">招聘信息</a>&nbsp;|
+		</div>
+	</div>
+    </div>
+</body>
+<%--脚本区--%>
+    <asp:ContentPlaceHolder ID="jscode" runat="server">
+    </asp:ContentPlaceHolder>
+    </form>
+
+<%--脚本区--%>
+</html>

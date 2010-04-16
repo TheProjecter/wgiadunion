@@ -1,0 +1,208 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B542A4FB-3FDF-4A3D-82BD-FB8D86D75055}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wgi.Web.UI.Controls</RootNamespace>
+    <AssemblyName>Wgi.Web.UI.Controls</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <PublishUrl>http://localhost/YYControls/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Wgi.Web.UI.Controls.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Wgi.Web.UI.Controls.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enum.cs">
+    </Compile>
+    <Compile Include="Helper\Common\Attribute.cs" />
+    <Compile Include="Helper\Common\Control.cs" />
+    <Compile Include="Helper\Common\String.cs" />
+    <Compile Include="Helper\Common\Export.cs" />
+    <Compile Include="Helper\Common\DataSet.cs" />
+    <Compile Include="Helper\SmartGridView.cs" />
+    <Compile Include="Resources\Icon.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RichDropDownList\OptionGroup\OptionGroup.cs" />
+    <Compile Include="RichDropDownList\OptionGroup\Property.cs" />
+    <Compile Include="RichDropDownList\RichDropDownList.cs" />
+    <Compile Include="SmartGridViewAlpha\CheckboxAll.cs" />
+    <Compile Include="SmartGridViewAlpha\CheckboxAlls.cs" />
+    <Compile Include="SmartGridViewAlpha\ConfirmButton.cs" />
+    <Compile Include="SmartGridViewAlpha\ConfirmButtonConverter.cs" />
+    <Compile Include="SmartGridViewAlpha\ConfirmButtons.cs" />
+    <Compile Include="SmartGridViewAlpha\ContextMenu.cs" />
+    <Compile Include="SmartGridViewAlpha\ContextMenus.cs" />
+    <Compile Include="SmartGridViewAlpha\FixRowCol.cs" />
+    <Compile Include="SmartGridViewAlpha\JavaScriptConstant.cs" />
+    <Compile Include="SmartGridViewAlpha\Paging.cs" />
+    <Compile Include="SmartGridViewAlpha\SmartGridViewAlpha.cs" />
+    <Compile Include="SmartGridViewAlpha\SortTip.cs" />
+    <Compile Include="SmartGridViewAlpha\ChangeRowCSSByCheckBox.cs" />
+    <Compile Include="RichGridView\CascadeCheckbox\CascadeCheckbox.cs" />
+    <Compile Include="RichGridView\CascadeCheckbox\CascadeCheckboxes.cs" />
+    <Compile Include="RichGridView\CascadeCheckbox\CascadeCheckboxFunction.cs" />
+    <Compile Include="RichGridView\CascadeCheckbox\Property.cs" />
+    <Compile Include="RichGridView\CheckedRowCssClass\Property.cs" />
+    <Compile Include="RichGridView\CheckedRowCssClass\CheckedRowCssClass.cs" />
+    <Compile Include="RichGridView\CheckedRowCssClass\CheckedRowCssClassFunction.cs" />
+    <Compile Include="RichGridView\ClientButton\ClientButton.cs" />
+    <Compile Include="RichGridView\ClientButton\ClientButtonFunction.cs" />
+    <Compile Include="RichGridView\ClientButton\ClientButtons.cs" />
+    <Compile Include="RichGridView\ClientButton\Property.cs" />
+    <Compile Include="RichGridView\ContextMenu\ContextMenu.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RichGridView\ContextMenu\ContextMenuFunction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RichGridView\ContextMenu\ContextMenus.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RichGridView\ContextMenu\Property.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RichGridView\Event.cs" />
+    <Compile Include="RichGridView\Export\Export.cs" />
+    <Compile Include="RichGridView\FixRowColumn\Property.cs" />
+    <Compile Include="RichGridView\FixRowColumn\FixRowColumn.cs">
+    </Compile>
+    <Compile Include="RichGridView\FixRowColumn\FixRowColumnFunction.cs" />
+    <Compile Include="RichGridView\Handler.cs" />
+    <Compile Include="RichGridView\MergeCells\MergeCellsFunction.cs" />
+    <Compile Include="RichGridView\MergeCells\Property.cs" />
+    <Compile Include="RichGridView\MouseOverCssClass\Property.cs" />
+    <Compile Include="RichGridView\MouseOverCssClass\MouseOverCssClassFunction.cs" />
+    <Compile Include="RichGridView\ExtendFunction.cs" />
+    <Compile Include="RichGridView\CustomPagerSettings\CustomPagerSettings.cs" />
+    <Compile Include="RichGridView\RowClick\RowClickFunction.cs" />
+    <Compile Include="RichGridView\RowClick\Property.cs" />
+    <Compile Include="RichGridView\SmartSorting\SmartSorting.cs" />
+    <Compile Include="RichGridView\SmartSorting\SmartSortingFunction.cs" />
+    <Compile Include="RichGridView\SmartSorting\Property.cs" />
+    <Compile Include="RichGridView\RichGridView.cs" />
+    <Compile Include="RichGridView\GridViewTableCell.cs" />
+    <Compile Include="RichGridView\RowDoubleClick\Property.cs" />
+    <Compile Include="RichGridView\RowDoubleClick\RowDoubleClickFunction.cs" />
+    <Compile Include="RichGridView\CustomPagerSettings\CustomPagerSettingsFunction.cs" />
+    <Compile Include="RichGridView\CustomPagerSettings\Property.cs" />
+    <Compile Include="RichLabel\EnablePostback\EnablePostback.cs" />
+    <Compile Include="RichLabel\EnablePostback\Property.cs" />
+    <Compile Include="RichLabel\RichLabel.cs" />
+    <Compile Include="RichTreeView\CascadeCheckbox\CascadeCheckboxFunction.cs" />
+    <Compile Include="RichTreeView\CascadeCheckbox\Property.cs" />
+    <Compile Include="RichTreeView\ExtendFunction.cs" />
+    <Compile Include="RichTreeView\RichTreeView.cs" />
+    <Compile Include="RichListBox\OptionGroup\OptionGroup.cs" />
+    <Compile Include="RichListBox\OptionGroup\Property.cs" />
+    <Compile Include="RichListBox\RichListBox.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SmartGridViewAlpha\icon.bmp" />
+    <EmbeddedResource Include="Resources\SmartTreeView.bmp" />
+    <EmbeddedResource Include="Resources\SmartDropDownList.bmp" />
+    <EmbeddedResource Include="Resources\SmartListBox.bmp" />
+    <EmbeddedResource Include="Resources\SmartLabel.bmp" />
+    <Content Include="RichDropDownList\readme.txt" />
+    <Content Include="RichGridView\readme.txt" />
+    <Content Include="RichGridView\history.txt" />
+    <Content Include="RichLabel\readme.txt" />
+    <EmbeddedResource Include="RichLabel\Resources\ScriptLibrary.js" />
+    <Content Include="RichListBox\readme.txt" />
+    <Content Include="RichTreeView\history.txt" />
+    <Content Include="RichTreeView\readme.txt" />
+    <EmbeddedResource Include="Resources\SmartGridView.bmp">
+    </EmbeddedResource>
+    <EmbeddedResource Include="RichGridView\Resources\ScriptLibrary.js" />
+    <EmbeddedResource Include="RichGridView\Resources\ScriptLibraryDebug.js" />
+    <EmbeddedResource Include="RichGridView\Resources\StyleLibrary.css" />
+    <EmbeddedResource Include="RichTreeView\Resources\ScriptLibrary.js" />
+    <EmbeddedResource Include="RichTreeView\Resources\ScriptLibraryDebug.js" />
+    <EmbeddedResource Include="RichGridView\Resources\Asc.gif" />
+    <EmbeddedResource Include="RichGridView\Resources\Desc.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,30 @@
+@charset "utf-8";
+/*common*/
+*{margin:0; padding:0}
+body{font-size:12px; font-family:宋体}
+.graya{color:#000;}
+.txtright{text-align:right;}
+.fright{float:right;}
+a{outline:none; text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+/*header*/
+#header{border-bottom:1px solid #565662; margin-bottom:12px; position:relative;}
+#header p{ position:absolute; top: 25px; left:906px;}
+
+/*content--roundbox*/
+#rca_body{ width:100%; margin-top:10px;}
+#rca_body .btop{ height:3px; background:url(../Images/rca_top.gif) no-repeat;}
+#rca_body .bbot{ height:3px; background:url(../Images/rca_bot.jpg) no-repeat;}
+#rca_body .bmid{border-left:1px solid #ccc; border-right:1px solid #ccc; padding:15px;}
+
+
+/*page*/
+#wraper{width:980px; margin:0 auto;}
+#maincont{overflow:hidden;}
+
+
+/*button style*/
+.redbtn{width:65px; height:25px; line-height:25px; background:#a10000; color:#fff; font-weight:600; border:none; margin-bottom:15px;}
+.yelbtn{width:42px; height:21px; background:url(../Images/btnbg.gif) repeat-x; border:1px solid #EF6F03; padding:1px;}
+.yelbtn:hover{background-position:0 -24px;}
