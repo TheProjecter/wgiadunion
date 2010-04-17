@@ -27,5 +27,5 @@ a:hover{text-decoration:underline;}
 
 /*button style*/
 .redbtn{width:65px; height:25px; line-height:25px; background:#a10000; color:#fff; font-weight:600; border:none; margin-bottom:15px;}
-.yelbtn{width:42px; height:21px; background:url(../Images/btnbg.gif) repeat-x; border:1px solid #EF6F03; padding:1px;}
+.yelbtn{ height:21px; background:url(../Images/btnbg.gif) repeat-x; border:1px solid #EF6F03; padding:1px;}
 .yelbtn:hover{background-position:0 -24px;}

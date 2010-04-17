@@ -14,3 +14,6 @@
 .ctbody_cnt table.listtable,.ctbody_cnt table.listtable td{ border:1px solid #dbbd97; border-collapse:collapse;}
 .ctbody_cnt table.listtable td,.ctbody_cnt table.listtable th{ padding:0 10px; color:#333}
 .ctbody_cnt table.listtable th{ background:#FAE8D1; color:#984F08;}
+
+#maincont #listdiv div{padding:0;}
+#opdiv{color:#333; border:solid 1px rgb(250,232,209); margin-top:20px; padding:10px!important;}
