@@ -15,11 +15,24 @@ public partial class cookie : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Request["siteid"] == null || Request["union"] == null || Request["url"] == null) return;
+
         //step2:广告商处理逻辑，将贡献者网站和id保存
+        string siteid = Request["siteid"];
+        string union = Request["union"];
+
+        //写入本站cookie
+        string userdata = "union="+union + "|siteid=" + siteid;
+        FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1,"siteuser",System.DateTime.Now,DateTime.Now.AddMonths(1),true,userdata);
+        string entrcyedTicket = FormsAuthentication.Encrypt(authTicket);
+
+        HttpCookie authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, entrcyedTicket);
+        HttpContext.Current.Response.Cookies.Add(authCookie);
 
         //取出最终的广告页面地址
+        string url = Request["url"];
 
-        string url = "/";
-        Response.Redirect("");
+        Response.Redirect(url);
+        //Response.Redirect("/member/default.aspx");
     }
 }
