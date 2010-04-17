@@ -102,4 +102,38 @@ public class CommonData
     {
         return GetAuditStatusItem().Select("value=" + id)[0]["name"].ToString();
     }
+
+    /// <summary>
+    /// 用户状态的列表
+    /// </summary>
+    /// <returns></returns>
+    public static DataTable getAccountStatus()
+    {
+        DataTable dt = GetBaseTable();
+        dt.Rows.Add("禁止登录", "0");
+        dt.Rows.Add("正常登录", "1");
+        dt.Rows.Add("状态异常", "2");
+        return dt;
+    }
+
+    public static string getAccountStatusByValue(string v)
+    {
+        return getAccountStatus().Select("value=" + v)[0]["name"].ToString();
+    }
+
+    public static DataTable getSiteType()
+    {
+        DataTable dt=GetBaseTable();
+        dt.Rows.Add("普通网站","0");
+        dt.Rows.Add("电子商务网站", "1");
+        dt.Rows.Add("网店", "2");
+        dt.Rows.Add("博客", "2");
+        dt.Rows.Add("其它", "2");
+        return dt;
+    }
+
+    public static string getSiteTypeByValue(string v)
+    {
+        return getSiteType().Select("value=" + v)[0]["name"].ToString();
+    }
 }

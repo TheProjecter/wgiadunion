@@ -31,6 +31,7 @@ namespace wgiAdUnionSystem.Model
         private string _icp;
         private int? _industryid;
         private string _sitename;
+        private string _cookiepage;
         private string _remark;
         private string _return_day;
         private string _return_type;
@@ -208,6 +209,14 @@ namespace wgiAdUnionSystem.Model
         {
             set { _sitename = value; }
             get { return _sitename; }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string cookiepage
+        {
+            set { _cookiepage = value; }
+            get { return _cookiepage; }
         }
         /// <summary>
         /// 

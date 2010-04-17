@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+/*user profile*/
+.prof_detail{margin:10px auto;}
+.prof_detail, .prof_detail td{border:1px solid #dbbd97; border-collapse:collapse;}
+.prof_detail td{ padding-left:10px; color:#333;}
+
+/*few data modify*/
+.ctbody_cnt .pwddiv{ border:1px solid rgb(250,232,209); margin-top:20px;}
+.ctbody_cnt table{margin:20px auto;}
+.ctbody_cnt table tr{height:30px;}
+
+/*list*/
+.ctbody_cnt table.listtable,.ctbody_cnt table.listtable td{ border:1px solid #dbbd97; border-collapse:collapse;}
+.ctbody_cnt table.listtable td,.ctbody_cnt table.listtable th{ padding:0 10px; color:#333}
+.ctbody_cnt table.listtable th{ background:#FAE8D1; color:#984F08;}

@@ -1,11 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Templet/memberMaster.master" AutoEventWireup="true" CodeFile="changepwd.aspx.cs" Inherits="member_changepwd" Title="中商购物|网站联盟|用户中心" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <style type="text/css">
-        .ctbody_cnt .pwddiv{ border:1px solid rgb(250,232,209); margin-top:20px;}
-		.ctbody_cnt table{margin:55px auto;}
-        .ctbody_cnt table tr{height:30px;}
-    </style>
+    <link href="/Css/mem_modify.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 	<!--内容区样式开始-->

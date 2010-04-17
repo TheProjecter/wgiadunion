@@ -2,9 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script src="../../Js/ca/WdatePicker.js" type="text/javascript"></script>
-    <style type="text/css">
-        .invisableColumn{display:none;}
-    </style>
+
+    <link href="/Css/mem_modify.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
@@ -24,7 +23,7 @@
             <asp:Button ID="Button1" runat="server" Text="查&nbsp;询" class="right-button02"  onclick="Button1_Click"/>
         </div>
 		
-      <Wgi:RichGridView ID="gridList" runat="server" AllowPaging="True" 
+      <Wgi:RichGridView ID="gridList" runat="server" AllowPaging="True" CssClass="listtable"
             AllowSorting="True" MouseOverCssClass="OverRow" DataKeyNames="advid"
         Width="100%" AutoGenerateColumns="False" ondatabound="gridList_DataBound" 
             EmptyDataText="没有查询到相关数据！">
@@ -48,7 +47,7 @@
                 </itemtemplate>
                 <ItemStyle Width="50px" HorizontalAlign="Center"></ItemStyle>
             </asp:TemplateField>
-            <asp:TemplateField ItemStyle-Width="50px" ItemStyle-CssClass="invisibleColumn">
+            <asp:TemplateField ItemStyle-Width="50px">
                 <headertemplate>序号</headertemplate>
                 <itemtemplate><%# Container.DataItemIndex + 1 %></itemtemplate>
                 <ItemStyle Width="50px" HorizontalAlign="Center"></ItemStyle>

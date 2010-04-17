@@ -68,10 +68,10 @@ namespace wgiAdUnionSystem.DAL
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("insert into wgi_adhost(");
-            strSql.Append("status,username,password,email,company,contact,tel,qq,mobile,fax,address,zipcode,url,intro,user_type,owner,licence,icp,industryid,sitename,remark,return_day,return_type,valid_day,regdate,regip,lastdate,lastip,balance,ischeck)");
+            strSql.Append("status,username,password,email,company,contact,tel,qq,mobile,fax,address,zipcode,url,intro,user_type,owner,licence,icp,industryid,sitename,cookiepage,remark,return_day,return_type,valid_day,regdate,regip,lastdate,lastip,balance,ischeck)");
 
             strSql.Append(" values (");
-            strSql.Append("@status,@username,@password,@email,@company,@contact,@tel,@qq,@mobile,@fax,@address,@zipcode,@url,@intro,@user_type,@owner,@licence,@icp,@industryid,@sitename,@remark,@return_day,@return_type,@valid_day,@regdate,@regip,@lastdate,@lastip,@balance,@ischeck)");
+            strSql.Append("@status,@username,@password,@email,@company,@contact,@tel,@qq,@mobile,@fax,@address,@zipcode,@url,@intro,@user_type,@owner,@licence,@icp,@industryid,@sitename,@cookiepage,@remark,@return_day,@return_type,@valid_day,@regdate,@regip,@lastdate,@lastip,@balance,@ischeck)");
             strSql.Append(";select @@IDENTITY");
             Database db = DatabaseFactory.CreateDatabase();
             DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
@@ -95,6 +95,7 @@ namespace wgiAdUnionSystem.DAL
             db.AddInParameter(dbCommand, "icp", DbType.String, model.icp);
             db.AddInParameter(dbCommand, "industryid", DbType.Int32, model.industryid);
             db.AddInParameter(dbCommand, "sitename", DbType.String, model.sitename);
+            db.AddInParameter(dbCommand, "cookiepage", DbType.String, model.cookiepage);
             db.AddInParameter(dbCommand, "remark", DbType.String, model.remark);
             db.AddInParameter(dbCommand, "return_day", DbType.String, model.return_day);
             db.AddInParameter(dbCommand, "return_type", DbType.String, model.return_type);
@@ -140,6 +141,7 @@ namespace wgiAdUnionSystem.DAL
             strSql.Append("icp=@icp,");
             strSql.Append("industryid=@industryid,");
             strSql.Append("sitename=@sitename,");
+            strSql.Append("cookiepage=@cookiepage,");
             strSql.Append("remark=@remark,");
             strSql.Append("return_day=@return_day,");
             strSql.Append("return_type=@return_type,");
@@ -174,6 +176,7 @@ namespace wgiAdUnionSystem.DAL
             db.AddInParameter(dbCommand, "icp", DbType.String, model.icp);
             db.AddInParameter(dbCommand, "industryid", DbType.Int32, model.industryid);
             db.AddInParameter(dbCommand, "sitename", DbType.String, model.sitename);
+            db.AddInParameter(dbCommand, "cookiepage", DbType.String, model.cookiepage);
             db.AddInParameter(dbCommand, "remark", DbType.String, model.remark);
             db.AddInParameter(dbCommand, "return_day", DbType.String, model.return_day);
             db.AddInParameter(dbCommand, "return_type", DbType.String, model.return_type);
@@ -211,7 +214,7 @@ namespace wgiAdUnionSystem.DAL
         {
 
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select companyid,status,username,password,email,company,contact,tel,qq,mobile,fax,address,zipcode,url,intro,user_type,owner,licence,icp,industryid,sitename,remark,return_day,return_type,valid_day,regdate,regip,lastdate,lastip,balance,ischeck from wgi_adhost ");
+            strSql.Append("select companyid,status,username,password,email,company,contact,tel,qq,mobile,fax,address,zipcode,url,intro,user_type,owner,licence,icp,industryid,sitename,cookiepage,remark,return_day,return_type,valid_day,regdate,regip,lastdate,lastip,balance,ischeck from wgi_adhost ");
             strSql.Append(" where companyid=@companyid ");
             Database db = DatabaseFactory.CreateDatabase();
             DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
@@ -233,7 +236,7 @@ namespace wgiAdUnionSystem.DAL
         public DataSet GetList(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select companyid,status,username,password,email,company,contact,tel,qq,mobile,fax,address,zipcode,url,intro,user_type,owner,licence,icp,industryid,sitename,remark,return_day,return_type,valid_day,regdate,regip,lastdate,lastip,balance,ischeck ");
+            strSql.Append("select companyid,status,username,password,email,company,contact,tel,qq,mobile,fax,address,zipcode,url,intro,user_type,owner,licence,icp,industryid,sitename,cookiepage,remark,return_day,return_type,valid_day,regdate,regip,lastdate,lastip,balance,ischeck ");
             strSql.Append(" FROM wgi_adhost ");
             if (strWhere.Trim() != "")
             {
@@ -267,7 +270,7 @@ namespace wgiAdUnionSystem.DAL
         public List<wgiAdUnionSystem.Model.wgi_adhost> GetListArray(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select companyid,status,username,password,email,company,contact,tel,qq,mobile,fax,address,zipcode,url,intro,user_type,owner,licence,icp,industryid,sitename,remark,return_day,return_type,valid_day,regdate,regip,lastdate,lastip,balance,ischeck ");
+            strSql.Append("select companyid,status,username,password,email,company,contact,tel,qq,mobile,fax,address,zipcode,url,intro,user_type,owner,licence,icp,industryid,sitename,cookiepage,remark,return_day,return_type,valid_day,regdate,regip,lastdate,lastip,balance,ischeck ");
             strSql.Append(" FROM wgi_adhost ");
             if (strWhere.Trim() != "")
             {
@@ -330,6 +333,7 @@ namespace wgiAdUnionSystem.DAL
                 model.industryid = (int)ojb;
             }
             model.sitename = dataReader["sitename"].ToString();
+            model.cookiepage = dataReader["cookiepage"].ToString();
             model.remark = dataReader["remark"].ToString();
             model.return_day = dataReader["return_day"].ToString();
             model.return_type = dataReader["return_type"].ToString();
