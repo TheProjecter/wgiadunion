@@ -9,18 +9,24 @@
 
 	<!--内容区样式开始-->
 	<div class="conthead"><span>您现在的位置：首页&nbsp;>&nbsp;个人设置&nbsp;>&nbsp;银行信息</span>联盟会员控制面板</div>
-	<div class="ctbody_cnt">
+	<div class="ctbody_cnt" id="listdiv">
 		<h3>推荐广告</h3>
 		<div>
-		<div>title</div>
-		<div>
-		    付费类型：<asp:DropDownList ID="ddlPayType" runat="server"></asp:DropDownList>&nbsp;
-		    显示类型：<asp:DropDownList ID="ddlDisplayType" runat="server"></asp:DropDownList><br />
-		    截止时间：<asp:TextBox ID="txtstart" runat="server" Width="70px" onclick=" WdatePicker({ doubleCalendar: true,readOnly:true, dateFmt: 'yyyy-MM-dd'})"></asp:TextBox>
+		<div id="opdiv">
+		<table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin:5px auto;">
+		    <tr>
+		        <td width="250px">付费类型：<asp:DropDownList ID="ddlPayType" runat="server"></asp:DropDownList></td>
+		        <td>显示类型：<asp:DropDownList ID="ddlDisplayType" runat="server"></asp:DropDownList></td>
+		    </tr>
+		    <tr>
+		        <td>截止时间：<asp:TextBox ID="txtstart" runat="server" Width="70px" onclick=" WdatePicker({ doubleCalendar: true,readOnly:true, dateFmt: 'yyyy-MM-dd'})"></asp:TextBox>
 <span class="newfont06">至</span>
-                  <asp:TextBox ID="txtend" runat="server"  Width="70px" onclick=" WdatePicker({ doubleCalendar: true,readOnly:true, dateFmt: 'yyyy-MM-dd'})"></asp:TextBox>                  
-            广告描述： <asp:TextBox ID="txtTitle" runat="server" Width="90px" ></asp:TextBox>
-            <asp:Button ID="Button1" runat="server" Text="查&nbsp;询" class="right-button02"  onclick="Button1_Click"/>
+                  <asp:TextBox ID="txtend" runat="server"  Width="70px" onclick=" WdatePicker({ doubleCalendar: true,readOnly:true, dateFmt: 'yyyy-MM-dd'})"></asp:TextBox> </td>
+		        <td>广告描述： <asp:TextBox ID="txtTitle" runat="server" Width="130px" ></asp:TextBox></td>
+		    </tr>
+		</table>
+		    
+            <asp:Button ID="Button1" runat="server" Text="查&nbsp;询" class="yelbtn"  onclick="Button1_Click"/>
         </div>
 		
       <Wgi:RichGridView ID="gridList" runat="server" AllowPaging="True" CssClass="listtable"

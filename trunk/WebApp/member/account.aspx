@@ -9,7 +9,7 @@
 	<div class="ctbody_cnt">
 		<h3>账号信息</h3>
 		<div>
-<b>状态信息：</b>
+<p class="tabArea"><b>状态信息</b></p>
 <table border="0" cellpadding="0" cellspacing="0" align="center" class="prof_detail">
 
 	<tr>
@@ -32,7 +32,8 @@
 	    <td height="25" align="left"><asp:Label id="txtlastip" runat="server" Text=""></asp:Label></td>
 	</tr>
 </table>
-<b>个人资料：</b>
+<br />
+<p class="tabArea"><b>个人资料</b></p>
 <table cellspacing="0" cellpadding="0" width="100%" border="0">
 	
 	<tr>
