@@ -13,18 +13,31 @@ public partial class click : System.Web.UI.Page
         if (Request["preview"] == "1") return;
 
         //step1:从网址辨认点击源
-        int shopid= int.Parse( Request["shopid"]);
-        int adid=int.Parse(Request["adid"]);
+        int shopid,adid,siteid,paytype,adtype;
+        shopid=adid=siteid=paytype=adtype=-1;
+        try 
+	    {	        
+            shopid= int.Parse( Request["shopid"]);
+            adid=int.Parse(Request["adid"]);
+            siteid=int.Parse(Request["siteid"]);
+            paytype=int.Parse(Request["paytype"]);
+            adtype=int.Parse(Request["adtype"]);
+    		
+	    }
+	    catch (Exception)
+	    {
+            Response.Redirect("/member/default.aspx");
+	    }
         string uname= Request["username"];
-        int siteid=int.Parse(Request["siteid"]);
-        int paytype=int.Parse(Request["paytype"]);
-        int adtype=int.Parse(Request["adtype"]);
 
         //点击计数
 
-
+        string adurl = new wgiAdUnionSystem.BLL.wgi_adv().GetModel(adid).advlink;
         //本次点击重定向到广告主自设的cookie记录页，并传过去从广告ID得到的广告地址
-        string destination = "";
-        Response.Redirect("cookie.aspx?");
+        string destination = "cookie.aspx";
+        destination += "?union=wgiadunion&siteid=" + siteid + "&url=" + adurl;
+        Response.Clear();
+        Response.Redirect(destination);
+        Response.End();
     }
 }

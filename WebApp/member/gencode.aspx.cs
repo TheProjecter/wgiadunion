@@ -63,7 +63,7 @@ public partial class member_gencode : System.Web.UI.Page
         string uname=userobj.suser.username;
         int adtype = 0;
         int paytype = 0;
-        try
+        try  //假如不带参数过来，int.Parse会抛错，正好利用它判断是否正常访问本页
         {
             adtype = int.Parse(hidadtype.Value);
             paytype = int.Parse(hidpaytype.Value);
@@ -120,7 +120,7 @@ public partial class member_gencode : System.Web.UI.Page
                 break;
         }
         //接上统计露出数字串
-        string ctrStr= "<img src='"+url+"showCtr.aspx' alt='' style='display:none;' />";
+        url += "<img src='http://" + thisurl.Host + port + "/click/showCtr.aspx' alt='' style='display:none;' />";
         this.txtgcode.Text = url;
 
 
