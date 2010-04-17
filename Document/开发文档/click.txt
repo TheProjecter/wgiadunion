@@ -1,0 +1,20 @@
+http://www.xx.com/track.aspx?c=1&u=1&s=1&t=1
+
+c:广告主ID
+a:广告ID
+u:用户ID
+s:网站ID
+t:广告统计类型
+  1:cps,2:cpa,3:cpn,4:cpc
+
+来源网址：
+
+
+http://www.xx.com/click.aspx?c=1&u=1&s=1&t=1
+
+
+显示次数：显示时间/广告主ID/广告ID/网站主ID/网站ID/广告类型
+  
+   
+  
+
