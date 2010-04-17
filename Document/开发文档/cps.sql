@@ -35,6 +35,7 @@ CREATE TABLE [wgi_adhost] (
 [icp] [varchar]  (150) NULL,
 [industryid] [int]  NULL,
 [sitename] [varchar]  (100) NULL,
+[cookiepage] [varchar] (255) NULL,
 [remark] [text]  NULL,
 [return_day] [varchar]  (100) NULL,
 [return_type] [varchar]  (100) NULL,
@@ -49,7 +50,7 @@ CREATE TABLE [wgi_adhost] (
 ALTER TABLE [wgi_adhost] WITH NOCHECK ADD  CONSTRAINT [PK_wgi_adhost] PRIMARY KEY  NONCLUSTERED ( [companyid] )
 SET IDENTITY_INSERT [wgi_adhost] ON
 
-INSERT [wgi_adhost] ([companyid],[status],[username],[password],[ischeck]) VALUES ( 1,0,'wingoi','wingoi',0)
+INSERT [wgi_adhost] ([companyid],[status],[username],[password],[ischeck],[cookiepage]) VALUES ( 1,0,'wingoi','wingoi',0,'/click/cookie.aspx')
 
 SET IDENTITY_INSERT [wgi_adhost] OFF
 if exists (select * from sysobjects where id = OBJECT_ID('[wgi_adhost_usersite]') and OBJECTPROPERTY(id, 'IsUserTable') = 1) 

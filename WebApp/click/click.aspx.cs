@@ -31,10 +31,10 @@ public partial class click : System.Web.UI.Page
         string uname= Request["username"];
 
         //点击计数
-
-        string adurl = new wgiAdUnionSystem.BLL.wgi_adv().GetModel(adid).advlink;
+        wgiAdUnionSystem.Model.wgi_adv model = new wgiAdUnionSystem.BLL.wgi_adv().GetModel(adid);
+        string adurl = model.advlink;
         //本次点击重定向到广告主自设的cookie记录页，并传过去从广告ID得到的广告地址
-        string destination = "cookie.aspx";
+        string destination = new wgiAdUnionSystem.BLL.wgi_adhost().GetModel(shopid).cookiepage;
         destination += "?union=wgiadunion&siteid=" + siteid + "&url=" + adurl;
         Response.Clear();
         Response.Redirect(destination);

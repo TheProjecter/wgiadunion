@@ -7,6 +7,7 @@ body{font-size:12px; font-family:宋体}
 .fright{float:right;}
 a{outline:none; text-decoration:none;}
 a:hover{text-decoration:underline;}
+.tstrong{text-weight:800;}
 
 /*header*/
 #header{border-bottom:1px solid #565662; margin-bottom:12px; position:relative;}
