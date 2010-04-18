@@ -12,8 +12,8 @@ public class validateMember : System.Web.UI.UserControl
     protected UserPrincipal principal;
     private string[] userdata = new string[1] { "" };//用户数据
     private wgiAdUnionSystem.Model.wgi_sitehost _suser = new wgiAdUnionSystem.Model.wgi_sitehost();
-    private bool _timeout = true;
-    private bool _nocheck = false;
+    
+    private bool _nocheck = false;//表示该页需不需要登录验证
 
     public bool nocheck {
         get { return _nocheck; }
@@ -22,10 +22,6 @@ public class validateMember : System.Web.UI.UserControl
     public wgiAdUnionSystem.Model.wgi_sitehost suser {
         get { return _suser; }
         set { _suser = value; }
-    }
-    public bool timeout {
-        get { return _timeout; }
-        set { _timeout = value; }
     }
 
     public validateMember()
@@ -41,7 +37,7 @@ public class validateMember : System.Web.UI.UserControl
         }
         catch (Exception)
         {
-            _timeout = false;  //在这里标记用户已超时，刷新页面时通过这个参数获取登录状态
+            //_timeout = false;  //在这里标记用户已超时，刷新页面时通过这个参数获取登录状态
             //OnInit(null);
         }
         finally { }
@@ -61,6 +57,7 @@ public class validateMember : System.Web.UI.UserControl
 
     private void ValidatePage_Load(object sender, System.EventArgs e)
     {
+        //
         if (!Context.User.Identity.IsAuthenticated&&!nocheck)
         {
             //Response.Redirect(@"~/SysLogin.aspx?url="+Helper.HelperURL.GetCurrentUrl(this));

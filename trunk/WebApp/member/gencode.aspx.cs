@@ -51,6 +51,11 @@ public partial class member_gencode : System.Web.UI.Page
     
     }
 
+    protected void btnAddSite(object sender, EventArgs e)
+    {
+        Response.Redirect("/member/sites.aspx");
+    }
+
     protected void genCode(object sender, EventArgs e)
     {
         if (ddlsite.SelectedIndex == 0) return;

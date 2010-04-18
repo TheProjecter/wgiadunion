@@ -1,5 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="indexMaster.master.cs" Inherits="Templet_indexMaster" %>
 
+<%@ Register src="../Controls/login_index.ascx" tagname="login_index" tagprefix="uc1" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -16,36 +18,19 @@
     <form id="form1" runat="server">
     <div id="wraper">
 		<div id="header">
-			<span class="logo"><img src="Images/logo.jpg" alt="" /></span>
+			<span class="logo"><a href="/index.aspx"><img src="Images/logo.jpg" alt="" border="0" /></a></span>
 			<span class="logotitle"><img src="Images/logotext.jpg" alt="" /></span>
 			<p><a hidefocus="true" href="/" class="graya">返回中商首页</a></p>
 		</div>
 		<div id="maincont">
 		<div id="left">
-			<!--左豆腐块样式开始--->
 			<div class="leftarc">
 				<div class="la_title">联盟会员登录</div>
 				<div class="la_cont">
-					<!--登录开始-->
-					<div id="notlog">
-						    <table border="0">
-							    <tr><td width="50px">用户名：</td><td><input type="text" name="username" id="txtusername" value="" maxlength="20" class="logtxt" /></td></tr>
-							    <tr><td>密码：</td><td><input type="password" name="pwd" id="txtpwd" value="" maxlength="20" class="logtxt" /></td></tr>
-							    <tr><td>验证码：</td><td><input type="text" name="vcode" id="txtvcode" value="" maxlength="4" class="logvcode" /><img src="http://union.vancl.com/controls/images.aspx?t=1" alt="点此更换图片" class="vcodeimg" onclick="this.src+=1" /></td></tr>
-						    </table>
-						    <div class="logbtn"><input type="submit" name="btnsubmit" id="btnsubmit" value="登&nbsp;录" /><a href="register.aspx">注&nbsp;册</a></div>
-					</div>
-					<!--登录结束-->
-					<div id="loged" style="display:none;">
-						<p>尊敬的客户，欢迎您！</p>
-						<p>手机号：<span class="lboxspan1">13927452361</span></p>
-						<p>您的账户余额：<span class="lboxspan2">366.65元</span></p>
-						<p>其它项目：<span class="lboxspan2">*****</span></p>
-						<div class="logbtn"><input type="button" name="btnlogout" id="btnlogout" value="退&nbsp;出" /></div>
-					</div>
+                    <uc1:login_index ID="Muser" runat="server" />
 				</div>
 			</div>
-			<!--左豆腐块样式结束-->
+			<!--左豆腐块样式开始--->
 			<div class="leftarc">
 				<div class="la_title">联盟公告</div>
 				<div class="la_cont">
@@ -59,6 +44,7 @@
 					<p class="txtright"><a hidefocus="true" href="#" class="graya">更多>></a></p>
 				</div>
 			</div>
+			<!--左豆腐块样式结束-->
 			<div class="leftarc">
 				<div class="la_title">1月份业绩排行</div>
 				<div class="la_cont">
@@ -88,7 +74,7 @@
             
             </asp:ContentPlaceHolder>
 		</div>
-	</div>
+	    </div>
 	<div id="footer">
 		<div class="detail">
 			<div class="detwrap">

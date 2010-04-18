@@ -3,8 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link href="/Css/mem_modify.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
-        ul{list-style:none;}
-        li{float:left; height:26px; line-height:26px; width:220px;}
+        #opdiv ul{list-style:none;}
+        #opdiv li{float:left; height:26px; line-height:26px; width:220px;}
         textarea{ position:absolute; overflow-y:hidden; top:3px;}
         textarea.txtarea01{width:132px; height:16px;}
         textarea.txtarea02{width:190px; height:80px;}
@@ -36,7 +36,7 @@
 		    </p>
 		</div>
 		<p class="tabArea"><b>网站列表</b></p>
-		    <asp:GridView ID="gridList" runat="server" DataSourceID="odsData" AutoGenerateColumns="False" EmptyDataText="您尚未添加网站！" RowStyle-Width="100%" DataKeyNames="siteid" CssClass="listtable" Width="100%">
+		    <asp:GridView ID="gridList" runat="server" DataSourceID="odsData" AutoGenerateColumns="False" EmptyDataText="您尚未添加网站！" RowStyle-Width="100%" DataKeyNames="siteid" CssClass="listtable" Width="100%" AllowPaging="true" PageSize="10">		   
                 <Columns>
                     <asp:BoundField DataField="sitename" HeaderText="网站名称" SortExpression="sitename" ItemStyle-Width="80px" />
                     <asp:BoundField DataField="url" HeaderText="网站地址" SortExpression="url" />

@@ -15,6 +15,6 @@ public partial class condition : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        (this.Page.Master.FindControl("Muser") as validateMember).nocheck = true;//送去页面不需要登录验证的标志
     }
 }

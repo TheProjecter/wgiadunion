@@ -110,9 +110,9 @@ public class CommonData
     public static DataTable getAccountStatus()
     {
         DataTable dt = GetBaseTable();
-        dt.Rows.Add("禁止登录", "0");
+        dt.Rows.Add("尚未审核通过", "0");
         dt.Rows.Add("正常登录", "1");
-        dt.Rows.Add("状态异常", "2");
+        dt.Rows.Add("账号锁定", "2");
         return dt;
     }
 
@@ -135,5 +135,21 @@ public class CommonData
     public static string getSiteTypeByValue(string v)
     {
         return getSiteType().Select("value=" + v)[0]["name"].ToString();
+    }
+
+    /// <summary>
+    /// 获取客户端IP
+    /// </summary>
+    /// <returns></returns>
+    public static string GetIp(Page page)
+    {
+        //可以透过代理服务器
+        string userIP = page.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+        if (userIP == null || userIP == "")
+        {
+            //没有代理服务器,如果有代理服务器获取的是代理服务器的IP
+            userIP = page.Request.ServerVariables["REMOTE_ADDR"];
+        }
+        return userIP;
     }
 }

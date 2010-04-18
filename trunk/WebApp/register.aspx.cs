@@ -31,6 +31,10 @@ public partial class register : System.Web.UI.Page
         {
             strErr += "password不能为空！\\n";
         }
+        if (this.txtpassword.Text != this.txtpwd2.Text)
+        {
+            strErr += "password不能为空！\\n";
+        }
         if (this.txtemail.Text == "")
         {
             strErr += "email不能为空！\\n";
@@ -55,10 +59,10 @@ public partial class register : System.Web.UI.Page
         {
             strErr += "branch不能为空！\\n";
         }
-        if (!PageValidate.IsNumber(txtusertype.Text))
-        {
-            strErr += "usertype不是数字！\\n";
-        }
+        //if (!PageValidate.IsNumber(txtusertype.Text))
+        //{
+        //    strErr += "usertype不是数字！\\n";
+        //}
         if (this.txtcontact.Text == "")
         {
             strErr += "contact不能为空！\\n";
@@ -83,30 +87,10 @@ public partial class register : System.Web.UI.Page
         {
             strErr += "tel不能为空！\\n";
         }
-        if (!PageValidate.IsDecimal(txtbalance.Text))
-        {
-            strErr += "balance不是数字！\\n";
-        }
-        if (!PageValidate.IsDateTime(txtregdate.Text))
-        {
-            strErr += "regdate不是时间格式！\\n";
-        }
-        if (this.txtregip.Text == "")
-        {
-            strErr += "regip不能为空！\\n";
-        }
-        if (!PageValidate.IsDateTime(txtlastdate.Text))
-        {
-            strErr += "lastdate不是时间格式！\\n";
-        }
-        if (this.txtlastip.Text == "")
-        {
-            strErr += "lastip不能为空！\\n";
-        }
-        if (!PageValidate.IsNumber(txtstatus.Text))
-        {
-            strErr += "status不是数字！\\n";
-        }
+        //if (!PageValidate.IsNumber(txtstatus.Text))
+        //{
+        //    strErr += "status不是数字！\\n";
+        //}
 
         if (strErr != "")
         {
@@ -121,19 +105,19 @@ public partial class register : System.Web.UI.Page
         string accountno = this.txtaccountno.Text;
         string bank = this.txtbank.Text;
         string branch = this.txtbranch.Text;
-        int usertype = int.Parse(this.txtusertype.Text);
+        int usertype = 1;
         string contact = this.txtcontact.Text;
         string qq = this.txtqq.Text;
         string idcard = this.txtidcard.Text;
         string address = this.txtaddress.Text;
         string zipcode = this.txtzipcode.Text;
         string tel = this.txttel.Text;
-        decimal balance = decimal.Parse(this.txtbalance.Text);
-        DateTime regdate = DateTime.Parse(this.txtregdate.Text);
-        string regip = this.txtregip.Text;
-        DateTime lastdate = DateTime.Parse(this.txtlastdate.Text);
-        string lastip = this.txtlastip.Text;
-        int status = int.Parse(this.txtstatus.Text);
+        decimal balance = Convert.ToDecimal(0.00);
+        DateTime regdate = DateTime.Now;
+        string regip = CommonData.GetIp(this.Page);
+        //DateTime lastdate = DateTime.Now;
+        //string lastip = "";
+        int status = 1;//0表示尚未审核通过，暂时默认网站主注册即通过
 
         wgiAdUnionSystem.Model.wgi_sitehost model = new wgiAdUnionSystem.Model.wgi_sitehost();
         model.username = username;
@@ -154,8 +138,8 @@ public partial class register : System.Web.UI.Page
         model.balance = balance;
         model.regdate = regdate;
         model.regip = regip;
-        model.lastdate = lastdate;
-        model.lastip = lastip;
+        //model.lastdate = lastdate;
+        //model.lastip = lastip;
         model.status = status;
 
         wgiAdUnionSystem.BLL.wgi_sitehost bll = new wgiAdUnionSystem.BLL.wgi_sitehost();

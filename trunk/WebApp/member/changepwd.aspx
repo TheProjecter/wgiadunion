@@ -9,7 +9,7 @@
 	<div class="ctbody_cnt">
 		<h3>更改密码</h3>
 		<div class="pwddiv">
-            <table>
+            <table style="margin:15px auto;">
                 <tr><td>原密码：</td><td width="290"><asp:TextBox ID="txtold" runat="server" MaxLength="20" TextMode="Password"></asp:TextBox><span class="onshow">请输入原始密码</span></td></tr>
                 <tr><td>新密码：</td><td><asp:TextBox ID="txtnew" runat="server" MaxLength="20" TextMode="Password"></asp:TextBox><span class="onshow">6-20位字母/数字</span></td></tr>
                 <tr><td>新密码：</td><td><asp:TextBox ID="txtnew2" runat="server" MaxLength="20" TextMode="Password"></asp:TextBox><span class="onshow">请重输上面的密码</span></td></tr>
