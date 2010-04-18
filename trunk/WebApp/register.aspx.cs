@@ -39,9 +39,9 @@ public partial class register : System.Web.UI.Page
         {
             strErr += "email不能为空！\\n";
         }
-        if (this.txtmobile.Text == "")
+        if (this.txtmobile.Text == "" && this.txttel.Text == "")
         {
-            strErr += "mobile不能为空！\\n";
+            strErr += "电话、手机至少选填一项！\\n";
         }
         if (this.txtaccountname.Text == "")
         {
@@ -67,26 +67,22 @@ public partial class register : System.Web.UI.Page
         {
             strErr += "contact不能为空！\\n";
         }
-        if (this.txtqq.Text == "")
-        {
-            strErr += "qq不能为空！\\n";
-        }
+        //if (this.txtqq.Text == "")
+        //{
+        //    strErr += "qq不能为空！\\n";
+        //}
         if (this.txtidcard.Text == "")
         {
             strErr += "idcard不能为空！\\n";
         }
-        if (this.txtaddress.Text == "")
-        {
-            strErr += "address不能为空！\\n";
-        }
-        if (this.txtzipcode.Text == "")
-        {
-            strErr += "zipcode不能为空！\\n";
-        }
-        if (this.txttel.Text == "")
-        {
-            strErr += "tel不能为空！\\n";
-        }
+        //if (this.txtaddress.Text == "")
+        //{
+        //    strErr += "address不能为空！\\n";
+        //}
+        //if (this.txtzipcode.Text == "")
+        //{
+        //    strErr += "zipcode不能为空！\\n";
+        //}
         //if (!PageValidate.IsNumber(txtstatus.Text))
         //{
         //    strErr += "status不是数字！\\n";
@@ -144,6 +140,8 @@ public partial class register : System.Web.UI.Page
 
         wgiAdUnionSystem.BLL.wgi_sitehost bll = new wgiAdUnionSystem.BLL.wgi_sitehost();
         bll.Add(model);
+
+        Response.Redirect("regSuccess.aspx");
 
     }
 

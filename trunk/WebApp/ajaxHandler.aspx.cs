@@ -19,20 +19,39 @@ public partial class ajaxHandler : System.Web.UI.Page
             case "checkpwd":
                 checkpwd();
                 break;
+            case "checkSitehostUsername":
+                checkSitehostUsername();
+                break;
             default:
                 break;
         }
     }
 
-    private void checkpwd() {
+    private void checkpwd()
+    {
+        Response.ContentType = "txt/html";
+        Response.Clear();
+
+        wgiAdUnionSystem.BLL.wgi_sitehost bll = new wgiAdUnionSystem.BLL.wgi_sitehost();
+        int userid = Convert.ToInt32(Request["userid"]);
+        string pwd = Request["pwd"];
+        string orignal = bll.GetModel(userid).password;
+        if (orignal == pwd) Response.Write("1");
+
+        else Response.Write("0");
+        Response.End();  
+    }
+
+    private void checkSitehostUsername()
+    {
         Response.ContentType = "txt/html";
         Response.Clear();
         wgiAdUnionSystem.BLL.wgi_sitehost bll = new wgiAdUnionSystem.BLL.wgi_sitehost();
-        int userid = Convert.ToInt32(Request["userid"]);
-        string pwd= Request["pwd"];
-        string orignal = bll.GetModel(userid).password;
-        if (orignal == pwd) Response.Write("1");
-        else Response.Write("0");
+        string name= Request["username"];
+        
+        if (bll.GetListByUsername(name).Tables[0].Rows.Count>0) Response.Write("0");
+        else Response.Write("1");
         Response.End();
     }
+
 }

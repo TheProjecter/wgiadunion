@@ -3,9 +3,31 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 <script src="Js/jquery-1.4.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-    $(function(){
-       
-    });
+    var vali=true;
+    var emailreg=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+        $(function(){
+            $(":input").each(function(){var obj=$(this).next("span"); var txt=obj.attr("title"); obj.html(txt).addClass("onshow");});
+            $(":input").focus(function(){var obj=$(this).next("span"); var oldtext=obj.attr("title"); obj.html(oldtext).removeClass().addClass("onfocus");});
+            $("#ctl00_ContentPlaceHolder1_txtusername").blur(function(){
+                var v=$(this).val();
+                var obj=$(this).next("span");
+                if(regtest(/^[0-9a-zA-Z]+[0-9a-zA-Z_]{5,29}$/,v)){
+				    url=encodeURI("/ajaxHandler.aspx?act=checkSitehostUsername&username="+v+"&t="+new Date().getMilliseconds());
+				    $.get(url,function(data){
+					    if(data==0){obj.html("该用户名已被使用！").removeClass().addClass("onerror");vali=false;}else{obj.removeClass().addClass("oncorrect");}
+				    }
+			);}
+				else{obj.removeClass().html("格式不正确！").addClass("onerror");vali=false;}});
+            $("#ctl00_ContentPlaceHolder1_txtpassword").blur(function(){var v=$(this).val();var obj=$(this).next("span");if(!regtest(/^[0-9a-zA-Z]{6,20}$/,v)){obj.html("格式不正确！").removeClass().addClass("onerror");vali=false;}else{obj.removeClass().addClass("oncorrect");}});
+            $("#ctl00_ContentPlaceHolder1_txtpwd2").blur(function(){var v=$(this).val();var obj=$(this).next("span");if($("#ctl00_ContentPlaceHolder1_txtpassword").val()!=v){obj.removeClass().addClass("onerror");obj.html("两次密码输入不一致");vali=false;}else{obj.removeClass().addClass("oncorrect");}});
+            $("#ctl00_ContentPlaceHolder1_txtemail").blur(function(){var v=$(this).val();var obj=$(this).next("span");if(!regtest(emailreg,v)){obj.html("格式不正确！").removeClass().addClass("onerror");vali=false;}else{obj.removeClass().addClass("oncorrect");}});
+            $(".requireTxt").blur(function(){var v=$(this).val();var obj=$(this).next("span");if(v==""){obj.removeClass().addClass("onerror");vali=false;}else{obj.removeClass().addClass("oncorrect");}});
+            $("#ctl00_ContentPlaceHolder1_txtmobile").blur(function(){var obj=$(this).next("span");var ctr=0; $(".choosefill").each(function(){if($(this).val()!="") ctr++;});if(!ctr){obj.removeClass().addClass("onerror"); vali=false;}else{obj.removeClass().addClass("oncorrect");}});
+        });
+        
+        function regtest(pattern,data){return pattern.test(data);}
+		function checkvali(){vali=true;$(":input").blur(); if(!vali) $(document).scrollTop(100); else if(!$("#cbx_hasread").attr("checked")) alert("请接受合作协议！"); return vali;}
+		function showterms(){$(".divterms").slideToggle();};
 </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -20,49 +42,49 @@
 		用户名
 	：</td>
 	<td height="25" width="*" align="left">
-		<asp:TextBox id="txtusername" runat="server" Width="200px"></asp:TextBox>
+		<asp:TextBox id="txtusername" runat="server" Width="200px"></asp:TextBox><span title="6-30位字母、数字、下划线组合"></span>
 	</td></tr>
 	<tr>
 	<td height="25" width="30%" align="right">
 		密码
 	：</td>
 	<td height="25" width="*" align="left">
-		<asp:TextBox id="txtpassword" runat="server" Width="200px"></asp:TextBox>
+		<asp:TextBox id="txtpassword" runat="server" Width="200px" TextMode="Password"></asp:TextBox><span title="6-20位字母和数字组合"></span>
 	</td></tr>
 	<tr>
 	<td height="25" width="30%" align="right">
 		重输密码
 	：</td>
 	<td height="25" width="*" align="left">
-		<asp:TextBox id="txtpwd2" runat="server" Width="200px"></asp:TextBox>
+		<asp:TextBox id="txtpwd2" runat="server" Width="200px" TextMode="Password"></asp:TextBox><span title="请再输一次"></span>
 	</td></tr>
 	<tr>
 	<td height="25" width="30%" align="right">
 		电子邮件
 	：</td>
 	<td height="25" width="*" align="left">
-		<asp:TextBox id="txtemail" runat="server" Width="200px"></asp:TextBox>
+		<asp:TextBox id="txtemail" runat="server" Width="200px"></asp:TextBox><span title="必填"></span>
 	</td></tr>
 	<tr>
 	<td height="25" width="30%" align="right">
 		联系人
 	：</td>
 	<td height="25" width="*" align="left">
-		<asp:TextBox id="txtcontact" runat="server" Width="200px"></asp:TextBox>
+		<asp:TextBox id="txtcontact" runat="server" Width="200px" CssClass="requireTxt"></asp:TextBox><span title="必填"></span>
 	</td></tr>
 	<tr>
 	<td height="25" width="30%" align="right">
 		电话
 	：</td>
 	<td height="25" width="*" align="left">
-		<asp:TextBox id="txttel" runat="server" Width="200px"></asp:TextBox>
+		<asp:TextBox id="txttel" runat="server" Width="200px" CssClass="choosefill"></asp:TextBox>
 	</td></tr>
 	<tr>
 	<td height="25" width="30%" align="right">
 		手机
 	：</td>
 	<td height="25" width="*" align="left">
-		<asp:TextBox id="txtmobile" runat="server" Width="200px"></asp:TextBox>
+		<asp:TextBox id="txtmobile" runat="server" Width="200px" CssClass="choosefill"></asp:TextBox><span title="电话、手机至少选填一项"></span>
 	</td></tr>
 
 	<tr>
@@ -77,7 +99,7 @@
 		身份证
 	：</td>
 	<td height="25" width="*" align="left">
-		<asp:TextBox id="txtidcard" runat="server" Width="200px"></asp:TextBox>
+		<asp:TextBox id="txtidcard" runat="server" Width="200px" CssClass="requireTxt"></asp:TextBox><span title="必填"></span>
 	</td></tr>
 	<tr>
 	<td height="25" width="30%" align="right">
@@ -107,33 +129,33 @@
 		        开户行
 	        ：</td>
 	        <td height="25" width="*" align="left">
-		        <asp:TextBox id="txtbank" runat="server" Width="200px"></asp:TextBox>
+		        <asp:TextBox id="txtbank" runat="server" Width="200px" CssClass="requireTxt"></asp:TextBox><span title="必填"></span>
 	        </td></tr>
 	        <tr>
 	        <td height="25" width="30%" align="right">
 		        支行名
 	        ：</td>
 	        <td height="25" width="*" align="left">
-		        <asp:TextBox id="txtbranch" runat="server" Width="200px"></asp:TextBox>
+		        <asp:TextBox id="txtbranch" runat="server" Width="200px" CssClass="requireTxt"></asp:TextBox><span title="必填"></span>
 	        </td></tr>
                 <tr>
 	        <td height="25" width="30%" align="right">
 		        账户名
 	        ：</td>
 	        <td height="25" width="*" align="left">
-		        <asp:TextBox id="txtaccountname" runat="server" Width="200px"></asp:TextBox>
+		        <asp:TextBox id="txtaccountname" runat="server" Width="200px" CssClass="requireTxt"></asp:TextBox><span title="必填"></span>
 	        </td></tr>
 	        <tr>
 	        <td height="25" width="30%" align="right">
 		        账号
 	        ：</td>
 	        <td height="25" width="*" align="left">
-		        <asp:TextBox id="txtaccountno" runat="server" Width="200px"></asp:TextBox>
+		        <asp:TextBox id="txtaccountno" runat="server" Width="200px" CssClass="requireTxt"></asp:TextBox><span title="必填"></span>
 	        </td></tr>
         </table>
     
         <p class="ptitle">联盟协议</p>
-        <div align="center" class="divterms">
+        <div align="center" class="divterms" style="display:none;">
 	
 	<p align="center" style="font-size: 14px; margin:10px auto 15px auto;"><strong>个人网站联盟服务协议书</strong></p>
 <p align="left" class="pterms">
@@ -255,9 +277,9 @@
 
 
 	</div>
-        <p class="readterms"><input type="checkbox" id="cbx_hasread" /><label for="cbx_hasread">我已阅读并接受“合作协议”</label></p>
+        <p class="readterms"><input type="checkbox" id="cbx_hasread" /><label for="cbx_hasread">我已阅读并接受</label>“<a hidefocus="true" href="javascript:showterms();">合作协议</a>”</p>
     <p style="text-align:center">
-        <asp:Button runat="server" ID="btn_submit" CssClass="redbtn" Text="注&nbsp;册" OnClick="btnAdd_Click" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button runat="server" ID="btn_submit" CssClass="redbtn" Text="注&nbsp;册" OnClick="btnAdd_Click" OnClientClick="return checkvali();" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="button" id="btn_giveup" class="redbtn" value="放&nbsp;弃" onclick="location.href='/index.aspx';" />
     </p>
     </div>
