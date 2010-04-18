@@ -48,6 +48,7 @@ namespace wgiAdUnionSystem.IDAL
 		/// 获得数据列表
 		/// </summary>
 		DataSet GetList(string strWhere);
+        DataSet GetListByUsername(string username);
 		/// <summary>
 		/// 获得前几行数据
 		/// </summary>

@@ -118,6 +118,10 @@ namespace wgiAdUnionSystem.BLL
 		{
 			return dal.GetList(strWhere);
 		}
+        public DataSet GetListByUsername(string username)
+        {
+            return dal.GetListByUsername(username);
+        }
 		/// <summary>
 		/// 获得前几行数据
 		/// </summary>

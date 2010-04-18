@@ -250,6 +250,13 @@ namespace wgiAdUnionSystem.DAL
 			return db.ExecuteDataSet(CommandType.Text, strSql.ToString());
 		}
 
+
+        public DataSet GetListByUsername(string username)
+        {
+            string strWhere = "username='"+username+"'";
+            return GetList(strWhere);
+        }
+
 		/*
 		/// <summary>
 		/// 分页获取数据列表
