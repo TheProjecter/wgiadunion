@@ -15,7 +15,7 @@
     <form id="form1" runat="server">
     <div id="wraper">
 		<div id="header">
-			<span class="logo"><img src="Images/logo.jpg" alt="" /></span>
+			<span class="logo"><a href="/index.aspx"><img src="Images/logo.jpg" alt="" border="0" /></a></span>
 			<span class="logotitle"><img src="Images/logotext.jpg" alt="" /></span>
 			<p><a hidefocus="true" href="/" class="graya">返回中商首页</a></p>
 		</div>

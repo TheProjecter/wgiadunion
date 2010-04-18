@@ -23,8 +23,7 @@ public partial class member_sites : System.Web.UI.Page
 		if(userobj.suser.userid!=0) 
         {
             userid=userobj.suser.userid;
-            if(!IsPostBack)
-            initData();
+            if(!IsPostBack) initData();
         }
 		else Response.Redirect("/member/Default.aspx?url="+ Request.CurrentExecutionFilePath);
     }

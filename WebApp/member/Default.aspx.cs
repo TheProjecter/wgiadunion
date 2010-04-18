@@ -15,6 +15,7 @@ public partial class member_Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        (this.Page.Master.FindControl("Muser") as validateMember).nocheck = true;
+        validateMember obj=this.Page.Master.FindControl("Muser") as validateMember;
+        obj.nocheck = true;//授权未通过导向的页面不能重复导向，否则会死循环，所以用nocheck这个标志来判断
     }
 }

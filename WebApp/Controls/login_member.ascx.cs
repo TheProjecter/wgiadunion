@@ -29,7 +29,7 @@ public partial class Controls_login_member : validateMember
     {
             this.pnlnotlogin.Visible = false;
             this.pnllogin.Visible = false;
-            if (base.Context.User.Identity.IsAuthenticated)
+            if (base.Context.User.Identity.IsAuthenticated||base.suser.userid!=0)
             {
                 this.lblbank.Text = base.suser.balance.ToString()+"元";
                 this.lblname.Text = base.suser.accountname;
@@ -89,7 +89,7 @@ public partial class Controls_login_member : validateMember
 
                 if (dt != null && dt.Rows.Count > 0)
                 {
-                    userdata = "member|" + dt.Rows[0]["userid"].ToString() + "|" + dt.Rows[0]["username"].ToString() + "|" + Convert.ToDateTime(dt.Rows[0]["lastdate"]).ToString("yyyy-MM-dd HH:mm:ss") + "|" + dt.Rows[0]["accountname"].ToString()+"|"+dt.Rows[0]["balance"].ToString();
+                    userdata = "member|" + dt.Rows[0]["userid"].ToString() + "|" + dt.Rows[0]["username"].ToString() + "|" + Convert.ToDateTime(dt.Rows[0]["lastdate"]).ToString("yyyy-MM-dd HH:mm:ss") + "|" + dt.Rows[0]["contact"].ToString()+"|"+dt.Rows[0]["balance"].ToString();
                 }
 
                 string uid = dt.Rows[0]["userid"].ToString();

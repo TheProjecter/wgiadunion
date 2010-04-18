@@ -7,7 +7,7 @@
 #header .graya:hover{text-decoration:none;}
 
 /*tab*/
-p.tabArea{ margin-top:20px; border-bottom:1px solid #EF6F03;}
+p.tabArea{ margin:20px auto; border-bottom:1px solid #EF6F03;}
 p.tabArea b{ margin-left:25px; color:#ef6f03; border:1px solid #ef6f03; border-bottom-color:#fff; padding:5px 8px; position:relative; top:-4px; #top:-5px; }
 
 
@@ -59,17 +59,12 @@ p.tabArea b{ margin-left:25px; color:#ef6f03; border:1px solid #ef6f03; border-b
 
 /*content content*/
 #cont .ctbody_cnt{ padding:10px 0;}
-#cont .ctbody_cnt div{padding:10px;}
+#cont .ctbody_cnt div:first-child{padding:10px;}
 #cont .ctbody_cnt h3{ padding:0 10px; background:#fae8d1; color:#984f08; height:26px; line-height:26px; font-size:13px; border-bottom:#d0aa7a solid 1px;}
 
 /*footer*/
 #footer{ border-top:1px solid #ccc; margin:15px 0 5px 0; padding:10px; color:#666;}
 #footer .ft_detail a{color:#666;}
 
-/*ajax input check area*/
-span.onshow,span.onerror,span.onfocus,span.oncorrect{ display:inline-block; height:22px; line-height:22px; color:Gray; padding-left:23px; margin-left:5px; background:url(../Images/ajaxcheck/onShow.gif) no-repeat;}
-span.onerror{background-image:url(../Images/ajaxcheck/onError.gif); color:#a00; font-weight:600;}
-span.onfocus{background-image:url(../Images/ajaxcheck/onFocus.gif); color:#33f; font-weight:600;}
-span.oncorrect{background-image:url(../Images/ajaxcheck/onCorrect.gif); color:#fff!important;}
 
 

@@ -8,6 +8,7 @@ body{font-size:12px; font-family:宋体}
 a{outline:none; text-decoration:none;}
 a:hover{text-decoration:underline;}
 .tstrong{text-weight:800;}
+.tcenter{text-align:center;}
 
 /*header*/
 #header{border-bottom:1px solid #565662; margin-bottom:12px; position:relative;}
@@ -29,3 +30,10 @@ a:hover{text-decoration:underline;}
 .redbtn{width:65px; height:25px; line-height:25px; background:#a10000; color:#fff; font-weight:600; border:none; margin-bottom:15px;}
 .yelbtn{ height:21px; background:url(../Images/btnbg.gif) repeat-x; border:1px solid #EF6F03; padding:1px;}
 .yelbtn:hover{background-position:0 -24px;}
+
+
+/*ajax input check area*/
+span.onshow,span.onerror,span.onfocus,span.oncorrect{ display:inline-block; height:22px; line-height:22px; color:Gray; padding-left:23px; margin-left:5px; background:url(../Images/ajaxcheck/onShow.gif) no-repeat;}
+span.onerror{background-image:url(../Images/ajaxcheck/onError.gif); color:#a00; font-weight:600;}
+span.onfocus{background-image:url(../Images/ajaxcheck/onFocus.gif); color:#33f; font-weight:600;}
+span.oncorrect{background-image:url(../Images/ajaxcheck/onCorrect.gif); color:#fff!important;}

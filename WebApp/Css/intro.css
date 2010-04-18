@@ -18,9 +18,10 @@
 .leftarc .logbtn{width:100%; text-align:center;}
 .leftarc .logbtn input, .leftarc .logbtn a{display:inline-block;color:#333; font-size:1.2em; margin:5px 10px; background:url(../Images/btn.jpg) no-repeat; width:69px; height:22px; line-height:22px; border:none; font-family:微软雅黑,宋体}
 .leftarc .logbtn a:hover{ text-decoration:none;}
-#loged p{ padding-left:20px; height:22px; line-height:22px;}
-#loged p .lboxspan1{color:#0167b2; font-weight:600;}
-#loged p .lboxspan2{color:#ff5900;}
+.loged p{ padding-left:20px; height:22px; line-height:22px;}
+.loged p .lboxspan1{color:#0167b2; font-weight:600;}
+.loged p .lboxspan2{color:#ff5900;}
+.loged p span.timespan{ display:inline-block; width:20px; overflow:visible; white-space:nowrap; color:#ff5900;}
 
 /*tab*/
 #navi{list-style:none; border-bottom:3px solid #565662; overflow:hidden;}

@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Templet/memberMaster.master" AutoEventWireup="true" CodeFile="gencode.aspx.cs" Inherits="member_gencode" Title="中商购物|网站联盟|用户中心" ValidateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <link href="/Css/mem_modify.css" rel="stylesheet" type="text/css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
@@ -9,15 +10,25 @@
 	<div class="ctbody_cnt">
 		<h3>生成广告代码</h3>
 		<div>
-            <div>
-                <p>选择网站：<asp:DropDownList ID="ddlsite" runat="server" AutoPostBack="true" OnSelectedIndexChanged="genCode"></asp:DropDownList></p>
-                <p>复制下面的代码到网站：</p>
+            <div style="color:#333">
+                <p>
+                    <p class="tabArea"><b>选择网站</b></p>
+                    请选择需要发布广告的网站
+                    <asp:DropDownList ID="ddlsite" runat="server" AutoPostBack="true" OnSelectedIndexChanged="genCode"></asp:DropDownList>
+                    <p>&nbsp;</p>
+                    如没有网站，请先
+                    <asp:button ID="btnAdd" runat="server" Text="添加网站" OnClick="btnAddSite" CssClass="yelbtn" />
+                    <p>&nbsp;</p>
+                </p>
+                <p class="tabArea"><b>预&nbsp;&nbsp;&nbsp;&nbsp;览</b></p>
+                <p><asp:Label ID="lbltest" runat="server" Text=""></asp:Label></p>
+                <p class="tabArea"><b>生成代码</b></p>
+                <p>复制下面的代码到自己的网站，生成广告</p>
                 <asp:TextBox runat="server" ID="txtgcode" TextMode="MultiLine" Columns="70" Rows="6" onclick="this.select();"></asp:TextBox>
                 <asp:HiddenField ID="hidadid" runat="server" Value="" />
                 <asp:HiddenField ID="hidadhost" runat="server" Value="" />
                 <asp:HiddenField ID="hidadtype" runat="server" Value="" />
                 <asp:HiddenField ID="hidpaytype" runat="server" Value="" />
-                <p>预览:<asp:Label ID="lbltest" runat="server" Text=""></asp:Label></p>
             </div>
         </div>
     </div>

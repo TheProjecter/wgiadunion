@@ -218,7 +218,7 @@ namespace wgiAdUnionSystem.DAL
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select userid,username,password,email,mobile,accountname,accountno,bank,branch,usertype,contact,qq,idcard,address,zipcode,tel,balance,regdate,regip,lastdate,lastip,status from wgi_sitehost ");
+            strSql.Append("select userid,username,password,email,mobile,accountname,accountno,bank,branch,usertype,contact,qq,idcard,address,zipcode,tel,balance,regdate,regip,isnull(lastdate,getdate()) lastdate,lastip,status from wgi_sitehost ");
 			strSql.Append(" where userid=@userid ");
 			Database db = DatabaseFactory.CreateDatabase();
 			DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
@@ -240,7 +240,7 @@ namespace wgiAdUnionSystem.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select userid,username,password,email,mobile,accountname,accountno,bank,branch,usertype,contact,qq,idcard,address,zipcode,tel,balance,regdate,regip,lastdate,lastip,status ");
+            strSql.Append("select userid,username,password,email,mobile,accountname,accountno,bank,branch,usertype,contact,qq,idcard,address,zipcode,tel,balance,regdate,regip,isnull(lastdate,getdate()) lastdate,lastip,status ");
 			strSql.Append(" FROM wgi_sitehost ");
 			if(strWhere.Trim()!="")
 			{
@@ -274,7 +274,7 @@ namespace wgiAdUnionSystem.DAL
 		public List<wgiAdUnionSystem.Model.wgi_sitehost> GetListArray(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select userid,username,password,email,mobile,accountname,accountno,bank,branch,usertype,contact,qq,idcard,address,zipcode,tel,balance,regdate,regip,lastdate,lastip,status ");
+            strSql.Append("select userid,username,password,email,mobile,accountname,accountno,bank,branch,usertype,contact,qq,idcard,address,zipcode,tel,balance,regdate,regip,isnull(lastdate,getdate()) lastdate,lastip,status ");
 			strSql.Append(" FROM wgi_sitehost ");
 			if(strWhere.Trim()!="")
 			{

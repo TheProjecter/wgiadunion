@@ -1,6 +1,12 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Templet/header_footer.master" AutoEventWireup="true" CodeFile="register.aspx.cs" Inherits="register" Title="中商购物|网站联盟|会员注册" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<script src="Js/jquery-1.4.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function(){
+       
+    });
+</script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <div id="step">填写注册信息》等待激活邮件</div>
@@ -11,125 +17,81 @@
 <table cellSpacing="0" cellPadding="0" width="100%" border="0">
 	<tr>
 	<td height="25" width="30%" align="right">
-		username
+		用户名
 	：</td>
 	<td height="25" width="*" align="left">
 		<asp:TextBox id="txtusername" runat="server" Width="200px"></asp:TextBox>
 	</td></tr>
 	<tr>
 	<td height="25" width="30%" align="right">
-		password
+		密码
 	：</td>
 	<td height="25" width="*" align="left">
 		<asp:TextBox id="txtpassword" runat="server" Width="200px"></asp:TextBox>
 	</td></tr>
 	<tr>
 	<td height="25" width="30%" align="right">
-		email
+		重输密码
+	：</td>
+	<td height="25" width="*" align="left">
+		<asp:TextBox id="txtpwd2" runat="server" Width="200px"></asp:TextBox>
+	</td></tr>
+	<tr>
+	<td height="25" width="30%" align="right">
+		电子邮件
 	：</td>
 	<td height="25" width="*" align="left">
 		<asp:TextBox id="txtemail" runat="server" Width="200px"></asp:TextBox>
 	</td></tr>
 	<tr>
 	<td height="25" width="30%" align="right">
-		mobile
-	：</td>
-	<td height="25" width="*" align="left">
-		<asp:TextBox id="txtmobile" runat="server" Width="200px"></asp:TextBox>
-	</td></tr>
-	
-	<tr>
-	<td height="25" width="30%" align="right">
-		usertype
-	：</td>
-	<td height="25" width="*" align="left">
-		<asp:TextBox id="txtusertype" runat="server" Width="200px"></asp:TextBox>
-	</td></tr>
-	<tr>
-	<td height="25" width="30%" align="right">
-		contact
+		联系人
 	：</td>
 	<td height="25" width="*" align="left">
 		<asp:TextBox id="txtcontact" runat="server" Width="200px"></asp:TextBox>
 	</td></tr>
 	<tr>
 	<td height="25" width="30%" align="right">
-		qq
-	：</td>
-	<td height="25" width="*" align="left">
-		<asp:TextBox id="txtqq" runat="server" Width="200px"></asp:TextBox>
-	</td></tr>
-	<tr>
-	<td height="25" width="30%" align="right">
-		idcard
-	：</td>
-	<td height="25" width="*" align="left">
-		<asp:TextBox id="txtidcard" runat="server" Width="200px"></asp:TextBox>
-	</td></tr>
-	<tr>
-	<td height="25" width="30%" align="right">
-		address
-	：</td>
-	<td height="25" width="*" align="left">
-		<asp:TextBox id="txtaddress" runat="server" Width="200px"></asp:TextBox>
-	</td></tr>
-	<tr>
-	<td height="25" width="30%" align="right">
-		zipcode
-	：</td>
-	<td height="25" width="*" align="left">
-		<asp:TextBox id="txtzipcode" runat="server" Width="200px"></asp:TextBox>
-	</td></tr>
-	<tr>
-	<td height="25" width="30%" align="right">
-		tel
+		电话
 	：</td>
 	<td height="25" width="*" align="left">
 		<asp:TextBox id="txttel" runat="server" Width="200px"></asp:TextBox>
 	</td></tr>
 	<tr>
 	<td height="25" width="30%" align="right">
-		balance
+		手机
 	：</td>
 	<td height="25" width="*" align="left">
-		<asp:TextBox id="txtbalance" runat="server" Width="200px"></asp:TextBox>
+		<asp:TextBox id="txtmobile" runat="server" Width="200px"></asp:TextBox>
+	</td></tr>
+
+	<tr>
+	<td height="25" width="30%" align="right">
+		QQ
+	：</td>
+	<td height="25" width="*" align="left">
+		<asp:TextBox id="txtqq" runat="server" Width="200px"></asp:TextBox>
 	</td></tr>
 	<tr>
 	<td height="25" width="30%" align="right">
-		regdate
+		身份证
 	：</td>
 	<td height="25" width="*" align="left">
-		<asp:TextBox onselectstart="return false;" onkeypress="return false" id="txtregdate" onfocus="setday(this)"
-		 readOnly type="text" size="10" name="Text1" runat="server"></asp:TextBox>
+		<asp:TextBox id="txtidcard" runat="server" Width="200px"></asp:TextBox>
 	</td></tr>
 	<tr>
 	<td height="25" width="30%" align="right">
-		regip
+		通讯地址
 	：</td>
 	<td height="25" width="*" align="left">
-		<asp:TextBox id="txtregip" runat="server" Width="200px"></asp:TextBox>
+		<asp:TextBox id="txtaddress" runat="server" Width="200px"></asp:TextBox>
 	</td></tr>
 	<tr>
 	<td height="25" width="30%" align="right">
-		lastdate
+		邮编
 	：</td>
 	<td height="25" width="*" align="left">
-		<asp:TextBox onselectstart="return false;" onkeypress="return false" id="txtlastdate" onfocus="setday(this)"
-		 readOnly type="text" size="10" name="Text1" runat="server"></asp:TextBox>
-	</td></tr>
-	<tr>
-	<td height="25" width="30%" align="right">
-		lastip
-	：</td>
-	<td height="25" width="*" align="left">
-		<asp:TextBox id="txtlastip" runat="server" Width="200px"></asp:TextBox>
-	</td></tr>
-	<tr>
-	<td height="25" width="30%" align="right">
-		status
-	：</td>
-	<td height="25" width="*" align="left">
-		<asp:TextBox id="txtstatus" runat="server" Width="200px"></asp:TextBox>
+		<asp:TextBox id="txtzipcode" runat="server" Width="200px"></asp:TextBox>
 	</td></tr>
 </table>
     
@@ -140,33 +102,33 @@
     
         <p class="ptitle">结款账户信息</p>
         <table cellSpacing="0" cellPadding="0" width="100%" border="0">
-                <tr>
-	        <td height="25" width="30%" align="right">
-		        accountname
-	        ：</td>
-	        <td height="25" width="*" align="left">
-		        <asp:TextBox id="txtaccountname" runat="server" Width="200px"></asp:TextBox>
-	        </td></tr>
 	        <tr>
 	        <td height="25" width="30%" align="right">
-		        accountno
-	        ：</td>
-	        <td height="25" width="*" align="left">
-		        <asp:TextBox id="txtaccountno" runat="server" Width="200px"></asp:TextBox>
-	        </td></tr>
-	        <tr>
-	        <td height="25" width="30%" align="right">
-		        bank
+		        开户行
 	        ：</td>
 	        <td height="25" width="*" align="left">
 		        <asp:TextBox id="txtbank" runat="server" Width="200px"></asp:TextBox>
 	        </td></tr>
 	        <tr>
 	        <td height="25" width="30%" align="right">
-		        branch
+		        支行名
 	        ：</td>
 	        <td height="25" width="*" align="left">
 		        <asp:TextBox id="txtbranch" runat="server" Width="200px"></asp:TextBox>
+	        </td></tr>
+                <tr>
+	        <td height="25" width="30%" align="right">
+		        账户名
+	        ：</td>
+	        <td height="25" width="*" align="left">
+		        <asp:TextBox id="txtaccountname" runat="server" Width="200px"></asp:TextBox>
+	        </td></tr>
+	        <tr>
+	        <td height="25" width="30%" align="right">
+		        账号
+	        ：</td>
+	        <td height="25" width="*" align="left">
+		        <asp:TextBox id="txtaccountno" runat="server" Width="200px"></asp:TextBox>
 	        </td></tr>
         </table>
     
@@ -295,8 +257,8 @@
 	</div>
         <p class="readterms"><input type="checkbox" id="cbx_hasread" /><label for="cbx_hasread">我已阅读并接受“合作协议”</label></p>
     <p style="text-align:center">
-        <input type="submit" id="btn_giveup" class="redbtn" value="放&nbsp;弃" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="submit" id="btn_submit" class="redbtn" value="注&nbsp;册" />
+        <asp:Button runat="server" ID="btn_submit" CssClass="redbtn" Text="注&nbsp;册" OnClick="btnAdd_Click" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" id="btn_giveup" class="redbtn" value="放&nbsp;弃" onclick="location.href='/index.aspx';" />
     </p>
     </div>
     
