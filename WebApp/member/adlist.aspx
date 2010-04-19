@@ -28,15 +28,11 @@
 		    
             <asp:Button ID="Button1" runat="server" Text="查&nbsp;询" class="yelbtn"  onclick="Button1_Click"/>
         </div>
-		
+		<p>&nbsp;</p>
       <Wgi:RichGridView ID="gridList" runat="server" AllowPaging="True" CssClass="listtable"
             AllowSorting="True" MouseOverCssClass="OverRow" DataKeyNames="advid"
         Width="100%" AutoGenerateColumns="False" ondatabound="gridList_DataBound" 
             EmptyDataText="没有查询到相关数据！">
-                   
-                    <CascadeCheckboxes>
-                        <Wgi:CascadeCheckbox ChildCheckboxID="item" ParentCheckboxID="all" />
-                    </CascadeCheckboxes>
                   
                     <PagerStyle HorizontalAlign="Right" />
                     <CheckedRowCssClass CheckBoxID="item" CssClass="SelectedRow" />
@@ -44,15 +40,6 @@
                     <EmptyDataRowStyle ForeColor="Blue" HorizontalAlign="Center" />
                     
                     <Columns>
-            <asp:TemplateField ItemStyle-Width="50px">
-                <headertemplate>
-                    <asp:CheckBox ID="all" runat="server" />
-                </headertemplate>
-                <itemtemplate>
-                    <asp:CheckBox ID="item" runat="server" />
-                </itemtemplate>
-                <ItemStyle Width="50px" HorizontalAlign="Center"></ItemStyle>
-            </asp:TemplateField>
             <asp:TemplateField ItemStyle-Width="50px">
                 <headertemplate>序号</headertemplate>
                 <itemtemplate><%# Container.DataItemIndex + 1 %></itemtemplate>

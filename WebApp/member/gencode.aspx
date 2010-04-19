@@ -22,6 +22,9 @@
                 </p>
                 <p class="tabArea"><b>预&nbsp;&nbsp;&nbsp;&nbsp;览</b></p>
                 <p><asp:Label ID="lbltest" runat="server" Text=""></asp:Label></p>
+                <p>&nbsp;</p>
+                <p class="tgray">[注：生成的预览链接不会把你带向最终的广告，只是展示呈现在网站的效果！]</p>
+                <p>&nbsp;</p>
                 <p class="tabArea"><b>生成代码</b></p>
                 <p>复制下面的代码到自己的网站，生成广告</p>
                 <asp:TextBox runat="server" ID="txtgcode" TextMode="MultiLine" Columns="70" Rows="6" onclick="this.select();"></asp:TextBox>
