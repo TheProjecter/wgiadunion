@@ -48,6 +48,9 @@ public partial class member_gencode : System.Web.UI.Page
         hidadid.Value = Request["id"];
         hidadtype.Value = Request["adtype"];
         hidpaytype.Value = Request["paytype"];
+
+        //预览区
+        lbltest.Text = "<b>请先选择网站！</b><br />";
     
     }
 

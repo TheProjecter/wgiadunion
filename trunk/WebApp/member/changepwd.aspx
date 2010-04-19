@@ -10,9 +10,9 @@
 		<h3>更改密码</h3>
 		<div class="pwddiv">
             <table style="margin:15px auto;">
-                <tr><td>原密码：</td><td width="290"><asp:TextBox ID="txtold" runat="server" MaxLength="20" TextMode="Password"></asp:TextBox><span class="onshow">请输入原始密码</span></td></tr>
-                <tr><td>新密码：</td><td><asp:TextBox ID="txtnew" runat="server" MaxLength="20" TextMode="Password"></asp:TextBox><span class="onshow">6-20位字母/数字</span></td></tr>
-                <tr><td>新密码：</td><td><asp:TextBox ID="txtnew2" runat="server" MaxLength="20" TextMode="Password"></asp:TextBox><span class="onshow">请重输上面的密码</span></td></tr>
+                <tr><td>原密码：</td><td width="290"><asp:TextBox ID="txtold" runat="server" MaxLength="20" TextMode="Password"></asp:TextBox><span title="请输入原始密码"></span></td></tr>
+                <tr><td>新密码：</td><td><asp:TextBox ID="txtnew" runat="server" MaxLength="20" TextMode="Password"></asp:TextBox><span title="6-20位字母/数字"></span></td></tr>
+                <tr><td>新密码：</td><td><asp:TextBox ID="txtnew2" runat="server" MaxLength="20" TextMode="Password"></asp:TextBox><span title="请重输上面的密码"></span></td></tr>
                 <tr><td>&nbsp;</td><td><asp:Button ID="btnsubmit" runat="server" Text="确定" OnClick="submit_click" CssClass="yelbtn" OnClientClick="return checkvali();" />&nbsp;&nbsp;
                     <input type="reset" value="重置" class="yelbtn" />
                 </td></tr>
@@ -26,15 +26,16 @@
     <script type="text/javascript">
     var vali=true;
         $(function(){
-            $(":password").focus(function(){$(this).next("span").removeClass().addClass("onfocus");});
+            $(":input").each(function(){var obj=$(this).next("span"); var txt=obj.attr("title"); obj.html(txt).addClass("onshow");});
+            $(":password").focus(function(){var obj=$(this).next("span"); var oldtext=obj.attr("title"); obj.html(oldtext).removeClass().addClass("onfocus");});
             $("#ctl00_ContentPlaceHolder1_txtold").blur(function(){var v=$(this).val();var obj=$(this).next("span");
 				url=encodeURI("/ajaxHandler.aspx?act=checkpwd&userid=1&pwd="+v+"&t="+new Date().getMilliseconds());
 				$.get(url,function(data){
-					if(data==0){obj.removeClass().addClass("onerror");vali=false;}else{obj.removeClass().addClass("oncorrect");}
+					if(data==0){obj.html("密码不正确").removeClass().addClass("onerror");vali=false;}else{obj.removeClass().addClass("oncorrect");}
 				}
 			);});
-            $("#ctl00_ContentPlaceHolder1_txtnew").blur(function(){var v=$(this).val();var obj=$(this).next("span");if(!regtest(/^[0-9a-zA-Z]{6,20}$/,v)){obj.removeClass().addClass("onerror");vali=false;}else{obj.removeClass().addClass("oncorrect");}});
-            $("#ctl00_ContentPlaceHolder1_txtnew2").blur(function(){var v=$(this).val();var obj=$(this).next("span");if($("#ctl00_ContentPlaceHolder1_txtnew").val()!=v){obj.removeClass().addClass("onerror");obj.html("两次密码输入不一致");vali=false;}else{obj.removeClass().addClass("oncorrect");obj.html("请重输上面的密码");}});
+            $("#ctl00_ContentPlaceHolder1_txtnew").blur(function(){var v=$(this).val();var obj=$(this).next("span");if(!regtest(/^[0-9a-zA-Z]{6,20}$/,v)){obj.html("格式不正确！").removeClass().addClass("onerror");vali=false;}else{obj.removeClass().addClass("oncorrect");}});
+            $("#ctl00_ContentPlaceHolder1_txtnew2").blur(function(){var v=$(this).val();var obj=$(this).next("span");if($("#ctl00_ContentPlaceHolder1_txtnew").val()!=v){obj.removeClass().addClass("onerror");obj.html("两次密码输入不一致");vali=false;}else{obj.removeClass().addClass("oncorrect");}});
         });
         function regtest(pattern,data){return pattern.test(data);}
 		function checkvali(){vali=true;$(":input").blur(); return vali;}

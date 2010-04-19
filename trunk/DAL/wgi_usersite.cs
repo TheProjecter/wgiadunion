@@ -178,7 +178,7 @@ namespace wgiAdUnionSystem.DAL
 
         public DataSet getListByUserId(int userid)
         {
-            string sql = "select userid,siteid,sitename,url,siteremark,ipno,pvno,sitetype from wgi_usersite where userid=@id";
+            string sql = "select userid,siteid,sitename,url,siteremark,ipno,pvno,sitetype from wgi_usersite where userid=@id order by siteid desc";
             Database db = DatabaseFactory.CreateDatabase();
             DbCommand cmd = db.GetSqlStringCommand(sql);
             db.AddInParameter(cmd, "id", DbType.Int32, userid);

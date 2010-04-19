@@ -51,6 +51,12 @@ public partial class member_sites : System.Web.UI.Page
         hidsiteid.Value = siteid;
         btnnew.Enabled = false;
         btnedit.Enabled = true;
+        btnreset.Enabled = true;
+    }
+
+    protected void reset_click(object sender, EventArgs e)
+    {
+        Response.Write("<script>location=location;</script>");
     }
 
     protected void btnnew_s(object sender, EventArgs e)
@@ -96,7 +102,7 @@ public partial class member_sites : System.Web.UI.Page
         model.userid = userid;
 
         bll.Add(model);
-        ScriptManager.RegisterClientScriptBlock(this, GetType(), DateTime.Now.ToString(), "alert('添加网站成功');window.navigate(location);", true);
+        ScriptManager.RegisterClientScriptBlock(this, GetType(), DateTime.Now.ToString(), "alert('添加网站成功');location=location;", true);
     }
 
 
@@ -144,7 +150,7 @@ public partial class member_sites : System.Web.UI.Page
         model.siteid = int.Parse(hidsiteid.Value);
 
         bll.Update(model);
-        ScriptManager.RegisterClientScriptBlock(this, GetType(), DateTime.Now.ToString(), "alert('编辑网站成功');window.navigate(location);", true);
+        ScriptManager.RegisterClientScriptBlock(this, GetType(), DateTime.Now.ToString(), "alert('编辑网站成功');location=location;", true);
     }
 
 }

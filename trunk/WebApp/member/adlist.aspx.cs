@@ -51,20 +51,20 @@ public partial class member_adlist : System.Web.UI.Page
     {
         foreach (GridViewRow gvr in gridList.Rows)
         {
-            string advtype = gvr.Cells[2].Text;
-            string advcont=gvr.Cells[3].Text;
+            string advtype = gvr.Cells[1].Text;
+            string advcont=gvr.Cells[2].Text;
             //2,3分别表示图片和flash广告，需要处理，其它不动
             switch (advtype)
             { 
                 case "2":
-                    gvr.Cells[3].Text = "<img src=\"" + advcont + "\" alt=\"\" />";
+                    gvr.Cells[2].Text = "<img src=\"" + advcont + "\" alt=\"\" />";
                     break;
                 case "3":
                     break;
                 default:
                     break;
             }
-            gvr.Cells[2].Text = CommonData.GetAdvTypeDisplayName(advtype);
+            gvr.Cells[1].Text = CommonData.GetAdvTypeDisplayName(advtype);
         }
     }
     protected void Button1_Click(object sender, EventArgs e)
