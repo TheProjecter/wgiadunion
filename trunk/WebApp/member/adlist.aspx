@@ -8,7 +8,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
 	<!--内容区样式开始-->
-	<div class="conthead"><span>您现在的位置：首页&nbsp;>&nbsp;个人设置&nbsp;>&nbsp;银行信息</span>联盟会员控制面板</div>
+	<div class="conthead"><span>您现在的位置：首页&nbsp;>&nbsp;广告列表&nbsp;>&nbsp;推荐广告</span>联盟会员控制面板</div>
 	<div class="ctbody_cnt" id="listdiv">
 		<h3>推荐广告</h3>
 		<div>
@@ -26,7 +26,7 @@
 		    </tr>
 		</table>
 		    
-            <asp:Button ID="Button1" runat="server" Text="查&nbsp;询" class="yelbtn"  onclick="Button1_Click"/>
+            <center><asp:Button ID="Button1" runat="server" Text="查&nbsp;询" class="yelbtn"  onclick="Button1_Click"/></center>
         </div>
 		<p>&nbsp;</p>
       <Wgi:RichGridView ID="gridList" runat="server" AllowPaging="True" CssClass="listtable"

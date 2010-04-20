@@ -27,8 +27,7 @@ public partial class member_account : System.Web.UI.Page
         else
         {
             if (IsPostBack)
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), DateTime.Now.ToString(), "alert('您已登出系统，请重新登录');", true);
-            Response.Redirect("/member/Default.aspx?url=" + Request.CurrentExecutionFilePath);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), DateTime.Now.ToString(), "alert('您已登出系统，请重新登录');location.href='/member/Default.aspx?url='"+Request.CurrentExecutionFilePath+";", true);
         }
     }
 

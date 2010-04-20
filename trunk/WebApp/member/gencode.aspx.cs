@@ -68,7 +68,7 @@ public partial class member_gencode : System.Web.UI.Page
         string ad = hidadid.Value;
         string adhost=hidadhost.Value;
         string site = ddlsite.SelectedValue;// userobj.siteid;
-        string uname=userobj.suser.username;
+        string uname=userobj.suser.userid.ToString();
         int adtype = 0;
         int paytype = 0;
         try  //假如不带参数过来，int.Parse会抛错，正好利用它判断是否正常访问本页
@@ -85,7 +85,7 @@ public partial class member_gencode : System.Web.UI.Page
         //thisurl = thisurl.Remove(thisurl.IndexOf('?'));
         string port = thisurl.Port == 80 ? "" : (":" + thisurl.Port.ToString());
         string url = "http://" + thisurl.Host + port + "/click/click.aspx";
-        url += "?shopid=" + adhost + "&adid=" + ad + "&siteid=" + site + "&username=" + uname + "&paytype=" + paytype;
+        url += "?shopid=" + adhost + "&adid=" + ad + "&siteid=" + site + "&userid=" + uname + "&paytype=" + paytype;
 
         string url_ctr = "http://" + thisurl.Host + port + "/click/";
 

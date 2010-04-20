@@ -53,8 +53,8 @@
 					</dl>
 					<dl>
 						<dt><div>财务管理</div></dt>
-						<dd><a href="applyfee">申请佣金</a></dd>
-						<dd><a href="feelist">结付查询</a></dd>
+						<dd><a href="applyfee.aspx">申请佣金</a></dd>
+						<dd><a href="feelist.aspx">佣金明细</a></dd>
 					</dl>
 				</div>
 			</div>
