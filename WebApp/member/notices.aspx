@@ -9,7 +9,7 @@
         #noticelist li span{color:#333; display:inline-block;}
         #noticelist span.longtxt{width:500px; overflow:hidden; text-overflow:ellipsis; padding-right:5px; cursor:pointer;}
         #noticelist span.longtxt:hover{text-decoration:underline;}
-        #noticelist span.shorttxt{width:120px; text-align:right; float:right;}
+        #noticelist span.shorttxt{width:120px; text-align:right; float:right; margin-top:7px;}
         li div.noticecont{display:none; padding:5px 10px 5px 40px;}
         li div.noticecont p{ padding:5px; background:#fff6f5;}
         li.unread .longtxt{font-weight:600;}
