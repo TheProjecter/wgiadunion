@@ -96,7 +96,7 @@
 	</td></tr>
 	<tr>
 	<td height="25" width="30%" align="right">
-		身份证
+		身份证号码
 	：</td>
 	<td height="25" width="*" align="left">
 		<asp:TextBox id="txtidcard" runat="server" Width="200px" CssClass="requireTxt"></asp:TextBox><span title="必填"></span>
