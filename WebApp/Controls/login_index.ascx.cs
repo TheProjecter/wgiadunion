@@ -32,6 +32,7 @@ public partial class Controls_login_index : validateMember
             this.lblbank.Text = base.suser.balance.ToString() + "元";
             this.lblname.Text = base.suser.accountname;
             this.lbllast.Text = base.suser.lastdate.ToString();
+            this.lbluname.Text = base.suser.username;
             this.pnllogin.Visible = true;
         }
         else

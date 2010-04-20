@@ -12,7 +12,7 @@
 					</asp:Panel>
 					<!--登录结束-->
 					<asp:Panel ID="pnllogin" CssClass="loged" runat="server">
-						<p>尊敬的客户，欢迎您！</p>
+						<p>尊敬的<asp:Label CssClass="lboxspan1" runat="server" ID="lbluname"></asp:Label>，欢迎您！</p>
 						<p>您的姓名：<asp:Label CssClass="lboxspan1" runat="server" ID="lblname"></asp:Label></p>
 						<p>您的账户余额：<asp:Label CssClass="lboxspan2" runat="server" ID="lblbank"></asp:Label></p>
 						<p>上次登录：<asp:Label ID="lbllast" runat="server" CssClass="timespan"></asp:Label></p>
