@@ -1,9 +1,12 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Templet/memberMaster.master" AutoEventWireup="true" CodeFile="adlist.aspx.cs" Inherits="member_adlist" Title="中商购物|网站联盟|用户中心" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <script src="../../Js/ca/WdatePicker.js" type="text/javascript"></script>
+    <script src="/Js/ca/WdatePicker.js" type="text/javascript"></script>
 
     <link href="/Css/mem_modify.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        table.toptable td{ padding-top:8px;}
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
@@ -13,15 +16,15 @@
 		<h3>推荐广告</h3>
 		<div>
 		<div id="opdiv">
-		<table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin:5px auto;">
+		<table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin:5px auto;" class="toptable">
 		    <tr>
-		        <td width="250px">付费类型：<asp:DropDownList ID="ddlPayType" runat="server"></asp:DropDownList></td>
+		        <td width="270px">付费类型：<asp:DropDownList ID="ddlPayType" runat="server"></asp:DropDownList></td>
 		        <td>显示类型：<asp:DropDownList ID="ddlDisplayType" runat="server"></asp:DropDownList></td>
 		    </tr>
 		    <tr>
-		        <td>截止时间：<asp:TextBox ID="txtstart" runat="server" Width="70px" onclick=" WdatePicker({ doubleCalendar: true,readOnly:true, dateFmt: 'yyyy-MM-dd'})"></asp:TextBox>
-<span class="newfont06">至</span>
-                  <asp:TextBox ID="txtend" runat="server"  Width="70px" onclick=" WdatePicker({ doubleCalendar: true,readOnly:true, dateFmt: 'yyyy-MM-dd'})"></asp:TextBox> </td>
+		        <td>截止时间：<asp:TextBox ID="txtstart" runat="server" Width="85px" CssClass="Wdate" onclick=" WdatePicker({ doubleCalendar: true,readOnly:true, dateFmt: 'yyyy-MM-dd'})"></asp:TextBox>
+<span>至</span>
+                  <asp:TextBox ID="txtend" runat="server"  Width="85px" CssClass="Wdate" onclick=" WdatePicker({ doubleCalendar: true,readOnly:true, dateFmt: 'yyyy-MM-dd'})"></asp:TextBox> </td>
 		        <td>广告描述： <asp:TextBox ID="txtTitle" runat="server" Width="130px" ></asp:TextBox></td>
 		    </tr>
 		</table>
