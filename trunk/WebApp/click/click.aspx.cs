@@ -10,7 +10,11 @@ public partial class click : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         //预览链接不操作
-        if (Request["preview"] == "1") return;
+        if (Request["preview"] == "1")
+        {
+            Response.Write("测试成功！请拷贝广告代码至自己的网站合适的位置。");
+            return;
+        }
 
         //step1:从网址辨认点击源
         int shopid,adid,siteid,paytype,adtype;

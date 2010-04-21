@@ -152,4 +152,17 @@ public class CommonData
         }
         return userIP;
     }
+
+    //业绩
+    public static DataTable getYejiType()
+    {
+        DataTable dt = GetBaseTable();
+        dt.Rows.Add("全部业绩", "1");
+        dt.Rows.Add("未确认业绩", "2");
+        dt.Rows.Add("有效业绩", "3");
+        dt.Rows.Add("申请取消的业绩", "4");
+        dt.Rows.Add("已取消的业绩", "5");
+        dt.Rows.Add("未核对，有效业绩", "6");
+        return dt;
+    }
 }
