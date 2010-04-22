@@ -12,7 +12,7 @@
 		<div>
             <div style="color:#333">
                 <p>
-                    <p class="tabArea"><b>选择网站</b></p>
+                    <p class="tabArea"><span>选择网站</span></p>
                     请选择需要发布广告的网站
                     <asp:DropDownList ID="ddlsite" runat="server" AutoPostBack="true" OnSelectedIndexChanged="genCode"></asp:DropDownList>
                     <p>&nbsp;</p>
@@ -20,12 +20,12 @@
                     <asp:button ID="btnAdd" runat="server" Text="添加网站" OnClick="btnAddSite" CssClass="yelbtn" />
                     <p>&nbsp;</p>
                 </p>
-                <p class="tabArea"><b>预&nbsp;&nbsp;&nbsp;&nbsp;览</b></p>
+                <p class="tabArea"><span>预&nbsp;&nbsp;&nbsp;&nbsp;览</span></p>
                 <p><asp:Label ID="lbltest" runat="server" Text=""></asp:Label></p>
                 <p>&nbsp;</p>
                 <p class="tgray">[注：生成的预览链接不会把你带向最终的广告，只是展示呈现在网站的效果！]</p>
                 <p>&nbsp;</p>
-                <p class="tabArea"><b>生成代码</b></p>
+                <p class="tabArea"><span>生成代码</span></p>
                 <p>复制下面的代码到自己的网站，生成广告</p>
                 <asp:TextBox runat="server" ID="txtgcode" TextMode="MultiLine" Columns="70" Rows="6" onclick="this.select();"></asp:TextBox>
                 <asp:HiddenField ID="hidadid" runat="server" Value="" />

@@ -8,7 +8,7 @@
 
 /*tab*/
 p.tabArea{ margin:20px auto; border-bottom:1px solid #EF6F03;}
-p.tabArea b{ margin-left:25px; color:#ef6f03; border:1px solid #ef6f03; border-bottom-color:#fff; padding:5px 8px; position:relative; top:-4px; #top:-5px; }
+p.tabArea span{ display:inline-block; margin-left:25px; color:#ef6f03; border:1px solid #ef6f03; border-bottom-color:#fff; padding:5px 8px; position:relative; top:1px; font-weight:800; }
 
 
 /*loginbox*/

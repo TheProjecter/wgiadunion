@@ -28,7 +28,7 @@ public partial class Controls_report : System.Web.UI.UserControl
 
         wgiAdUnionSystem.BLL.wgi_usersite bll = new wgiAdUnionSystem.BLL.wgi_usersite();
         Helper.HelperDropDownList.BindData(ddlsite, bll.getListByUserId(userobj.suser.userid).Tables[0], "sitename", "siteid", 0);
-        ddlsite.Items.Insert(0, new ListItem("请选择...", "-1"));
+        ddlsite.Items.Insert(0, new ListItem("--请选择--", "-1"));
         ddlsite.SelectedIndex = 0;
         txtstart.Text = DateTime.Today.Date.ToString("yyyy-MM") + "-01";
         txtend.Text = DateTime.Today.Date.ToString("yyyy-MM-dd");

@@ -20,7 +20,7 @@ public partial class member_gencode : System.Web.UI.Page
         {
 
             initData();
-            //Response.Write("Request.Url："+Request.Url+"<br />");
+            //Response.Write("Request.Url：" + Request.Url + "<br />");
             //Response.Write("Request.Path：" + Request.Path + "<br />");
             //Response.Write("Request.CurrentExecutionFilePath：" + Request.CurrentExecutionFilePath + "<br />");
             //Response.Write("Request.FilePath：" + Request.FilePath + "<br />");
@@ -29,7 +29,7 @@ public partial class member_gencode : System.Web.UI.Page
             //Response.Write("Request.PhysicalPath：" + Request.PhysicalPath + "<br />");
             //Response.Write("Request.RawUrl：" + Request.RawUrl + "<br />");
             //Response.Write("Request.Serviables[\"url\"]：" + Request.ServerVariables["url"] + "<br />");
-            //Response.Write("Request.Url.host：" + Request.Url.host + "<br />");
+            //Response.Write("Request.Url.host：" + Request.Url.Host + "<br />");
             //Response.Write("Request.Url.Port：" + Request.Url.Port + "<br />");
         }
     }
@@ -61,7 +61,12 @@ public partial class member_gencode : System.Web.UI.Page
 
     protected void genCode(object sender, EventArgs e)
     {
-        if (ddlsite.SelectedIndex == 0) return;
+        if (ddlsite.SelectedIndex == 0) 
+        {
+            this.lbltest.Text = "<b>请先选择网站！</b><br />";
+            this.txtgcode.Text = "";
+            return;
+        }
         validateMember userobj = MasterPageOpration.getMasterControl(this.Page.Master, "Muser");
         
         //生成广告代码
@@ -108,9 +113,12 @@ public partial class member_gencode : System.Web.UI.Page
                         break;
                     case 2:
                         url += "&adtype=2";
+                        //取出图片预设宽高
+                        string w = model.advwidth.ToString();
+                        string h = model.advheight.ToString();
                         //预览
-                        this.lbltest.Text = "<a href=\"" + url + "&preview=1" + "\" target=\"_blank\"><img src=\"" + adcont + "\" alt=\"\" style=\"border:none;\" /></a>";
-                        url="<a href=\""+url+"\" target=\"_blank\"><img src=\""+adcont+"\" alt=\"\" style=\"border:none;\" /></a>";
+                        this.lbltest.Text = "<a href=\"" + url + "&preview=1" + "\" target=\"_blank\"><img src=\"" + adcont + "\" alt=\"\" style=\"border:none; width:"+w+"px; height:"+h+"px\" /></a>";
+                        url = "<a href=\"" + url + "\" target=\"_blank\"><img src=\"" + adcont + "\" alt=\"\" style=\"border:none; width:" + w + "px; height:" + h + "px\" /></a>";
                         break;
                     case 3:
                         break;

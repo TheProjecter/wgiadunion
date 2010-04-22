@@ -9,7 +9,7 @@
 	<div class="ctbody_cnt">
 		<h3>账号信息</h3>
 		<div>
-<p class="tabArea"><b>状态信息</b></p>
+<p class="tabArea"><span>状态信息</span></p>
 <table border="0" cellpadding="0" cellspacing="0" align="center" class="prof_detail">
 
 	<tr>
@@ -33,7 +33,7 @@
 	</tr>
 </table>
 <br />
-<p class="tabArea"><b>个人资料</b></p>
+<p class="tabArea"><span>个人资料</span></p>
 <table cellspacing="0" cellpadding="0" width="100%" border="0">
 	
 	<tr>

@@ -57,7 +57,7 @@ public partial class member_adlist : System.Web.UI.Page
             switch (advtype)
             { 
                 case "2":
-                    gvr.Cells[2].Text = "<img src=\"" + advcont + "\" alt=\"\" />";
+                    gvr.Cells[2].Text = "<img onload='checkWidth(this);' src=\"" + advcont + "\" alt=\"\" />";
                     break;
                 case "3":
                     break;

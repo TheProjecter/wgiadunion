@@ -20,9 +20,9 @@ public partial class click_showCtr : System.Web.UI.Page
         //得到用户id，用户网站id,广告id，广告主id，广告类型
         int shopid, adid, siteid, userid, paytype, adtype;
         int.TryParse(Request["shopid"], out shopid);
-        int.TryParse(Request["adid"], out adidid);
+        int.TryParse(Request["adid"], out adid);
         int.TryParse(Request["userid"], out userid);
-        int.TryParse(Request["siteid"], out siteidid);
+        int.TryParse(Request["siteid"], out siteid);
         int.TryParse(Request["paytype"], out paytype);
         int.TryParse(Request["adtype"], out adtype);
 

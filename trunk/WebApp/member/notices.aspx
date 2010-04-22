@@ -4,7 +4,7 @@
     <style type="text/css">
         #noticelist{margin:20px auto 10px 10px; list-style:none;}
         #noticelist li:first-child span{font-weight:800; color:#984f08;}
-        #noticelist li{border-bottom:dashed 1px #ca3; padding:4px 0; #margin-top:5px;}
+        #noticelist li{border-bottom:dashed 1px #ca3; padding:4px 0; margin-top:5px;}
         #noticelist li p input{ margin-right:20px;}
         #noticelist li span{color:#333; display:inline-block;}
         #noticelist span.longtxt{width:500px; overflow:hidden; text-overflow:ellipsis; padding-right:5px; cursor:pointer;}
@@ -30,34 +30,14 @@
 		<div>
 		    <ul id="noticelist">
 		        <li><p><span class="shorttxt" style="padding-right:30px;">发布时间</span><input type="checkbox" style="visibility:hidden;" /><span>公告内容</span></p></li>
-		        <li class="unread">
-		            <p><span class="shorttxt">2010-02-28 17:32:55</span><input type="checkbox" class="checkthis" /><span class="longtxt">关于发放1月份关于发放1月份关于发放1月份佣金的补充通知...</span></p>
-		            <div class="noticecont"><p>contcontcontcont<br />contcontdljdoisf<br /></p></div>
-		        </li>
-		        <li>
-		            <p><span class="shorttxt">2010-02-28 17:32:55</span><input type="checkbox" class="checkthis" /><span class="longtxt">关于发放1月份关于发放1月份关于发放1月份佣金的补充通知...</span></p>
-		            <div class="noticecont"><p>contcontcontcont<br />contcontdljdoisf<br /></p></div>
-		        </li>
-		        <li>
-		            <p><span class="shorttxt">2010-02-28 17:32:55</span><input type="checkbox" class="checkthis" /><span class="longtxt">关于发放1月份关于发放1月份关于发放1月份佣金的补充通知...</span></p>
-		            <div class="noticecont"><p>contcontcontcont<br />contcontdljdoisf<br /></p></div>
-		        </li>
-		        <li>
-		            <p><span class="shorttxt">2010-02-28 17:32:55</span><input type="checkbox" class="checkthis" /><span class="longtxt">关于发放1月份关于发放1月份关于发放1月份佣金的补充通知...</span></p>
-		            <div class="noticecont"><p>contcontcontcont<br />contcontdljdoisf<br /></p></div>
-		        </li>
-		        <li>
-		            <p><span class="shorttxt">2010-02-28 17:32:55</span><input type="checkbox" class="checkthis" /><span class="longtxt">关于发放1月份关于发放1月份关于发放1月份佣金的补充通知...</span></p>
-		            <div class="noticecont"><p>contcontcontcont<br />contcontdljdoisf<br /></p></div>
-		        </li>
-		        <li>
-		            <p><span class="shorttxt">2010-02-28 17:32:55</span><input type="checkbox" class="checkthis" /><span class="longtxt">关于发放1月份关于发放1月份关于发放1月份佣金的补充通知...</span></p>
-		            <div class="noticecont"><p>contcontcontcont<br />contcontdljdoisf<br /></p></div>
-		        </li>
-		        <li>
-		            <p><span class="shorttxt">2010-02-28 17:32:55</span><input type="checkbox" class="checkthis" /><span class="longtxt">关于发放1月份关于发放1月份关于发放1月份佣金的补充通知...</span></p>
-		            <div class="noticecont"><p>contcontcontcont<br />contcontdljdoisf<br /></p></div>
-		        </li>
+		        <asp:Repeater ID="rptpager" runat="server">
+		        <ItemTemplate>
+		        <li <%# base.getClassName(Eval("unread").ToString()) %>>
+		                <p><span class="shorttxt"><%#Eval("pubdate") %></span><input type="checkbox" class="checkthis" name="lists" /><span class="longtxt"><%#Eval("title") %></span></p>
+		                <div class="noticecont"><p><%#Eval("notice") %></p></div>
+		            </li>		        
+		        </ItemTemplate>
+		        </asp:Repeater>
 		        <li style="padding-left:35px;">
 		            <table class="optable"><tr>
 		                <td><input type="button" id="checkall" class="yelbtn" value="全选" /></td>
@@ -73,6 +53,7 @@
 		            </tr></table>
 		        </li>
 		    </ul>
+		    <asp:Literal ID="lblpager" runat="server"></asp:Literal>
         </div>
 	</div>
 	<!--内容区样式结束-->
