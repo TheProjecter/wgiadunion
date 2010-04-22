@@ -20,7 +20,7 @@
 	<div class="ctbody_cnt" id="listdiv">
 		<h3>网站信息</h3>
 		<div>
-		<p class="tabArea"><b>编辑网站</b></p>
+		<p class="tabArea"><span>编辑网站</span></p>
 		<div id="opdiv">
 		    <ul>
 		        <li><span>网站名称：</span><asp:TextBox ID="txtsitename" runat="server" CssClass="requiredfield"></asp:TextBox><span class="almsg">&nbsp;*</span></li>
@@ -39,7 +39,7 @@
 		        <asp:HiddenField ID="hidsiteid" runat="server" Value="" />
 		    </p>
 		</div>
-		<p class="tabArea"><b>网站列表</b></p>
+		<p class="tabArea"><span>网站列表</span></p>
 		    <asp:GridView ID="gridList" runat="server" DataSourceID="odsData" AutoGenerateColumns="False" EmptyDataText="您尚未添加网站！" RowStyle-Width="100%" DataKeyNames="siteid" CssClass="listtable" Width="100%" AllowPaging="true" PageSize="10" AllowSorting="true">		   
                 <Columns>
                     <asp:BoundField DataField="sitename" HeaderText="网站名称" SortExpression="sitename" ItemStyle-Width="80px" />

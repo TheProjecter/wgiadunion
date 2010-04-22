@@ -1,3 +1,20 @@
+---walker:2010/4/22
+--系统通知，网站公告表
+if exists (select * from sysobjects where id = OBJECT_ID('[wgi_notice]') and OBJECTPROPERTY(id, 'IsUserTable') = 1) 
+DROP TABLE [wgi_notice]
+create table wgi_notice(
+	id int identity primary key,--主键id 
+	title nvarchar(100) null,--公告标题
+	notice ntext null,--公告内容
+	pubdate datetime default getdate(),--发布时间
+	unread int default 0,	--默认未读
+	publisher int default -1 --默认值表示未知系统管理员
+)
+go
+
+insert into wgi_notice (title,notice) values('关于一月份佣金的补充通知','内容内容<br/>关于一月份佣金的补充通知，每个人发红利300元<br/>关于一月份佣金的补充通知，每个人发红利300元<br/>关于一月份佣金的补充通知，每个人发红利300元<br/>关于一月份佣金的补充通知，每个人发红利300元')
+
+-----------========original===============
 create table wgi_adv_statis (
    companyid            int                  null,
    userid               int                  null,

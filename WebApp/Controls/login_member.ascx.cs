@@ -107,6 +107,7 @@ public partial class Controls_login_member : validateMember
                 this.lblbank.Text = userdatas[5]+"元";
                 this.lbllast.Text=userdatas[3];
                 this.lblname.Text= userdatas[4];
+                this.lbluname.Text = userdatas[2];
                 if (!string.IsNullOrEmpty(Request.QueryString["url"])) this.Page.Response.Redirect(Request["url"]);
 
             }

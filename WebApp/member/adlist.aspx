@@ -6,6 +6,7 @@
     <link href="/Css/mem_modify.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
         table.toptable td{ padding-top:8px;}
+        .listtable tr th:first-child{display:none;}
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -46,10 +47,10 @@
             <asp:TemplateField ItemStyle-Width="50px">
                 <headertemplate>序号</headertemplate>
                 <itemtemplate><%# Container.DataItemIndex + 1 %></itemtemplate>
-                <ItemStyle Width="50px" HorizontalAlign="Center"></ItemStyle>
+                <ItemStyle CssClass="hide"></ItemStyle>
             </asp:TemplateField>
            
-            <asp:BoundField DataField="advtype" HeaderText="显示类型" />
+            <asp:BoundField DataField="advtype" HeaderText="显示类型" ItemStyle-Width="60px" />
             <asp:BoundField DataField="advcont" HeaderText="预览" />
             <asp:BoundField DataField="advname" HeaderText="广告关键字" />
             <asp:BoundField DataField="advstart" HeaderText="开始时间" DataFormatString="{0:d}" />
@@ -58,6 +59,7 @@
                             <ItemTemplate>
                                 <img border="0" alt="" src="../../images/edit.gif" align="absmiddle"/>&nbsp;<a href="javascript:genCode(<%# Eval("advid") %>,<%= base.adhostid %>,<%# Eval("advtype") %>,1)">生成标签</a>
                             </ItemTemplate>
+                            <ItemStyle Width="80px" />
                         </asp:TemplateField>
             </Columns>
              <CustomPagerSettings PagingMode="Webabcd" TextFormat="每页{0}条/共{1}条&nbsp;&nbsp;&nbsp;&nbsp;第{2}页/共{3}页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
@@ -91,6 +93,10 @@
     <script type="text/javascript">
         function genCode(adid,hostid,adtype,paytype){
             location.href="gencode.aspx?id="+adid+"&host="+hostid+"&adtype="+adtype+"&paytype="+paytype;
+        }
+        function checkWidth(obj){
+            if(obj.width>280) obj.width=280;
+            if(obj.height>280) obj.height=280;
         }
     </script>
 </asp:Content>
