@@ -7,7 +7,6 @@
     <title>无标题页</title>
 </head>
 <body>
-hello world!!!!
 <a href="http://localhost:13679/click/click.aspx?shopid=1&adid=30&siteid=2&username=walker&paytype=1&adtype=1" target="_blank">adfdasf</a><img src='http://localhost:13679/click/showCtr.aspx' alt='' style='display:none;' />
     <%--form id="form1" runat="server">
     <div>
