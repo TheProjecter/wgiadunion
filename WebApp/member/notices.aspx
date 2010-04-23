@@ -14,12 +14,13 @@
         li div.noticecont p{ padding:5px; background:#fff6f5;}
         li.unread .longtxt{font-weight:600;}
         li .optable td{padding-right:2px;}
-        #opration{ border:1px solid #EF6F03; padding:2px; width:80px; background:rgb(255,191,137); position:absolute; left:0; top:20px; cursor:pointer; display:none;}
-        #opration p{ padding:3px 5px;color:#333;/*background:url("../Images/btnbg.gif") repeat-x scroll 0 0 transparent;*/}
-        #opration p:hover{background:/*url("../Images/btnbg.gif") repeat-x scroll 0 -23px transparent;*/#f83; color:#eee;}
+        #opration{ border:1px solid #EF6F03; padding:2px; width:80px; background:rgb(255,191,137); position:absolute; left:0; top:20px; display:none;}
+        #opration p{ padding:3px 5px;color:#333;}
+        #opration p:hover{background:#f83; color:#eee;}
         #btnop{ display:inline-block; height:17px; line-height:17px; width:40px; position:relative; padding-left:5px; color:#000!important; cursor:default;}
         .downarr{display:inline-block; width:0px; height:0px; border:4px solid rgb(255,191,137); border-top-color:#000; position:absolute; left:32px; top:8px;}
         #btnop:hover .downarr{border-color:rgb(255,133,43); border-top-color:#000;}
+        #opration p a{ text-decoration:none; color:#111;}
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -33,7 +34,7 @@
 		        <asp:Repeater ID="rptpager" runat="server">
 		        <ItemTemplate>
 		        <li <%# base.getClassName(Eval("unread").ToString()) %>>
-		                <p><span class="shorttxt"><%#Eval("pubdate") %></span><input type="checkbox" class="checkthis" name="lists" /><span class="longtxt"><%#Eval("title") %></span></p>
+		                <p><span class="shorttxt"><%#Eval("pubdate") %></span><input type="checkbox" class="checkthis" name="lists" value='<%#Eval("id") %>' /><span class="longtxt"><%#Eval("title") %></span></p>
 		                <div class="noticecont"><p><%#Eval("notice") %></p></div>
 		            </li>		        
 		        </ItemTemplate>
@@ -45,9 +46,9 @@
 		                <td><input type="button" id="uncheckall" class="yelbtn" value="取消" /></td>
 		                <td><div style="position:relative; padding:0;"><span id="btnop" class="yelbtn">操作<span class="downarr"></span></span>
 		                    <div id="opration">
-		                        <p>删除</p>
-		                        <p>标记为未读</p>
-		                        <p>标记为已读</p>
+		                        <p><asp:LinkButton ID="lbtndel" runat="server" Text="删除" OnClick="delclick" OnClientClick="if(nocheck()) return confirm('确认删除？');else return false;"></asp:LinkButton></p>
+		                        <p><asp:LinkButton ID="lbtnread" runat="server" Text="标记为已读" OnClick="markread" OnClientClick="return nocheck();"></asp:LinkButton></p>
+		                        <p><asp:LinkButton ID="lbtnunread" runat="server" Text="标记为未读" OnClick="markunread" OnClientClick="return nocheck();"></asp:LinkButton></p>
 		                    </div></div>
 		                </td>		            
 		            </tr></table>
@@ -68,7 +69,10 @@
             $("#btnop").click(function(){$("#opration").slideToggle();});
         });
         
-        //function openop(){$("#opration").slideToggle();}
+        function nocheck(){
+            if($(":checkbox").filter(":checked").length==0){alert("您未选择任何条目"); $("#opration").hide(); return false;}
+            else return true;
+        }
     </script>
 </asp:Content>
 

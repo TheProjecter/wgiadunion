@@ -7,7 +7,7 @@
     <title>无标题页</title>
 </head>
 <body>
-<a href="http://localhost:13679/click/click.aspx?shopid=1&adid=30&siteid=2&username=walker&paytype=1&adtype=1" target="_blank">adfdasf</a><img src='http://localhost:13679/click/showCtr.aspx' alt='' style='display:none;' />
+<a href="http://localhost:13679/click/click.aspx?shopid=1&adid=30&siteid=4&userid=1&paytype=1&adtype=1" target="_blank">adfdasf</a><img src='http://localhost:13679/click/showCtr.aspx?shopid=1&adid=30&siteid=4&userid=1&paytype=1&adtype=1' alt='' style='display:none;' />
     <%--form id="form1" runat="server">
     <div>
         <asp:ScriptManager ID="ScriptManager1" runat="server">

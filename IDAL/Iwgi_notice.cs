@@ -49,7 +49,12 @@ namespace wgiAdUnionSystem.IDAL
         /// 更新阅读状态
         /// </summary>
         /// <param name="id"></param>
-        void UpdateReadStatus(int id, int status);
+        void UpdateReadStatus(string ids, int status);
+        /// <summary>
+        /// 群删
+        /// </summary>
+        /// <param name="ids"></param>
+        void DeleteByIds(string ids);
 		#endregion  成员方法
 	}
 }

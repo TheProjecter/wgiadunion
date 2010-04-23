@@ -27,14 +27,9 @@ public partial class member_notices : System.Web.UI.Page
     private void initData()
     {
         DataSet ds = new wgiAdUnionSystem.BLL.wgi_notice().GetAllList();
-        int page = 1;
-        try
+        int page;
+        if (!int.TryParse(Request["page"], out page))
         {
-            page = int.Parse(Request["page"]);
-        }
-        catch (Exception)
-        {
-
             page = 1;
         }
 
@@ -59,6 +54,51 @@ public partial class member_notices : System.Web.UI.Page
     {
         if (s == "0") return "class=\"unread\"";
         else return "";
+
+    }
+
+    protected void delclick(object sender, EventArgs e)
+    {
+        string ids = Request["lists"];
+        try
+        {
+            new wgiAdUnionSystem.BLL.wgi_notice().DeleteByIds(ids);
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), DateTime.Now.ToString(), "alert('删除成功');location=location;", true);
+            
+        }
+        catch (Exception)
+        {
+            Response.Write(Helper.HelperString.getAlertJumpString("内部错误！",Request.Url.ToString()));
+        }
+    }
+
+    protected void markread(object sender, EventArgs e)
+    {
+        string ids = Request["lists"];
+        try
+        {
+            new wgiAdUnionSystem.BLL.wgi_notice().UpdateReadStatus(ids, 1);
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), DateTime.Now.ToString(), "location=location;", true);
+        }
+        catch (Exception)
+        {
+            Response.Write(Helper.HelperString.getAlertJumpString("内部错误！", Request.Url.ToString()));
+        }
+
+    }
+
+    protected void markunread(object sender, EventArgs e)
+    {
+        string ids = Request["lists"];
+        try
+        {
+            new wgiAdUnionSystem.BLL.wgi_notice().UpdateReadStatus(ids, 0);
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), DateTime.Now.ToString(), "location=location;", true);
+        }
+        catch (Exception)
+        {
+            Response.Write(Helper.HelperString.getAlertJumpString("内部错误！", Request.Url.ToString()));
+        }
 
     }
 

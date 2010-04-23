@@ -90,7 +90,8 @@ public partial class member_gencode : System.Web.UI.Page
         //thisurl = thisurl.Remove(thisurl.IndexOf('?'));
         string port = thisurl.Port == 80 ? "" : (":" + thisurl.Port.ToString());
         string url = "http://" + thisurl.Host + port + "/click/click.aspx";
-        url += "?shopid=" + adhost + "&adid=" + ad + "&siteid=" + site + "&userid=" + uname + "&paytype=" + paytype;
+        string urlparams = "?shopid=" + adhost + "&adid=" + ad + "&siteid=" + site + "&userid=" + uname + "&paytype=" + paytype;
+        url += urlparams;
 
         string url_ctr = "http://" + thisurl.Host + port + "/click/";
 
@@ -136,7 +137,7 @@ public partial class member_gencode : System.Web.UI.Page
                 break;
         }
         //接上统计露出数字串
-        url += "<img src='http://" + thisurl.Host + port + "/click/showCtr.aspx' alt='' style='display:none;' />";
+        url += "<img src='http://" + thisurl.Host + port + "/click/showCtr.aspx" + urlparams + "&adtype=" + adtype + "' alt='' style='display:none;' />";
         this.txtgcode.Text = url;
 
 

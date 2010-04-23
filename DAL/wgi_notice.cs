@@ -252,15 +252,30 @@ namespace wgiAdUnionSystem.DAL
         /// 更新阅读状态
         /// </summary>
         /// <param name="id"></param>
-        public void UpdateReadStatus(int id, int status)
+        public void UpdateReadStatus(string ids, int status)
         {
-            string strSql = "update wgi_notice set unread=@status where id=@id";
+            string strSql = "update wgi_notice set unread=@status where id in ( " + ids + " )";
             Database db = DatabaseFactory.CreateDatabase();
             DbCommand cmd = db.GetSqlStringCommand(strSql);
             db.AddInParameter(cmd, "status", DbType.Int32, status);
-            db.AddInParameter(cmd, "id", DbType.Int32, id);
             db.ExecuteNonQuery(cmd);
         }
+
+        /// <summary>
+        /// 删除一组数据
+        /// </summary>
+        public void DeleteByIds(string ids)
+        {
+
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("delete from wgi_notice ");
+            strSql.Append(" where id in( " + ids + " ) ");
+            Database db = DatabaseFactory.CreateDatabase();
+            DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
+            db.ExecuteNonQuery(dbCommand);
+
+        }
+
 
 		#endregion  成员方法
 	}
