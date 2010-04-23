@@ -5,7 +5,7 @@
                                 <tr><td>用户名：</td><td><asp:TextBox runat="server" type="text" name="username" id="txtUser" value="" maxlength="20" class="logtxt"></asp:TextBox></td></tr>
 							    <tr><td>密码：</td><td><asp:TextBox runat="server" TextMode="Password" ID="txtPass" MaxLength="20" class="logtxt"></asp:TextBox></td></tr>
     							
-							    <tr><td>验证码：</td><td><asp:TextBox runat="server" ID="txtCode" MaxLength="4" CssClass="logvcode"></asp:TextBox><img src="/checkcode.aspx?t=1" alt="点此更换图片" class="vcodeimg" onclick="this.src+=1" /></td></tr>
+							    <tr><td>验证码：</td><td><asp:TextBox runat="server" ID="txtCode" MaxLength="4" CssClass="logvcode"></asp:TextBox><img src="/checkcode.aspx?t=1" alt="点此更换图片" class="vcodeimg" onclick="this.src+=1" id="checkcode" /></td></tr>
 						    </table>
 						   <div class="logbtn"><asp:Button ID="btnsubmit" Text="登&nbsp;录" runat="server" OnClick="btn_login" /><a href="/register.aspx">注&nbsp;册</a></div>
 						   <div style="text-align:center; padding-top:8px;"><asp:Label runat="server" ID="lblLoginMessage" ForeColor="Red" Visible="false"></asp:Label></div>

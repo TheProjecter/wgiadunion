@@ -70,13 +70,13 @@ namespace wgiAdUnionSystem.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into wgi_loginlog(");
-			strSql.Append("logid,usertype,logtime,logip,logname)");
+			strSql.Append("usertype,logtime,logip,logname)");
 
 			strSql.Append(" values (");
-			strSql.Append("@logid,@usertype,@logtime,@logip,@logname)");
+			strSql.Append("@usertype,@logtime,@logip,@logname)");
 			Database db = DatabaseFactory.CreateDatabase();
 			DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
-			db.AddInParameter(dbCommand, "logid", DbType.Int32, model.logid);
+            db.AddInParameter(dbCommand, "logid", DbType.Int32, model.logid);
 			db.AddInParameter(dbCommand, "usertype", DbType.Int32, model.usertype);
 			db.AddInParameter(dbCommand, "logtime", DbType.DateTime, model.logtime);
 			db.AddInParameter(dbCommand, "logip", DbType.String, model.logip);

@@ -44,16 +44,18 @@ public partial class Controls_login_index : validateMember
 
     protected void btn_login(object sender, EventArgs e)
     {
+        string sessioncode = "";
         try
         {
             if (Session["CheckCode"] != null && Session["CheckCode"].ToString() == "") return;
+            else sessioncode = Session["CheckCode"].ToString();
         }
         catch (Exception)
         {
-            this.Page.Response.Redirect("/index.aspx");
+            this.Page.Response.Redirect("/member/Default.aspx");
         }
 
-        if (Session["CheckCode"].ToString().ToLower().Equals(txtCode.Text.ToLower()))
+        if (sessioncode.ToLower().Equals(txtCode.Text.ToLower()))
         {
             UserPrincipal principal = new UserPrincipal(txtUser.Text, txtPass.Text, 2);
 
@@ -93,7 +95,25 @@ public partial class Controls_login_index : validateMember
 
                 string uid = dt.Rows[0]["userid"].ToString();
                 string uname = dt.Rows[0]["username"].ToString();
-                bll.updateLoginTime(int.Parse(uid), DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")); //记录学员登录时间 
+
+                try
+                {
+                    bll.updateLoginTime(int.Parse(uid), DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")); //记录学员登录时间 
+
+                    wgiAdUnionSystem.Model.wgi_loginlog logs = new wgiAdUnionSystem.Model.wgi_loginlog();
+                    //logs.logid = int.Parse(uid);
+                    logs.logip = CommonData.GetIp(this.Page);
+                    logs.logname = uname;
+                    logs.logtime = DateTime.Now;
+                    logs.usertype = 1;//1表示网站主
+
+                    new wgiAdUnionSystem.BLL.wgi_loginlog().Add(logs);
+
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>alert('内部错误！');location.href='/index.aspx'</script>");
+                }
                 //Session["sid"] = uid;
                 //Session["utype"] = "member";
 

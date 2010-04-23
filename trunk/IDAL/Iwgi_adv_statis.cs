@@ -31,7 +31,7 @@ namespace wgiAdUnionSystem.IDAL
 		/// <summary>
 		/// 获得前几行数据
 		/// </summary>
-		DataSet GetList(int Top,string strWhere,string filedOrder);
+		//DataSet GetList(int Top,string strWhere,string filedOrder);
 		/// <summary>
 		/// 根据分页获得数据列表
 		/// </summary>

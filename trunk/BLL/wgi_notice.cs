@@ -171,12 +171,15 @@ namespace wgiAdUnionSystem.BLL
         /// 更新阅读状态
         /// </summary>
         /// <param name="id"></param>
-        public void UpdateReadStatus(int id, int status)
+        public void UpdateReadStatus(string ids, int status)
         {
-            dal.UpdateReadStatus(id, status);
+            dal.UpdateReadStatus(ids, status);
         }
 
-
+        public void DeleteByIds(string ids)
+        {
+            dal.DeleteByIds(ids);
+        }
 		#endregion  成员方法
 	}
 }

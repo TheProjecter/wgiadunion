@@ -192,5 +192,11 @@ namespace Helper
             }
             return result;
         }
+
+        //通用弹出错误然后跳转的脚本字符串，
+        public static string getAlertJumpString(string msg, string url)
+        {
+                return "<script type='text/javascript'>alert('" + msg + "');location.href='" + url + "'</script>";
+        }
     }
 }

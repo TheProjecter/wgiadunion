@@ -1,3 +1,8 @@
+----walker 2010/4/24
+--修改wgi_loginlog表，设主键为自增，请自行到数据库更新。。。
+--更使用本文件代码
+
+
 ---walker:2010/4/22
 --系统通知，网站公告表
 if exists (select * from sysobjects where id = OBJECT_ID('[wgi_notice]') and OBJECTPROPERTY(id, 'IsUserTable') = 1) 
@@ -213,7 +218,7 @@ if exists (select * from sysobjects where id = OBJECT_ID('[wgi_loginlog]') and O
 DROP TABLE [wgi_loginlog]
 
 CREATE TABLE [wgi_loginlog] (
-[logid] [int]  NOT NULL,
+[logid] [int] NOT NULL  IDENTITY (1, 1),
 [usertype] [int]  NULL,
 [logtime] [datetime]  NULL,
 [logip] [varchar]  (60) NULL,
