@@ -75,10 +75,12 @@ public class Pager
             {
                 url += "?page=";
             }
+
+            //保证美观，分页按钮始终有奇数个
             if (pagedisplay.HasValue)
             {
                 display = (int)pagedisplay;
-                display = (display % 2 == 1) ? display : display + 1; //保证美观，分页按钮始终有奇数个
+                display = (display % 2 == 1) ? display : display + 1;
             }
 
             //判断起止页码
@@ -119,13 +121,14 @@ public class Pager
             }
 
             //前翻N页
-            if (currentPage - offset > 1)
+            if (from - 1 > 0)
             {
-                pagestr += "<a href=\"" + url + (currentPage - offset - 1) + "\">...</a>";
+                pagestr += "<a href=\"" + url + (from - 1) + "\">...</a>";
             }
 
             //循环产生页码
-            for (int i = from; i <= to; i++)
+            int i;
+            for (i = from; i <= to; i++)
             {
                 string curclass;//当前页样式字串
                 if (i == currentPage)
@@ -141,9 +144,9 @@ public class Pager
 
 
             //后翻N页
-            if (currentPage + offset < pageCount)
+            if (i < pageCount)
             {
-                pagestr += "<a href=\"" + url + (currentPage + offset + 1) + "\">...</a>";
+                pagestr += "<a href=\"" + url + i + "\">...</a>";
             }
 
             //下一页
@@ -162,8 +165,10 @@ public class Pager
 
         pagestr += "</span>";
 
+        //分页统计字串
         string pagestat = "<span class=\"pagestatic\">共" + pageCount + "页，" + recordCount + "条纪录</span>";
 
+        //页码位置
         if (position.HasValue)
         {
             pageposition = (int)position;
