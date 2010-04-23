@@ -17,230 +17,236 @@ namespace wgiAdUnionSystem.DAL
 		{}
 		#region  成员方法
 
-        ///// <summary>
-        ///// 得到最大ID
-        ///// </summary>
-        //public int GetMaxId()
-        //{
-        //return DbHelperSQL.GetMaxID("id", "wgi_notice"); 
-        //}
+		/// <summary>
+		/// 得到最大ID
+		/// </summary>
+		public int GetMaxId()
+		{
+			string strsql = "select max(id)+1 from wgi_notice";
+			Database db = DatabaseFactory.CreateDatabase();
+			object obj = db.ExecuteScalar(CommandType.Text, strsql);
+			if (obj != null && obj != DBNull.Value)
+			{
+				return int.Parse(obj.ToString());
+			}
+			return 1;
+		}
 
-        ///// <summary>
-        ///// 是否存在该记录
-        ///// </summary>
-        //public bool Exists(int id)
-        //{
-        //    StringBuilder strSql=new StringBuilder();
-        //    strSql.Append("select count(1) from wgi_notice");
-        //    strSql.Append(" where id=@id ");
-        //    SqlParameter[] parameters = {
-        //            new SqlParameter("@id", SqlDbType.Int,4)};
-        //    parameters[0].Value = id;
+		/// <summary>
+		/// 是否存在该记录
+		/// </summary>
+		public bool Exists(int id)
+		{
+			Database db = DatabaseFactory.CreateDatabase();
+			StringBuilder strSql = new StringBuilder();
+			strSql.Append("select count(1) from wgi_notice where id=@id ");
+			DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
+			db.AddInParameter(dbCommand, "id", DbType.Int32,id);
+			int cmdresult;
+			object obj = db.ExecuteScalar(dbCommand);
+			if ((Object.Equals(obj, null)) || (Object.Equals(obj, System.DBNull.Value)))
+			{
+				cmdresult = 0;
+			}
+			else
+			{
+				cmdresult = int.Parse(obj.ToString());
+			}
+			if (cmdresult == 0)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
 
-        //    return DbHelperSQL.Exists(strSql.ToString(),parameters);
-        //}
 
+		/// <summary>
+		/// 增加一条数据
+		/// </summary>
+		public int Add(wgiAdUnionSystem.Model.wgi_notice model)
+		{
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("insert into wgi_notice(");
+			strSql.Append("title,notice,pubdate,unread,publisher)");
 
-        ///// <summary>
-        ///// 增加一条数据
-        ///// </summary>
-        //public int Add(wgiAdUnionSystem.Model.wgi_notice model)
-        //{
-        //    StringBuilder strSql=new StringBuilder();
-        //    strSql.Append("insert into wgi_notice(");
-        //    strSql.Append("title,notice,pubdate,unread,publisher)");
-        //    strSql.Append(" values (");
-        //    strSql.Append("@title,@notice,@pubdate,@unread,@publisher)");
-        //    strSql.Append(";select @@IDENTITY");
-        //    SqlParameter[] parameters = {
-        //            new SqlParameter("@title", SqlDbType.NVarChar,100),
-        //            new SqlParameter("@notice", SqlDbType.NText),
-        //            new SqlParameter("@pubdate", SqlDbType.DateTime),
-        //            new SqlParameter("@unread", SqlDbType.Int,4),
-        //            new SqlParameter("@publisher", SqlDbType.Int,4)};
-        //    parameters[0].Value = model.title;
-        //    parameters[1].Value = model.notice;
-        //    parameters[2].Value = model.pubdate;
-        //    parameters[3].Value = model.unread;
-        //    parameters[4].Value = model.publisher;
+			strSql.Append(" values (");
+			strSql.Append("@title,@notice,@pubdate,@unread,@publisher)");
+			strSql.Append(";select @@IDENTITY");
+			Database db = DatabaseFactory.CreateDatabase();
+			DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
+			db.AddInParameter(dbCommand, "title", DbType.String, model.title);
+			db.AddInParameter(dbCommand, "notice", DbType.String, model.notice);
+			db.AddInParameter(dbCommand, "pubdate", DbType.DateTime, model.pubdate);
+			db.AddInParameter(dbCommand, "unread", DbType.Int32, model.unread);
+			db.AddInParameter(dbCommand, "publisher", DbType.Int32, model.publisher);
+			int result;
+			object obj = db.ExecuteScalar(dbCommand);
+			if(!int.TryParse(obj.ToString(),out result))
+			{
+				return 0;
+			}
+			return result;
+		}
+		/// <summary>
+		/// 更新一条数据
+		/// </summary>
+		public void Update(wgiAdUnionSystem.Model.wgi_notice model)
+		{
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("update wgi_notice set ");
+			strSql.Append("title=@title,");
+			strSql.Append("notice=@notice,");
+			strSql.Append("pubdate=@pubdate,");
+			strSql.Append("unread=@unread,");
+			strSql.Append("publisher=@publisher");
+			strSql.Append(" where id=@id ");
+			Database db = DatabaseFactory.CreateDatabase();
+			DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
+			db.AddInParameter(dbCommand, "id", DbType.Int32, model.id);
+			db.AddInParameter(dbCommand, "title", DbType.String, model.title);
+			db.AddInParameter(dbCommand, "notice", DbType.String, model.notice);
+			db.AddInParameter(dbCommand, "pubdate", DbType.DateTime, model.pubdate);
+			db.AddInParameter(dbCommand, "unread", DbType.Int32, model.unread);
+			db.AddInParameter(dbCommand, "publisher", DbType.Int32, model.publisher);
+			db.ExecuteNonQuery(dbCommand);
 
-        //    object obj = DbHelperSQL.GetSingle(strSql.ToString(),parameters);
-        //    if (obj == null)
-        //    {
-        //        return 1;
-        //    }
-        //    else
-        //    {
-        //        return Convert.ToInt32(obj);
-        //    }
-        //}
-        ///// <summary>
-        ///// 更新一条数据
-        ///// </summary>
-        //public void Update(wgiAdUnionSystem.Model.wgi_notice model)
-        //{
-        //    StringBuilder strSql=new StringBuilder();
-        //    strSql.Append("update wgi_notice set ");
-        //    strSql.Append("title=@title,");
-        //    strSql.Append("notice=@notice,");
-        //    strSql.Append("pubdate=@pubdate,");
-        //    strSql.Append("unread=@unread,");
-        //    strSql.Append("publisher=@publisher");
-        //    strSql.Append(" where id=@id ");
-        //    SqlParameter[] parameters = {
-        //            new SqlParameter("@id", SqlDbType.Int,4),
-        //            new SqlParameter("@title", SqlDbType.NVarChar,100),
-        //            new SqlParameter("@notice", SqlDbType.NText),
-        //            new SqlParameter("@pubdate", SqlDbType.DateTime),
-        //            new SqlParameter("@unread", SqlDbType.Int,4),
-        //            new SqlParameter("@publisher", SqlDbType.Int,4)};
-        //    parameters[0].Value = model.id;
-        //    parameters[1].Value = model.title;
-        //    parameters[2].Value = model.notice;
-        //    parameters[3].Value = model.pubdate;
-        //    parameters[4].Value = model.unread;
-        //    parameters[5].Value = model.publisher;
+		}
 
-        //    DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
-        //}
-
-        ///// <summary>
-        ///// 删除一条数据
-        ///// </summary>
-        //public void Delete(int id)
-        //{
+		/// <summary>
+		/// 删除一条数据
+		/// </summary>
+		public void Delete(int id)
+		{
 			
-        //    StringBuilder strSql=new StringBuilder();
-        //    strSql.Append("delete from wgi_notice ");
-        //    strSql.Append(" where id=@id ");
-        //    SqlParameter[] parameters = {
-        //            new SqlParameter("@id", SqlDbType.Int,4)};
-        //    parameters[0].Value = id;
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("delete from wgi_notice ");
+			strSql.Append(" where id=@id ");
+			Database db = DatabaseFactory.CreateDatabase();
+			DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
+			db.AddInParameter(dbCommand, "id", DbType.Int32,id);
+			db.ExecuteNonQuery(dbCommand);
 
-        //    DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
-        //}
+		}
 
-
-        ///// <summary>
-        ///// 得到一个对象实体
-        ///// </summary>
-        //public wgiAdUnionSystem.Model.wgi_notice GetModel(int id)
-        //{
+		/// <summary>
+		/// 得到一个对象实体
+		/// </summary>
+		public wgiAdUnionSystem.Model.wgi_notice GetModel(int id)
+		{
 			
-        //    StringBuilder strSql=new StringBuilder();
-        //    strSql.Append("select  top 1 id,title,notice,pubdate,unread,publisher from wgi_notice ");
-        //    strSql.Append(" where id=@id ");
-        //    SqlParameter[] parameters = {
-        //            new SqlParameter("@id", SqlDbType.Int,4)};
-        //    parameters[0].Value = id;
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("select id,title,notice,pubdate,unread,publisher from wgi_notice ");
+			strSql.Append(" where id=@id ");
+			Database db = DatabaseFactory.CreateDatabase();
+			DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
+			db.AddInParameter(dbCommand, "id", DbType.Int32,id);
+			wgiAdUnionSystem.Model.wgi_notice model=null;
+			using (IDataReader dataReader = db.ExecuteReader(dbCommand))
+			{
+				if(dataReader.Read())
+				{
+					model=ReaderBind(dataReader);
+				}
+			}
+			return model;
+		}
 
-        //    wgiAdUnionSystem.Model.wgi_notice model=new wgiAdUnionSystem.Model.wgi_notice();
-        //    DataSet ds=DbHelperSQL.Query(strSql.ToString(),parameters);
-        //    if(ds.Tables[0].Rows.Count>0)
-        //    {
-        //        if(ds.Tables[0].Rows[0]["id"].ToString()!="")
-        //        {
-        //            model.id=int.Parse(ds.Tables[0].Rows[0]["id"].ToString());
-        //        }
-        //        model.title=ds.Tables[0].Rows[0]["title"].ToString();
-        //        model.notice=ds.Tables[0].Rows[0]["notice"].ToString();
-        //        if(ds.Tables[0].Rows[0]["pubdate"].ToString()!="")
-        //        {
-        //            model.pubdate=DateTime.Parse(ds.Tables[0].Rows[0]["pubdate"].ToString());
-        //        }
-        //        if(ds.Tables[0].Rows[0]["unread"].ToString()!="")
-        //        {
-        //            model.unread=int.Parse(ds.Tables[0].Rows[0]["unread"].ToString());
-        //        }
-        //        if(ds.Tables[0].Rows[0]["publisher"].ToString()!="")
-        //        {
-        //            model.publisher=int.Parse(ds.Tables[0].Rows[0]["publisher"].ToString());
-        //        }
-        //        return model;
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
+		/// <summary>
+		/// 获得数据列表
+		/// </summary>
+		public DataSet GetList(string strWhere)
+		{
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("select id,title,notice,pubdate,unread,publisher ");
+			strSql.Append(" FROM wgi_notice ");
+			if(strWhere.Trim()!="")
+			{
+				strSql.Append(" where "+strWhere);
+			}
+			Database db = DatabaseFactory.CreateDatabase();
+			return db.ExecuteDataSet(CommandType.Text, strSql.ToString());
+		}
 
-        ///// <summary>
-        ///// 获得数据列表
-        ///// </summary>
-        //public DataSet GetList(string strWhere)
-        //{
-        //    StringBuilder strSql=new StringBuilder();
-        //    strSql.Append("select id,title,notice,pubdate,unread,publisher ");
-        //    strSql.Append(" FROM wgi_notice ");
-        //    if(strWhere.Trim()!="")
-        //    {
-        //        strSql.Append(" where "+strWhere);
-        //    }
-        //    return DbHelperSQL.Query(strSql.ToString());
-        //}
+		/*
+		/// <summary>
+		/// 分页获取数据列表
+		/// </summary>
+		public DataSet GetList(int PageSize,int PageIndex,string strWhere)
+		{
+			Database db = DatabaseFactory.CreateDatabase();
+			DbCommand dbCommand = db.GetStoredProcCommand("UP_GetRecordByPage");
+			db.AddInParameter(dbCommand, "tblName", DbType.String, "wgi_notice");
+			db.AddInParameter(dbCommand, "fldName", DbType.String, "ID");
+			db.AddInParameter(dbCommand, "PageSize", DbType.Int32, PageSize);
+			db.AddInParameter(dbCommand, "PageIndex", DbType.Int32, PageIndex);
+			db.AddInParameter(dbCommand, "IsReCount", DbType.Boolean, 0);
+			db.AddInParameter(dbCommand, "OrderType", DbType.Boolean, 0);
+			db.AddInParameter(dbCommand, "strWhere", DbType.String, strWhere);
+			return db.ExecuteDataSet(dbCommand);
+		}*/
 
-        ///// <summary>
-        ///// 获得前几行数据
-        ///// </summary>
-        //public DataSet GetList(int Top,string strWhere,string filedOrder)
-        //{
-        //    StringBuilder strSql=new StringBuilder();
-        //    strSql.Append("select ");
-        //    if(Top>0)
-        //    {
-        //        strSql.Append(" top "+Top.ToString());
-        //    }
-        //    strSql.Append(" id,title,notice,pubdate,unread,publisher ");
-        //    strSql.Append(" FROM wgi_notice ");
-        //    if(strWhere.Trim()!="")
-        //    {
-        //        strSql.Append(" where "+strWhere);
-        //    }
-        //    strSql.Append(" order by " + filedOrder);
-        //    return DbHelperSQL.Query(strSql.ToString());
-        //}
-
-        ///*
-        ///// <summary>
-        ///// 分页获取数据列表
-        ///// </summary>
-        //public DataSet GetList(int PageSize,int PageIndex,string strWhere)
-        //{
-        //    SqlParameter[] parameters = {
-        //            new SqlParameter("@tblName", SqlDbType.VarChar, 255),
-        //            new SqlParameter("@fldName", SqlDbType.VarChar, 255),
-        //            new SqlParameter("@PageSize", SqlDbType.Int),
-        //            new SqlParameter("@PageIndex", SqlDbType.Int),
-        //            new SqlParameter("@IsReCount", SqlDbType.Bit),
-        //            new SqlParameter("@OrderType", SqlDbType.Bit),
-        //            new SqlParameter("@strWhere", SqlDbType.VarChar,1000),
-        //            };
-        //    parameters[0].Value = "wgi_notice";
-        //    parameters[1].Value = "ID";
-        //    parameters[2].Value = PageSize;
-        //    parameters[3].Value = PageIndex;
-        //    parameters[4].Value = 0;
-        //    parameters[5].Value = 0;
-        //    parameters[6].Value = strWhere;	
-        //    return DbHelperSQL.RunProcedure("UP_GetRecordByPage",parameters,"ds");
-        //}*/
+		/// <summary>
+		/// 获得数据列表（比DataSet效率高，推荐使用）
+		/// </summary>
+		public List<wgiAdUnionSystem.Model.wgi_notice> GetListArray(string strWhere)
+		{
+			StringBuilder strSql=new StringBuilder();
+			strSql.Append("select id,title,notice,pubdate,unread,publisher ");
+			strSql.Append(" FROM wgi_notice ");
+			if(strWhere.Trim()!="")
+			{
+				strSql.Append(" where "+strWhere);
+			}
+			List<wgiAdUnionSystem.Model.wgi_notice> list = new List<wgiAdUnionSystem.Model.wgi_notice>();
+			Database db = DatabaseFactory.CreateDatabase();
+			using (IDataReader dataReader = db.ExecuteReader(CommandType.Text, strSql.ToString()))
+			{
+				while (dataReader.Read())
+				{
+					list.Add(ReaderBind(dataReader));
+				}
+			}
+			return list;
+		}
 
 
-        /// <summary>
-        /// 获得数据列表
-        /// </summary>
-        public DataSet GetList(string strWhere)
-        {
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("select id,title,notice,pubdate,unread,publisher ");
-            strSql.Append(" FROM wgi_notice ");
-            if (strWhere.Trim() != "")
-            {
-                strSql.Append(" where " + strWhere);
-            }
-            Database db = DatabaseFactory.CreateDatabase();
-            return db.ExecuteDataSet(CommandType.Text, strSql.ToString());
-        }
+		/// <summary>
+		/// 对象实体绑定数据
+		/// </summary>
+		public wgiAdUnionSystem.Model.wgi_notice ReaderBind(IDataReader dataReader)
+		{
+			wgiAdUnionSystem.Model.wgi_notice model=new wgiAdUnionSystem.Model.wgi_notice();
+			object ojb; 
+			ojb = dataReader["id"];
+			if(ojb != null && ojb != DBNull.Value)
+			{
+				model.id=(int)ojb;
+			}
+			model.title=dataReader["title"].ToString();
+			model.notice=dataReader["notice"].ToString();
+			ojb = dataReader["pubdate"];
+			if(ojb != null && ojb != DBNull.Value)
+			{
+				model.pubdate=(DateTime)ojb;
+			}
+			ojb = dataReader["unread"];
+			if(ojb != null && ojb != DBNull.Value)
+			{
+				model.unread=(int)ojb;
+			}
+			ojb = dataReader["publisher"];
+			if(ojb != null && ojb != DBNull.Value)
+			{
+				model.publisher=(int)ojb;
+			}
+			return model;
+		}
+
+
+
 
         /// <summary>
         /// 更新阅读状态

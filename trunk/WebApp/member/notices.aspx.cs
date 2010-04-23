@@ -14,7 +14,7 @@ using System.Xml.Linq;
 public partial class member_notices : System.Web.UI.Page
 {
 
-    private int pagesize = 2;
+    private int pagesize = 10;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -26,7 +26,7 @@ public partial class member_notices : System.Web.UI.Page
 
     private void initData()
     {
-        DataSet ds = new wgiAdUnionSystem.BLL.wgi_notice().GetList("1=1");
+        DataSet ds = new wgiAdUnionSystem.BLL.wgi_notice().GetAllList();
         int page = 1;
         try
         {
