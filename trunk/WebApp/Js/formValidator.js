@@ -525,6 +525,11 @@ $.formValidator =
 		var setting = returnObj.setting;
 		var srcjo = $("#"+id);
 		var elem = srcjo.get(0);
+	    //2010-4-23 liusylon
+		if (elem.style.display == 'none') {
+		    setting.isvalid = true;
+		    return;
+		}
 		var val = srcjo.val();
 		var sType = elem.type;
 		var len = $.formValidator.getLength(id);

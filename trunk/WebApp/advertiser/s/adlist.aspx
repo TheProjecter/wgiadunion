@@ -110,6 +110,8 @@
                              <asp:Parameter Name="beg" Type="String" />
                               <asp:Parameter Name="end" Type="String" />
                                <asp:Parameter Name="title" Type="String" />
+                               <asp:Parameter Name="isaudit" Type="Int32" />
+                               <asp:Parameter Name="ispublished" Type="Int32" />
                         </SelectParameters>
     </asp:ObjectDataSource>
     </form>
