@@ -58,6 +58,7 @@
 						<dt><div>财务管理</div></dt>
 						<dd><a href="applyfee.aspx">申请佣金</a></dd>
 						<dd><a href="feelist.aspx">佣金明细</a></dd>
+						<dd><a href="applyinfo.aspx">资料格式</a></dd>
 					</dl>
 				</div>
 			</div>

@@ -262,6 +262,25 @@ namespace wgiAdUnionSystem.DAL
 		}
 
 		#endregion  成员方法
+
+
+        /// <summary>
+        /// 更新佣金申请状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="status"></param>
+        public void UpdateStauts(int id, int status)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("update wgi_cash set ");
+            strSql.Append("status=@status");
+            strSql.Append(" where id=@id ");
+            Database db = DatabaseFactory.CreateDatabase();
+            DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
+            db.AddInParameter(dbCommand, "id", DbType.Int32, id);
+            db.AddInParameter(dbCommand, "status", DbType.Int32, status);
+            db.ExecuteNonQuery(dbCommand);
+        }
 	}
 }
 

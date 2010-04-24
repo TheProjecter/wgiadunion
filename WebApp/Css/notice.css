@@ -1,0 +1,24 @@
+@charset "utf-8";
+
+#noticelist{margin:20px auto 10px 10px; list-style:none;}
+#noticelist li:first-child span{font-weight:800; color:#984f08;}
+#noticelist li{border-bottom:dashed 1px #ca3; padding:4px 0; margin-top:5px;}
+#noticelist li p input{ margin-right:20px;}
+#noticelist li span{color:#333; height:16px; display:inline-block; padding-top:2px;}
+#noticelist span.longtxt{width:480px; overflow:hidden; text-overflow:ellipsis; padding-right:5px; cursor:pointer; background:url(../Images/letter_open.ico) no-repeat; padding-left:20px;}
+#noticelist span.longtxt:hover{text-decoration:underline;}
+#noticelist span.shorttxt{width:120px; text-align:right; float:right; margin-top:3px; *margin-top:7px;}
+li div.noticecont{display:none; padding:5px 10px 5px 40px;}
+li div.noticecont p{ padding:5px; background:#fff6f5;}
+li.unread .longtxt{font-weight:600;}
+li .optable td{padding-right:2px;}
+#opration{ border:1px solid #EF6F03; padding:2px; width:80px; background:rgb(255,191,137); position:absolute; left:0; top:20px; display:none;}
+#opration p{ padding:3px 5px;color:#333;}
+#opration p:hover{background:#f83; color:#eee;}
+#btnop{ display:inline-block; height:17px; line-height:17px; width:40px; position:relative; padding-left:5px; color:#000!important; cursor:default;}
+.downarr{display:inline-block; width:0px!important; height:0px!important; border:4px solid rgb(255,191,137); border-top-color:#000; position:absolute; left:32px; top:8px;}
+#btnop:hover .downarr{border-color:rgb(255,133,43); border-top-color:#000;}
+#opration p a{ text-decoration:none; color:#111;}
+
+#noticelist li.unread span.longtxt{ background-image:url(../Images/letter.ico);}
+li  p .checkthis{ position:relative; top:-4px;}

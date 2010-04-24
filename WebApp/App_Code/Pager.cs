@@ -49,7 +49,9 @@ public class Pager
         int pageposition=0;
 
     	//纪录条数大于每页条数才出现分页项
-		if(recordCount > pageSize) {
+		if(recordCount > pageSize)
+        {
+            #region 初始化
             Regex reg=new Regex(@"(.*)(&page=\d+)(.*)");//匹配page不是第一个参数
             Regex reg2=new Regex (@"(.*)(\?page=\d+)(.*)");//匹配page是第一个参数
             //去掉“page=”的字样，把它加到末尾，方便拼字符串，所以URL分页务必以page=为传送页码的标志
@@ -103,7 +105,11 @@ public class Pager
 					from = pageCount - display + 1;
 					to = pageCount;
 				}
-			}
+            }
+
+            #endregion
+
+            #region 生成分页字符串
 
             //包在<span>标签内
             pagestr ="<span class=\"pager\">";
@@ -144,7 +150,7 @@ public class Pager
 
 
             //后翻N页
-            if (i < pageCount)
+            if (i <= pageCount)
             {
                 pagestr += "<a href=\"" + url + i + "\">...</a>";
             }
@@ -161,10 +167,12 @@ public class Pager
                 pagestr += "<a href=\"" + url + pageCount + "\">最后页</a>";
             }
 
+            pagestr += "</span>";
+
+            #endregion
         }
 
-        pagestr += "</span>";
-
+        #region 统计、位置
         //分页统计字串
         string pagestat = "<span class=\"pagestatic\">共" + pageCount + "页，" + recordCount + "条纪录</span>";
 
@@ -182,6 +190,8 @@ public class Pager
         {
             pagestr = wrap + "<td width=\"150\">" + pagestat + "</td><td class=\"righttext\">" + pagestr + "</td></tr></table>";
         }
+        #endregion
+
         return pagestr;
     }
 

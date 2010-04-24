@@ -44,17 +44,29 @@ namespace wgiAdUnionSystem.IDAL
 		/// 根据分页获得数据列表
 		/// </summary>
 		//DataSet GetList(int PageSize,int PageIndex,string strWhere);
-        
+        #endregion  成员方法
         /// <summary>
         /// 更新阅读状态
         /// </summary>
         /// <param name="id"></param>
         void UpdateReadStatus(string ids, int status);
+
         /// <summary>
-        /// 群删
+        /// 删除一组数据
         /// </summary>
-        /// <param name="ids"></param>
         void DeleteByIds(string ids);
-		#endregion  成员方法
+
+        /// <summary>
+        /// 得到所有公共消息
+        /// </summary>
+        /// <returns></returns>
+        DataSet getListOfPublic();
+
+        /// <summary>
+        /// 得到私人消息
+        /// </summary>
+        /// <param name="objid"></param>
+        /// <returns></returns>
+        DataSet getLIstOfPrivate(int objid);
 	}
 }

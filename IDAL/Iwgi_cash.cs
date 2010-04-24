@@ -44,6 +44,12 @@ namespace wgiAdUnionSystem.IDAL
 		/// 根据分页获得数据列表
 		/// </summary>
 		//DataSet GetList(int PageSize,int PageIndex,string strWhere);
+        /// <summary>
+        /// 更新佣金申请状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="status"></param>
+        void UpdateStauts(int id, int status);
 		#endregion  成员方法
 	}
 }

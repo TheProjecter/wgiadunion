@@ -175,6 +175,17 @@ namespace wgiAdUnionSystem.BLL
 		//}
 
 		#endregion  成员方法
+
+
+        /// <summary>
+        /// 更新佣金申请状态
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="status"></param>
+        public void UpdateStauts(int id, int status)
+        {
+            dal.UpdateStauts(id, status);
+        }
 	}
 }
 

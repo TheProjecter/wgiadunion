@@ -16,6 +16,7 @@ namespace wgiAdUnionSystem.Model
 		private DateTime? _pubdate;
 		private int? _unread;
 		private int? _publisher;
+		private int? _objid;
 		/// <summary>
 		/// 
 		/// </summary>
@@ -63,6 +64,14 @@ namespace wgiAdUnionSystem.Model
 		{
 			set{ _publisher=value;}
 			get{return _publisher;}
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		public int? objid
+		{
+			set{ _objid=value;}
+			get{return _objid;}
 		}
 		#endregion Model
 

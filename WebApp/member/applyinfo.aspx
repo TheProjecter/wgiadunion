@@ -6,7 +6,7 @@
 	<!--内容区样式开始-->
 	<div class="conthead"><span>您现在的位置：首页&nbsp;>&nbsp;财务管理&nbsp;>&nbsp;申请佣金</span>联盟会员控制面板</div>
 	<div class="ctbody_cnt" id="listdiv">
-		<h3>网站信息</h3>
+		<h3>资料格式</h3>
 		<div>
 
 
