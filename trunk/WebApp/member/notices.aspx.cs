@@ -26,7 +26,7 @@ public partial class member_notices : System.Web.UI.Page
 
     private void initData()
     {
-        DataSet ds = new wgiAdUnionSystem.BLL.wgi_notice().GetAllList();
+        DataSet ds = new wgiAdUnionSystem.BLL.wgi_notice().getListOfPublic();
         int page;
         if (!int.TryParse(Request["page"], out page))
         {
@@ -57,12 +57,13 @@ public partial class member_notices : System.Web.UI.Page
 
     }
 
+    //删除
     protected void delclick(object sender, EventArgs e)
     {
         string ids = Request["lists"];
         try
         {
-            new wgiAdUnionSystem.BLL.wgi_notice().DeleteByIds(ids);
+            new wgiAdUnionSystem.BLL.wgi_notice().Delete(ids);
             ScriptManager.RegisterClientScriptBlock(this, GetType(), DateTime.Now.ToString(), "alert('删除成功');location=location;", true);
             
         }
@@ -72,6 +73,7 @@ public partial class member_notices : System.Web.UI.Page
         }
     }
 
+    //设为已读
     protected void markread(object sender, EventArgs e)
     {
         string ids = Request["lists"];
@@ -87,6 +89,7 @@ public partial class member_notices : System.Web.UI.Page
 
     }
 
+    //设为未读
     protected void markunread(object sender, EventArgs e)
     {
         string ids = Request["lists"];

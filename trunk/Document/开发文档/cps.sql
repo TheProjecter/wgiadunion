@@ -4,7 +4,7 @@
 
 
 ---walker:2010/4/22
---系统通知，网站公告表
+--系统通知，网站公告，用户消息表
 if exists (select * from sysobjects where id = OBJECT_ID('[wgi_notice]') and OBJECTPROPERTY(id, 'IsUserTable') = 1) 
 DROP TABLE [wgi_notice]
 create table wgi_notice(
@@ -13,7 +13,8 @@ create table wgi_notice(
 	notice ntext null,--公告内容
 	pubdate datetime default getdate(),--发布时间
 	unread int default 0,	--默认未读
-	publisher int default -1 --默认值表示未知系统管理员
+	publisher int default -1, --默认值表示未知系统管理员
+	objid int default -1 --默认值表示公告消息，否则跟上接收人ID
 )
 go
 

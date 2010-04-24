@@ -166,4 +166,26 @@ public class CommonData
         return dt;
     }
 
+    /// <summary>
+    /// 佣金申请状态
+    /// </summary>
+    /// <returns></returns>
+    public static DataTable getApplyStatus()
+    {
+        DataTable dt = GetBaseTable();
+        dt.Rows.Add("已提交申请，请按<a href=\"applyinfo.aspx\">资料格式</a>递交资料", "1");
+        dt.Rows.Add("已收到资料，请耐心等待审核", "2");
+        dt.Rows.Add("审核通过，等待打款", "3");
+        dt.Rows.Add("佣金已经支付，请查询余额", "4");
+        dt.Rows.Add("审核未通过", "5");
+        dt.Rows.Add("其他问题", "6");
+        dt.Rows.Add("其他问题", "7");
+        return dt;
+    }
+
+    public static string getApplyStatusByValue(string value)
+    {
+        return getApplyStatus().Select("value=" + value)[0]["name"].ToString();
+    }
+
 }

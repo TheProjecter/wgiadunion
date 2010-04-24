@@ -22,6 +22,9 @@ public partial class ajaxHandler : System.Web.UI.Page
             case "checkSitehostUsername":
                 checkSitehostUsername();
                 break;
+            case "getmsgs":
+                getmsgs();
+                break;
             default:
                 break;
         }
@@ -53,5 +56,38 @@ public partial class ajaxHandler : System.Web.UI.Page
         else Response.Write("1");
         Response.End();
     }
+
+    private void getmsgs()
+    {
+        Response.ContentType = "txt/html";
+        Response.Clear();
+
+        int id;
+        if(!int.TryParse(Request["id"],out id))
+        {
+            Response.Write("读取数据失败！");
+            Response.End();
+        }
+
+        wgiAdUnionSystem.BLL.wgi_notice bll=new wgiAdUnionSystem.BLL.wgi_notice ();
+        wgiAdUnionSystem.Model.wgi_notice model=bll.GetModel(id);
+
+        //取出消息内容
+        string cont=model.notice;
+
+        //更改阅读状态
+        try
+        {
+            bll.UpdateReadStatus(id.ToString(), 1);
+        }
+        catch (Exception)
+        {
+            //Response.Write("");
+        }
+
+        Response.Write(cont);
+        Response.End();   
+    }
+
 
 }
