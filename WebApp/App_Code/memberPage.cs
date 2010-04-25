@@ -26,21 +26,34 @@ public class validateMember : System.Web.UI.UserControl
 
     public validateMember()
     {
-        try
+        if (Context.User.Identity.IsAuthenticated)
         {
-            userdata = Helper.HelperSession.GetAuthenticatedUserData("|");
-            suser.userid = int.Parse(userdata[1]);
-            suser.username = userdata[2];
-            suser.lastdate = Convert.ToDateTime(userdata[3]);//上次登录时间
-            suser.accountname = userdata[4];
-            suser.balance = decimal.Parse(userdata[5]);
+            if (!(Context.User is UserPrincipal))
+            {
+                principal = new UserPrincipal(Context.User.Identity.Name);
+
+                //用户数据
+                try
+                {
+                    userdata = Helper.HelperSession.GetAuthenticatedUserData("|");
+                    suser.userid = int.Parse(userdata[1]);
+                    suser.username = userdata[2];
+                    suser.lastdate = Convert.ToDateTime(userdata[3]);//上次登录时间
+                    suser.accountname = userdata[4];
+                    suser.balance = decimal.Parse(userdata[5]);
+                }
+                catch (Exception)
+                {
+                    //_timeout = false;  //在这里标记用户已超时，刷新页面时通过这个参数获取登录状态
+                    //OnInit(null);
+                }
+                finally { }
+
+                Context.User = principal;
+            }
         }
-        catch (Exception)
-        {
-            //_timeout = false;  //在这里标记用户已超时，刷新页面时通过这个参数获取登录状态
-            //OnInit(null);
-        }
-        finally { }
+
+
 
     }
 

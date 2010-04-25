@@ -1,6 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="header.ascx.cs" Inherits="admin_pageControl_header" %>
 	    <!--顶级菜单开始-->
       <div id="header">
+        <div id="logpanel">
+            您好，<asp:Label ID="lblusername" runat="server"></asp:Label>，欢迎登录&nbsp;
+            [<asp:LinkButton ID="lbtnlogout" runat="server" Text="退出" OnClick="logout_click"></asp:LinkButton>]
+        </div>
         	<h2>广告联盟管理后台</h2>
             <div id="topmenu">
             	<ul>

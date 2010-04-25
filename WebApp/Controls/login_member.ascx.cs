@@ -88,7 +88,7 @@ public partial class Controls_login_member : validateMember
                 string userdata = "";
 
                 wgiAdUnionSystem.BLL.wgi_sitehost bll = new wgiAdUnionSystem.BLL.wgi_sitehost();
-                DataTable dt = bll.GetList("username='" + principal.Identity.Name + "'").Tables[0];
+                DataTable dt = bll.GetListByUsername(principal.Identity.Name).Tables[0];
 
                 if (dt != null && dt.Rows.Count > 0)
                 {

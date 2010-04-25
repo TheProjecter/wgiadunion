@@ -66,6 +66,11 @@ margin-top:20px;
 	font-size:14px;
 }
 /*********************
+    login status
+*********************/
+#logpanel{ float:right; color:#eee;}
+#logpanel a{ color:#eee;}
+/*********************
 	Sidebar
 *********************/
 #sidebar ul{

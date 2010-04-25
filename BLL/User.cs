@@ -19,7 +19,7 @@ namespace wgiAdUnionSystem.BLL
         private static readonly IUser dal = (wgiAdUnionSystem.IDAL.IUser)wgiAdUnionSystem.DALFactory.DataAccess.CreateInstance("UserManage");
 
         /// <summary>
-        /// 用户登录
+        /// 用户登录(管理员)
         /// </summary>
         /// <param name="username">用户名</param>
         /// <param name="password">密码</param>
@@ -30,7 +30,7 @@ namespace wgiAdUnionSystem.BLL
             return dal.LoginProcess(username, password, out msgcode, out userid);
         }
         /// <summary>
-        /// 会员登录
+        /// 会员登录(广告主)
         /// </summary>
         /// <param name="username">用户名</param>
         /// <param name="password">密码</param>

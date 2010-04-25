@@ -45,5 +45,8 @@ namespace wgiAdUnionSystem.IDAL
 		/// </summary>
 		//DataSet GetList(int PageSize,int PageIndex,string strWhere);
 		#endregion  成员方法
+        
+        //根据用户名获取列表
+        DataSet GetListByUsername(string username);
 	}
 }

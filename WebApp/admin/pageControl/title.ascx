@@ -3,6 +3,7 @@
 <title><asp:Literal ID="ltrTitle" runat="server"></asp:Literal></title>
 <link rel="stylesheet" type="text/css" href="css/theme.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
+<script src="/Js/jquery-1.4.min.js" type="text/javascript"></script>
 <script type="text/javascript">
    var StyleFile = "theme" + document.cookie.charAt(6) + ".css";
    document.writeln('<link rel="stylesheet" type="text/css" href="css/' + StyleFile + '">');

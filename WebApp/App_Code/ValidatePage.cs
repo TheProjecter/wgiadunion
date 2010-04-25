@@ -9,21 +9,41 @@ using wgiAdUnionSystem.BLL;
 public class ValidatePage : System.Web.UI.Page
 {
     protected UserPrincipal principal;
+    private string[] userdata = new string[1] { "" };//用户数据
+    private wgiAdUnionSystem.Model.wgi_sysuser suser = new wgiAdUnionSystem.Model.wgi_sysuser();
+
+    public wgiAdUnionSystem.Model.wgi_sysuser user
+    {
+        get { return suser; }
+        set { suser = value; }
+    }
 
     public ValidatePage()
     {
-        //if (Context.User.Identity.IsAuthenticated)
-        //{
-        //    if (!(Context.User is UserPrincipal))
-        //    {
-        //        principal = new UserPrincipal(User.Identity.Name);
+        if (Context.User.Identity.IsAuthenticated)
+        {
+            if (!(Context.User is UserPrincipal))
+            {
+                principal = new UserPrincipal(User.Identity.Name);
 
-        //        //用户数据
-        //        string[] userdata = Helper.HelperSession.GetAuthenticatedUserData(",");
+                //用户数据
+                try
+                {
+                    userdata = Helper.HelperSession.GetAuthenticatedUserData("|");
+                    suser.id = int.Parse(userdata[1]);
+                    suser.username = userdata[2];
+                    suser.email = userdata[3];
+                }
+                catch (Exception)
+                {
+                    //_timeout = false;  //在这里标记用户已超时，刷新页面时通过这个参数获取登录状态
+                    //OnInit(null);
+                }
+                finally { }
 
-        //        Context.User = principal;
-        //    }
-        //}
+                Context.User = principal;
+            }
+        }
 
     }
 
@@ -42,9 +62,8 @@ public class ValidatePage : System.Web.UI.Page
     {
         if (!Context.User.Identity.IsAuthenticated)
         {
-            //Response.Redirect(@"~/SysLogin.aspx?url="+Helper.HelperURL.GetCurrentUrl(this));
-           // Response.Redirect(@"~/SysLogin.aspx?url="+Request.CurrentExecutionFilePath);
-          //  Response.End();
+            Response.Redirect(@"~/admin/login.aspx?url=" + Request.CurrentExecutionFilePath);
+            Response.End();
         }
 
     }

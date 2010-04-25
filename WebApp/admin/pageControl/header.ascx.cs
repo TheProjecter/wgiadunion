@@ -17,4 +17,10 @@ public partial class admin_pageControl_header : System.Web.UI.UserControl
     {
         
     }
+
+    protected void logout_click(object sender, EventArgs e)
+    {
+        FlowControl.Logout();
+        this.Page.Response.Redirect("login.aspx");
+    }
 }

@@ -29,27 +29,27 @@ namespace wgiAdUnionSystem.DAL
 
             try
             {
-                string sqlstr = "select * from " + WgiDB.GetFullTableName("users") + " where user_acc='" + username + "'";
+                string sqlstr = "select * from " + WgiDB.GetFullTableName("sysuser") + " where username='" + username + "'";
 
                 IDataReader reader = db.ExecuteReader(CommandType.Text, sqlstr);
 
                 if (reader.Read())
                 {
-                    if (reader["passwd"].ToString() == password)
+                    if (reader["password"].ToString() == password)
                     {
-                        userid = reader["userid"].ToString();
+                        userid = reader["id"].ToString();
 
                         result = true;
-                    }
-                    if (reader["status"].ToString() == "0")
-                    {
-                        msgcode = 3;//用户状态锁定
-                        result = false;
                     }
                     else
                     {
                         msgcode = 2;//密碼錯誤
                     }
+                    //if (reader["status"].ToString() == "0")
+                    //{
+                    //    msgcode = 3;//用户状态锁定
+                    //    result = false;
+                    //}
                 }
                 else
                 {
