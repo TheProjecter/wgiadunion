@@ -13,14 +13,6 @@ using System.Xml.Linq;
 
 public partial class admin_pageControl_title : System.Web.UI.UserControl
 {
-    private string _title;
-    public string title
-    {
-        get { return _title; }
-        set { _title = value; }
-    }
-
-
     protected void Page_Load(object sender, EventArgs e)
     {
 

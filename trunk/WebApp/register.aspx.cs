@@ -101,7 +101,7 @@ public partial class register : System.Web.UI.Page
         string accountno = this.txtaccountno.Text;
         string bank = this.txtbank.Text;
         string branch = this.txtbranch.Text;
-        int usertype = 1;
+        int usertype = 1;//usertype是个人/网站/博客等
         string contact = this.txtcontact.Text;
         string qq = this.txtqq.Text;
         string idcard = this.txtidcard.Text;

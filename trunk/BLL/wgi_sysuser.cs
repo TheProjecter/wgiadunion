@@ -156,6 +156,11 @@ namespace wgiAdUnionSystem.BLL
 		//}
 
 		#endregion  成员方法
+
+        public DataSet GetListByUsername(string username)
+        {
+            return dal.GetListByUsername(username);
+        }
 	}
 }
 

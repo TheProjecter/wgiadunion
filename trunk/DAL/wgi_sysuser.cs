@@ -226,6 +226,13 @@ namespace wgiAdUnionSystem.DAL
 		}
 
 		#endregion  成员方法
+
+
+        //根据用户名获取用户
+        public DataSet GetListByUsername(string username)
+        {
+            return GetList("username='" + username + "'");
+        }
 	}
 }
 
