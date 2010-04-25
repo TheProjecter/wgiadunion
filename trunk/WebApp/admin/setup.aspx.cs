@@ -11,12 +11,10 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 
-public partial class admin_pages_dashboard : System.Web.UI.UserControl
+public partial class admin_setup : System.Web.UI.Page
 {
-    public string test;
-
     protected void Page_Load(object sender, EventArgs e)
     {
-        lbltest.Text = test;
+        uLoadControl.initPage(Page, 7, "Dashboard - Admin", plhdTitle, plhdHeader, plhdSlide, plhdFooter);
     }
 }
