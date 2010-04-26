@@ -15,6 +15,7 @@ public partial class admin_pageControl_header : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.lblusername.Text = Context.User.Identity.Name;
         
     }
 

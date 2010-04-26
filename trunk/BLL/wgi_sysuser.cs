@@ -161,6 +161,12 @@ namespace wgiAdUnionSystem.BLL
         {
             return dal.GetListByUsername(username);
         }
+
+        //删除多个用户
+        public void Delete(string ids)
+        {
+            dal.Delete(ids);
+        }
 	}
 }
 

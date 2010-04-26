@@ -160,6 +160,7 @@ namespace wgiAdUnionSystem.DAL
 			{
 				strSql.Append(" where "+strWhere);
 			}
+            strSql.Append(" order by id");
 			Database db = DatabaseFactory.CreateDatabase();
 			return db.ExecuteDataSet(CommandType.Text, strSql.ToString());
 		}
@@ -232,6 +233,22 @@ namespace wgiAdUnionSystem.DAL
         public DataSet GetListByUsername(string username)
         {
             return GetList("username='" + username + "'");
+        }
+
+
+        /// <summary>
+        /// 删除一组数据
+        /// </summary>
+        public void Delete(string ids)
+        {
+
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("delete from wgi_sysuser ");
+            strSql.Append(" where id in ("+ids+")");
+            Database db = DatabaseFactory.CreateDatabase();
+            DbCommand cmd = db.GetSqlStringCommand(strSql.ToString());
+            db.ExecuteNonQuery(cmd);
+
         }
 	}
 }

@@ -66,11 +66,6 @@ margin-top:20px;
 	font-size:14px;
 }
 /*********************
-    login status
-*********************/
-#logpanel{ float:right; color:#eee;}
-#logpanel a{ color:#eee;}
-/*********************
 	Sidebar
 *********************/
 #sidebar ul{
@@ -272,7 +267,7 @@ thead{
 	display: block;
 	text-align: right;
 	float: right;
-	padding:0 0 0 18px;
+	padding:0 0 0 18px!important;
 	margin-left:4px;
 	font-weight:normal;
 	font-size:12px;
@@ -316,10 +311,10 @@ form#form label {
 	padding-right:10px;
 	margin-bottom:5px;
 }
-form#form input {
+/*form#form input {
 	padding:3px;
 	margin-bottom:5px;
-}
+}*/
 form#form select {
 	margin-left:5px;
 }
@@ -358,6 +353,7 @@ form#form #button1:hover, form#form #button2:hover {
 	display:inline-block;
 	line-height:20px;
 }
+
 .user{background:transparent url(../img/icons/user.png) no-repeat left;}
 .useradd{background:transparent url(../img/icons/user_add.png) no-repeat left;}
 .group{background:transparent url(../img/icons/group.png) no-repeat left;}
@@ -382,3 +378,28 @@ form#form #button1:hover, form#form #button2:hover {
 .report_seo{background:transparent url(../img/icons/report_link.png) no-repeat left;}
 .modules{background:transparent url(../img/icons/bricks.png) no-repeat left;}
 .modules_manage{background:transparent url(../img/icons/bricks_gear.png) no-repeat left;}
+.pagedelete{background:transparent url(../img/icons/page_white_delete.png) no-repeat left;}
+.pageedit{background:transparent url(../img/icons/page_white_edit.png) no-repeat left;}
+
+
+
+/*********************
+	user define
+*********************/
+
+/*login status*/
+#logpanel{ float:right; color:#eee;}
+#logpanel a{ color:#eee;}
+
+/*content title*/
+#box .boxtitle a{ float:right; text-decoration:none; font-size:12px; font-weight:400; padding-left:19px; padding-top:2px;}
+#box .boxtitle a:hover{ text-decoration:underline;}
+
+/*table*/
+#gridList th{background:none repeat scroll 0 0 #D9EAED;}
+
+/*ajax input check area*/
+span.onshow,span.onerror,span.onfocus,span.oncorrect{ display:inline-block; height:22px; line-height:22px; color:Gray; padding-left:23px; margin-left:5px; background:url(/Images/ajaxcheck/onShow.gif) no-repeat;}
+span.onerror{background-image:url(/Images/ajaxcheck/onError.gif); color:#a00; font-weight:600;}
+span.onfocus{background-image:url(/Images/ajaxcheck/onFocus.gif); color:#33f; font-weight:600;}
+span.oncorrect{background-image:url(/Images/ajaxcheck/onCorrect.gif); color:#333!important;}

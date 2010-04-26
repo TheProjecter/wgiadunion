@@ -22,6 +22,9 @@ public partial class ajaxHandler : System.Web.UI.Page
             case "checkSitehostUsername":
                 checkSitehostUsername();
                 break;
+            case "checkAdminUsername":
+                checkAdminUsername();
+                break;
             case "getmsgs":
                 getmsgs();
                 break;
@@ -50,9 +53,21 @@ public partial class ajaxHandler : System.Web.UI.Page
         Response.ContentType = "txt/html";
         Response.Clear();
         wgiAdUnionSystem.BLL.wgi_sitehost bll = new wgiAdUnionSystem.BLL.wgi_sitehost();
-        string name= Request["username"];
-        
-        if (bll.GetListByUsername(name).Tables[0].Rows.Count>0) Response.Write("0");
+        string name = Request["username"];
+
+        if (bll.GetListByUsername(name).Tables[0].Rows.Count > 0) Response.Write("0");
+        else Response.Write("1");
+        Response.End();
+    }
+
+    private void checkAdminUsername()
+    {
+        Response.ContentType = "txt/html";
+        Response.Clear();
+        wgiAdUnionSystem.BLL.wgi_sysuser bll = new wgiAdUnionSystem.BLL.wgi_sysuser();
+        string name = Request["username"];
+
+        if (bll.GetListByUsername(name).Tables[0].Rows.Count > 0) Response.Write("0");
         else Response.Write("1");
         Response.End();
     }
