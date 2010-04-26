@@ -48,5 +48,8 @@ namespace wgiAdUnionSystem.IDAL
         
         //根据用户名获取列表
         DataSet GetListByUsername(string username);
+
+        //删除多个用户
+        void Delete(string ids);
 	}
 }

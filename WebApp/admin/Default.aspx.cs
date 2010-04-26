@@ -19,7 +19,7 @@ public partial class admin_Default : ValidatePage
         uLoadControl.initPage(Page, 1, "Dashboard - Admin", plhdTitle, plhdHeader, plhdSlide, plhdFooter);
         if (!IsPostBack)
         {
-            (this.FindControl("u_header").FindControl("lblusername") as Label).Text = base.user.username;
+
         }
     }
 

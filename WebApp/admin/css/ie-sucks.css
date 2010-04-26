@@ -19,3 +19,5 @@
 #rightnow .reallynow a {
 	padding:0 0 0 10px;
 }
+
+table{ *border:1px solid #c3d7db!important;}/*ie7*/

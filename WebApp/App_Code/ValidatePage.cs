@@ -11,6 +11,7 @@ public class ValidatePage : System.Web.UI.Page
     protected UserPrincipal principal;
     private string[] userdata = new string[1] { "" };//用户数据
     private wgiAdUnionSystem.Model.wgi_sysuser suser = new wgiAdUnionSystem.Model.wgi_sysuser();
+    private string rolename = "";
 
     public wgiAdUnionSystem.Model.wgi_sysuser user
     {
@@ -22,6 +23,9 @@ public class ValidatePage : System.Web.UI.Page
     {
         if (Context.User.Identity.IsAuthenticated)
         {
+            userdata = Helper.HelperSession.GetAuthenticatedUserData("|");
+            rolename = userdata[0];
+
             if (!(Context.User is UserPrincipal))
             {
                 principal = new UserPrincipal(User.Identity.Name);
@@ -29,17 +33,14 @@ public class ValidatePage : System.Web.UI.Page
                 //用户数据
                 try
                 {
-                    userdata = Helper.HelperSession.GetAuthenticatedUserData("|");
                     suser.id = int.Parse(userdata[1]);
                     suser.username = userdata[2];
                     suser.email = userdata[3];
                 }
                 catch (Exception)
                 {
-                    //_timeout = false;  //在这里标记用户已超时，刷新页面时通过这个参数获取登录状态
-                    //OnInit(null);
+                    //throw:
                 }
-                finally { }
 
                 Context.User = principal;
             }
@@ -60,7 +61,7 @@ public class ValidatePage : System.Web.UI.Page
 
     private void ValidatePage_Load(object sender, System.EventArgs e)
     {
-        if (!Context.User.Identity.IsAuthenticated)
+        if (!Context.User.Identity.IsAuthenticated || rolename!="admin")
         {
             Response.Redirect(@"~/admin/login.aspx?url=" + Request.CurrentExecutionFilePath);
             Response.End();

@@ -5,6 +5,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
 <asp:PlaceHolder ID="plhdTitle" runat="server"></asp:PlaceHolder>
+<style type="text/css">
+    #ulfli{ overflow:hidden;}
+    #ulfli li{ list-style:none; float:left; width:237px;}
+    #ulfli li span{ display:inline-block; height:24px; line-height:24px;}
+    #ulfli li span:first-child{ width:65px;}
+    table input{border:none!important; background:none!important;}
+    #tips{ border:1px solid #c3d7db; padding:4px 8px; background:#e9Efff;}
+    #ulfli li input.redcont{color:red; border-color:red; font-weight:600}
+</style>
 </head>
 <body>
     <form id="form" runat="server">
@@ -20,121 +29,61 @@
             <div id="content">
        			<div id="rightnow">
                     <h3 class="reallynow">
-                        <span>操作区</span>
-                        <a href="#" class="add">Add New Product</a>
-                        <a href="#" class="app_add">Some Action</a>
-                        <br />
+                        <span>管理员管理</span>
+                        <asp:LinkButton ID="lbtncancel" runat="server" OnClick="cancel_click" CssClass="pagedelete" Text="取消" Enabled="false"></asp:LinkButton>
+                        <asp:LinkButton ID="lbtnedit" runat="server" CommandArgument="add" CssClass="app_add" OnCommand="save_click" Text="新增" OnClientClick="return checkvali();"></asp:LinkButton>
+           <br clear="all" />
                     </h3>
-				    <p class="youhave">You have <a href="#">19 new orders</a>, <a href="#">12 new users</a> and <a href="#">5 new reviews</a>, today you made <a href="#">$1523.63 in sales</a> and a total of <strong>$328.24 profit </strong>
-                    </p>
+				    <div class="youhave">
+				        <ul id="ulfli">
+				            <li><span>用户名：</span><asp:TextBox ID="txtname" runat="server" ToolTip="6-20位字母/数字组合"></asp:TextBox></li>
+				            <li><span>密码：</span><asp:TextBox ID="txtpwd" runat="server" TextMode="Password" ToolTip="6-20位字母/数字组合"></asp:TextBox></li>
+				            <li><span>重输密码：</span><asp:TextBox ID="txtpwdre" runat="server" TextMode="Password" ToolTip="请再次输入密码"></asp:TextBox></li>
+				            <li><span>E-mail：</span><asp:TextBox ID="txtemail" runat="server" ToolTip="请输入有效的邮件地址"></asp:TextBox></li>
+				        </ul>
+				        <div id="tips"><span style="color:gray; font-weight:600">提示：</span><span id="tipmsg"></span></div>
+				        <asp:HiddenField ID="hideditid" runat="server" Value="" />
+                    </div>
 			  </div>
+			  <br />
               <div id="box">
-                	<h3>Users</h3>
-                	<table width="100%">
-						<thead>
-							<tr>
-                            	<th width="40px"><a href="#">ID<img src="img/icons/arrow_down_mini.gif" width="16" height="16" align="absmiddle" /></a></th>
-                            	<th><a href="#">Full Name</a></th>
-                                <th><a href="#">Email</a></th>
-                                <th width="70px"><a href="#">Group</a></th>
-                                <th width="50px"><a href="#">ZIP</a></th>
-                                <th width="90px"><a href="#">Registered</a></th>
-                                <th width="60px"><a href="#">Action</a></th>
-                            </tr>
-						</thead>
-						<tbody>
-							<tr>
-                            	<td class="a-center">232</td>
-                            	<td><a href="#">Jennifer Hodes</a></td>
-                                <td>jennifer.hodes@gmail.com</td>
-                                <td>General</td>
-                                <td>1000</td>
-                                <td>July 2, 2008</td>
-                                <td><a href="#"><img src="img/icons/user.png" title="Show profile" width="16" height="16" /></a><a href="#"><img src="img/icons/user_edit.png" title="Edit user" width="16" height="16" /></a><a href="#"><img src="img/icons/user_delete.png" title="Delete user" width="16" height="16" /></a></td>
-                            </tr>
-							<tr>
-                            	<td class="a-center">231</td>
-                            	<td><a href="#">Mark Kyrnin</a></td>
-                            	<td>mark.kyrnin@hotmail.com</td>
-                                <td>Affiliate</td>
-                                <td>8310</td>
-                                <td>June 17, 2008</td>
-                                <td><a href="#"><img src="img/icons/user.png" title="Show profile" width="16" height="16" /></a><a href="#"><img src="img/icons/user_edit.png" title="Edit user" width="16" height="16" /></a><a href="#"><img src="img/icons/user_delete.png" title="Delete user" width="16" height="16" /></a></td>
-                            </tr>
-							<tr>
-                            	<td class="a-center">230</td>
-                            	<td><a href="#">Virgílio Cezar</a></td>
-                                <td>virgilio@somecompany.cz</td>
-                                <td>General</td>
-                                <td>6200</td>
-                                <td>June 31, 2008</td>
-                                <td><a href="#"><img src="img/icons/user.png" title="Show profile" width="16" height="16" /></a><a href="#"><img src="img/icons/user_edit.png" title="Edit user" width="16" height="16" /></a><a href="#"><img src="img/icons/user_delete.png" title="Delete user" width="16" height="16" /></a></td>
-                            </tr>
-							<tr>
-                            	<td class="a-center">229</td>
-                            	<td><a href="#">Todd Simonides</a></td>
-                                <td>todd.simonides@gmail.com</td>
-                                <td>Wholesale</td>
-                                <td>2010</td>
-                                <td>June 5, 2008</td>
-                                <td><a href="#"><img src="img/icons/user.png" title="Show profile" width="16" height="16" /></a><a href="#"><img src="img/icons/user_edit.png" title="Edit user" width="16" height="16" /></a><a href="#"><img src="img/icons/user_delete.png" title="Delete user" width="16" height="16" /></a></td>
-                            </tr>
-                            <tr>
-                            	<td class="a-center">228</td>
-                            	<td><a href="#">Carol Elihu</a></td>
-                                <td>carol@herbusiness.com</td>
-                                <td>General</td>
-                                <td>3120</td>
-                                <td>May 23, 2008</td>
-                                <td><a href="#"><img src="img/icons/user.png" title="Show profile" width="16" height="16" /></a><a href="#"><img src="img/icons/user_edit.png" title="Edit user" width="16" height="16" /></a><a href="#"><img src="img/icons/user_delete.png" title="Delete user" width="16" height="16" /></a></td>
-                            </tr>
-                            <tr>
-                            	<td class="a-center">232</td>
-                            	<td><a href="#">Jennifer Hodes</a></td>
-                                <td>jennifer.hodes@gmail.com</td>
-                                <td>General</td>
-                                <td>1000</td>
-                                <td>July 2, 2008</td>
-                                <td><a href="#"><img src="img/icons/user.png" title="Show profile" width="16" height="16" /></a><a href="#"><img src="img/icons/user_edit.png" title="Edit user" width="16" height="16" /></a><a href="#"><img src="img/icons/user_delete.png" title="Delete user" width="16" height="16" /></a></td>
-                            </tr>
-							<tr>
-                            	<td class="a-center">231</td>
-                            	<td><a href="#">Mark Kyrnin</a></td>
-                            	<td>mark.kyrnin@hotmail.com</td>
-                                <td>Affiliate</td>
-                                <td>8310</td>
-                                <td>June 17, 2008</td>
-                                <td><a href="#"><img src="img/icons/user.png" title="Show profile" width="16" height="16" /></a><a href="#"><img src="img/icons/user_edit.png" title="Edit user" width="16" height="16" /></a><a href="#"><img src="img/icons/user_delete.png" title="Delete user" width="16" height="16" /></a></td>
-                            </tr>
-							<tr>
-                            	<td class="a-center">230</td>
-                            	<td><a href="#">Virgílio Cezar</a></td>
-                                <td>virgilio@somecompany.cz</td>
-                                <td>General</td>
-                                <td>6200</td>
-                                <td>June 31, 2008</td>
-                                <td><a href="#"><img src="img/icons/user.png" title="Show profile" width="16" height="16" /></a><a href="#"><img src="img/icons/user_edit.png" title="Edit user" width="16" height="16" /></a><a href="#"><img src="img/icons/user_delete.png" title="Delete user" width="16" height="16" /></a></td>
-                            </tr>
-							<tr>
-                            	<td class="a-center">229</td>
-                            	<td><a href="#">Todd Simonides</a></td>
-                                <td>todd.simonides@gmail.com</td>
-                                <td>Wholesale</td>
-                                <td>2010</td>
-                                <td>June 5, 2008</td>
-                                <td><a href="#"><img src="img/icons/user.png" title="Show profile" width="16" height="16" /></a><a href="#"><img src="img/icons/user_edit.png" title="Edit user" width="16" height="16" /></a><a href="#"><img src="img/icons/user_delete.png" title="Delete user" width="16" height="16" /></a></td>
-                            </tr>
-                            <tr>
-                            	<td class="a-center">228</td>
-                            	<td><a href="#">Carol Elihu</a></td>
-                                <td>carol@herbusiness.com</td>
-                                <td>General</td>
-                                <td>3120</td>
-                                <td>May 23, 2008</td>
-                                <td><a href="#"><img src="img/icons/user.png" title="Show profile" width="16" height="16" /></a><a href="#"><img src="img/icons/user_edit.png" title="Edit user" width="16" height="16" /></a><a href="#"><img src="img/icons/user_delete.png" title="Delete user" width="16" height="16" /></a></td>
-                            </tr>
-						</tbody>
-					</table>
+                	<h3 class="boxtitle">
+              <asp:LinkButton ID="lbtndel" runat="server" CssClass="pagedelete" OnClick="deletes" Text="删除" OnClientClick="return filter();"></asp:LinkButton>
+              用户列表  
+                	</h3>
+                	<asp:GridView ID="gridList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="id">
+                	<Columns>
+                	    <asp:TemplateField ItemStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
+                	        <HeaderTemplate><input type="checkbox" class="checkall" /></HeaderTemplate>
+                	        <ItemTemplate><input type="checkbox" class="checkthis" value='<%# Eval("id") %>' /></ItemTemplate>
+                	    </asp:TemplateField>
+                	    <asp:TemplateField HeaderText="序号" ItemStyle-Width="50px" ItemStyle-HorizontalAlign="Center">
+                	        <ItemTemplate><%# Container.DataItemIndex+1 %></ItemTemplate>
+                	    </asp:TemplateField>
+                	    <asp:BoundField HeaderText="用户名" DataField="username" SortExpression="username" ItemStyle-HorizontalAlign="Center" />
+                	    <asp:BoundField HeaderText="E-mail" DataField="email" ItemStyle-HorizontalAlign="Center" />
+                	    <asp:TemplateField HeaderText="操作" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="60px">
+                	        <ItemTemplate>
+                	            <asp:ImageButton ID="btnedit" runat="server" OnCommand="edit_click" CommandArgument='<%# Eval("id") %>' ImageUrl="img/icons/user_edit.png" ToolTip="修改资料" Width="16px" Height="16px" />
+                	            <asp:ImageButton ID="btndel" runat="server" CommandName="Delete" ImageUrl="img/icons/user_delete.png" ToolTip="删除" Width="16px" Height="16px" OnClientClick='<%# Eval("id", "return con_del({0});") %>' />
+                	        </ItemTemplate>
+                	    </asp:TemplateField>
+                	</Columns>
+                    </asp:GridView>
+                    <asp:HiddenField ID="hidselected" runat="server" Value="" />
+                    <asp:HiddenField id="hiduid" runat="server" Value="" />
+
+
+                    <asp:ObjectDataSource ID="ods" runat="server" DeleteMethod="Delete" SelectMethod="GetList" TypeName="wgiAdUnionSystem.BLL.wgi_sysuser">
+                        <DeleteParameters>
+                            <asp:Parameter Name="id" Type="Int32" />
+                        </DeleteParameters>
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="1=1" Name="strWhere" Type="String" />
+                        </SelectParameters>
+                    </asp:ObjectDataSource>
+
+
                     <div id="pager">
                     	Page <a href="#"><img src="img/icons/arrow_left.gif" width="16" height="16" /></a> 
                     	<input size="1" value="1" type="text" name="page" id="page" /> 
@@ -147,98 +96,9 @@
                     			</select> 
                     per page | Total <strong>420</strong> records found
                     </div>
+                    
                 </div>
-                <br />
-                <div id="box">
-                	<h3 id="adduser">Add user</h3>
-                    <form id="form1" action="..." method="post">
-                      <fieldset id="personal">
-                        <legend>PERSONAL INFORMATION</legend>
-                        <label for="lastname">Last name : </label> 
-                        <input name="lastname" id="lastname" type="text" tabindex="1" />
-                        <br />
-                        <label for="firstname">First name : </label>
-                        <input name="firstname" id="firstname" type="text" 
-                        tabindex="2" />
-                        <br />
-                        <label for="email">Email : </label>
-                        <input name="email" id="email" type="text" 
-                        tabindex="2" />
-                        <br />
-                        <p>Send auto generated password 
-                            <input name="generatepass" id="yes" type="checkbox" 
-                        value="yes" tabindex="35" /></p>
-                        <label for="pass">Password : </label>
-                        <input name="pass" id="pass" type="password" 
-                        tabindex="2" />
-                        <br />
-                        <label for="pass-2">Password : </label>
-                        <input name="pass-2" id="pass-2" type="password" 
-                        tabindex="2" />
-                        <br />
-                      </fieldset>
-                      <fieldset id="address">
-                        <legend>Address</legend>
-                        <label for="street">Street address : </label> 
-                        <input name="street" id="street" type="text" 
-                        tabindex="1" />
-                        <br />
-                        <label for="city">City : </label>
-                        <input name="city" id="city" type="text" 
-                        tabindex="2" />
-                        <br />
-                        <label for="country">Country : </label> 
-                        <input name="country" id="country" type="text" 
-                        tabindex="1" />
-                        <br />
-                        <label for="state">State/Province : </label>
-                        <input name="state" id="state" type="text" 
-                        tabindex="2" />
-                        <br />
-                        <label for="zip">Zip/Postal Code : </label>
-                        <input name="zip" id="zip" type="text" 
-                        tabindex="2" />
-                        <br />
-                        <label for="tel">Telephone : </label>
-                        <input name="tel" id="tel" type="text" 
-                        tabindex="2" />
-                      </fieldset>
-                      <fieldset id="opt">
-                        <legend>OPTIONS</legend>
-                        <label for="choice">Group : </label>
-                        <select name="choice">
-                          <option selected="selected" label="none" value="none">
-                          General
-                          </option>
-                          <optgroup label="Group 1">
-                            <option label="cg1a" value="val_1a">Selection group 1a
-                            </option>
-                            <option label="cg1b" value="val_1b">Selection group 1b
-                            </option>
-                            <option label="cg1c" value="val_1c">Selection group 1c
-                            </option>
-                          </optgroup>
-                          <optgroup label="Group 2">
-                            <option label="cg2a" value="val_2a">Selection group 2a
-                            </option>
-                            <option label="cg2b" value="val_2a">Selection group 2b
-                            </option>
-                          </optgroup>
-                          <optgroup label="Group 3">
-                            <option label="cg3a" value="val_3a">Selection group 3a
-                            </option>
-                            <option label="cg3a" value="val_3a">Selection group 3b
-                            </option>
-                          </optgroup>
-                        </select>
-                      </fieldset>
-                      <div align="center">
-                      <input id="button1" type="submit" value="Send" /> 
-                      <input id="button2" type="reset" />
-                      </div>
-                    </form>
-
-                </div>
+                
             </div>
             <!--左内容区结束-->
             <!--侧面板开始-->
@@ -252,7 +112,62 @@
         <!--脚部结束-->
 </div>
 <!--内容区结束-->
-
     </form>
 </body>
+<script type="text/javascript">
+    var vali=true;
+    var emailreg=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+    var obj=$("#tipmsg");
+    $(function(){
+        //check input
+        $("#ulfli :input").focus(function(){var thisobj=$(this);var oldtext=$(this).attr("title"); obj.html(oldtext).removeClass().addClass("onfocus");});
+        $("#txtname").blur(function(){
+                var v=$(this).val();
+                var thisobj=$(this);
+                if(regtest(/^[0-9a-zA-Z]+[0-9a-zA-Z_]{5,29}$/,v)){
+				    url=encodeURI("/ajaxHandler.aspx?act=checkAdminUsername&username="+v+"&t="+new Date().getMilliseconds());
+				    $.get(url,function(data){
+					    if(data==0){obj.html("该用户名已被使用！").removeClass().addClass("onerror");vali=false;addRedBorder(thisobj);}else{obj.removeClass().addClass("oncorrect");removeRed(thisobj);}
+				    }
+			);}
+				else{obj.removeClass().html("格式不正确！").addClass("onerror");vali=false;addRedBorder(thisobj);}});
+            $("#txtpwd").blur(function(){var thisobj=$(this);var v=$(this).val();if(!regtest(/^[0-9a-zA-Z]{6,20}$/,v)){obj.html("密码格式不正确！").removeClass().addClass("onerror");vali=false;addRedBorder(thisobj);}else{obj.removeClass().addClass("oncorrect");removeRed(thisobj);}});
+            $("#txtpwdre").blur(function(){var thisobj=$(this);var v=$(this).val();if($("#txtpwd").val()!=v){obj.removeClass().addClass("onerror");obj.html("两次密码输入不一致");vali=false;addRedBorder(thisobj);}else{obj.removeClass().addClass("oncorrect");removeRed(thisobj);}});
+            $("#txtemail").blur(function(){var thisobj=$(this);var v=$(this).val();var obj=$(this).next("span");if(!regtest(emailreg,v)){obj.html("格式不正确！").removeClass().addClass("onerror");vali=false;addRedBorder(thisobj);}else{obj.removeClass().addClass("oncorrect");removeRed(thisobj);}});
+        
+        
+        //全选
+        $(".checkall").click(function(){$(".checkthis").attr("checked",$(this).attr("checked"));});
+        $(".checkthis").click(function(){$(".checkall").attr("checked",$(".checkthis").length==$(".checkthis").filter(":checked").length);});
+    });
+    //删除单个用户前的确认
+    function con_del(id){
+        if(id==$("#hiduid").val()){
+            alert("您不能删除自己的账号！");
+            return false;
+        }
+        return confirm("确认删除？");
+    }
+    
+    
+    function regtest(pattern,data){return pattern.test(data);}
+    function checkvali(){vali=true;$("#ulfli :input").blur(); if(!vali) obj.html("请检查红框部分，输入正确的数据");  return vali;}
+    function addRedBorder(obj){$(obj).addClass("redcont");}
+    function removeRed(obj){$(obj).removeClass("redcont");}
+    
+    
+    //删除前过滤掉操作者本人的ID
+    function filter(){
+        var l=$(".checkthis:checked").length;
+        if(l==0){ alert("请选择需要删除的用户！"); return false;}
+        var uid=$("#hiduid").val();
+        if(l==1 && $(".checkthis:checked").val()==uid){alert("您不能删除自己的账号！"); return false;}
+        var obj=$(".checkthis[value="+uid+"]");
+        var ids=$(":checkbox").filter(":checked").not(obj).map(function(){return $(this).val();}).get().join(",");
+        $("#hidselected").val(ids);
+        return confirm("确认删除？");
+    }
+    
+</script>
+
 </html>
