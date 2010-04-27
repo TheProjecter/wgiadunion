@@ -11,7 +11,6 @@ public class ValidatePage : System.Web.UI.Page
     protected UserPrincipal principal;
     private string[] userdata = new string[1] { "" };//用户数据
     private wgiAdUnionSystem.Model.wgi_sysuser suser = new wgiAdUnionSystem.Model.wgi_sysuser();
-    private string rolename = "";
 
     public wgiAdUnionSystem.Model.wgi_sysuser user
     {
@@ -24,7 +23,6 @@ public class ValidatePage : System.Web.UI.Page
         if (Context.User.Identity.IsAuthenticated)
         {
             userdata = Helper.HelperSession.GetAuthenticatedUserData("|");
-            rolename = userdata[0];
 
             if (!(Context.User is UserPrincipal))
             {
@@ -61,10 +59,26 @@ public class ValidatePage : System.Web.UI.Page
 
     private void ValidatePage_Load(object sender, System.EventArgs e)
     {
-        if (!Context.User.Identity.IsAuthenticated || rolename!="admin")
+        if (!Context.User.Identity.IsAuthenticated)
         {
             Response.Redirect(@"~/admin/login.aspx?url=" + Request.CurrentExecutionFilePath);
             Response.End();
+        }
+        if (userdata[0] != "admin")
+        {
+            try
+            {
+                FlowControl.Logout();
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
+            finally
+            {
+                Response.Redirect(@"~/admin/login.aspx?url=" + Request.CurrentExecutionFilePath);
+                Response.End();
+            }
         }
 
     }

@@ -10,7 +10,7 @@
     #ulfli li{ list-style:none; float:left; width:237px;}
     #ulfli li span{ display:inline-block; height:24px; line-height:24px;}
     #ulfli li span:first-child{ width:65px;}
-    table input{border:none!important; background:none!important;}
+    .checkall, .checkthis{border:none!important; background:none!important;}
     #tips{ border:1px solid #c3d7db; padding:4px 8px; background:#e9Efff;}
     #ulfli li input.redcont{color:red; border-color:red; font-weight:600}
 </style>
@@ -38,7 +38,7 @@
 				        <ul id="ulfli">
 				            <li><span>用户名：</span><asp:TextBox ID="txtname" runat="server" ToolTip="6-20位字母/数字组合"></asp:TextBox></li>
 				            <li><span>密码：</span><asp:TextBox ID="txtpwd" runat="server" TextMode="Password" ToolTip="6-20位字母/数字组合"></asp:TextBox></li>
-				            <li><span>重输密码：</span><asp:TextBox ID="txtpwdre" runat="server" TextMode="Password" ToolTip="请再次输入密码"></asp:TextBox></li>
+				            <li><span>重输密码：</span><asp:TextBox ID="txtpwdre" runat="server" TextMode="Password" ToolTip="请再次入密码"></asp:TextBox></li>
 				            <li><span>E-mail：</span><asp:TextBox ID="txtemail" runat="server" ToolTip="请输入有效的邮件地址"></asp:TextBox></li>
 				        </ul>
 				        <div id="tips"><span style="color:gray; font-weight:600">提示：</span><span id="tipmsg"></span></div>
@@ -48,32 +48,81 @@
 			  <br />
               <div id="box">
                 	<h3 class="boxtitle">
-              <asp:LinkButton ID="lbtndel" runat="server" CssClass="pagedelete" OnClick="deletes" Text="删除" OnClientClick="return filter();"></asp:LinkButton>
+              <asp:LinkButton ID="lbtndel" runat="server" CssClass="pagedelete2" OnClick="deletes" Text="删除" OnClientClick="return filter();"></asp:LinkButton>
               用户列表  
                 	</h3>
-                	<asp:GridView ID="gridList" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="id">
+                	<asp:GridView ID="gridList" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="id" AllowPaging="True" PageSize="2">
+                        <PagerTemplate>
+                        <div class="pager">
+                        Page&nbsp;<asp:ImageButton ID="bppage" runat="server" Width="16px" Height="16px" ImageUrl="img/icons/arrow_left.gif" CommandName="Page" CommandArgument="Prev" Visible="<%# ((GridView)Container.NamingContainer).PageIndex!=0%>" />
+                    	<asp:TextBox ID="txtcurrentPage" runat="server" Text="<%# ((GridView)Container.NamingContainer).PageIndex + 1 %>" Width="20px" MaxLength="3" CssClass="txttopage"></asp:TextBox>
+                    	<asp:ImageButton ID="bnpage" runat="server" Width="16px" Height="16px" ImageUrl="img/icons/arrow_right.gif" CommandName="Page" CommandArgument="Next" Visible="<%# ((GridView)Container.NamingContainer).PageIndex != ((GridView)Container.NamingContainer).PageCount - 1%>" />
+  of <b><asp:Label id="lblTotalPage" runat="server" Text="<%# ((GridView)Container.NamingContainer).PageCount%>" CssClass="totalpage"></asp:Label></b>
+                    pages
+                    <asp:Button ID="btngopage" runat="server" Text="go" OnClick="getCustPage" OnClientClick="return ToPage();" />&nbsp|&nbsp;View&nbsp;
+                    <asp:DropDownList ID="ddlPageSize" runat="server">
+                        <asp:ListItem Text="10" Value="10"></asp:ListItem>
+                        <asp:ListItem Text="15" Value="10"></asp:ListItem>
+                        <asp:ListItem Text="20" Value="10"></asp:ListItem>
+                        <asp:ListItem Text="30" Value="10"></asp:ListItem>
+                        <asp:ListItem Text="50" Value="10"></asp:ListItem>
+                    </asp:DropDownList>
+                    per&nbsp;page&nbsp;|&nbsp;Total&nbsp;<strong><%= base.recordCount %></strong> records found
+                        </div>
+                        </PagerTemplate>
                 	<Columns>
                 	    <asp:TemplateField ItemStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                 	        <HeaderTemplate><input type="checkbox" class="checkall" /></HeaderTemplate>
                 	        <ItemTemplate><input type="checkbox" class="checkthis" value='<%# Eval("id") %>' /></ItemTemplate>
+
+<ItemStyle HorizontalAlign="Center" Width="40px"></ItemStyle>
                 	    </asp:TemplateField>
-                	    <asp:TemplateField HeaderText="序号" ItemStyle-Width="50px" ItemStyle-HorizontalAlign="Center">
+                	    <asp:TemplateField HeaderText="序号" ItemStyle-Width="50px" ItemStyle-HorizontalAlign="Center" SortExpression="id">
                 	        <ItemTemplate><%# Container.DataItemIndex+1 %></ItemTemplate>
+
+<ItemStyle HorizontalAlign="Center" Width="50px"></ItemStyle>
                 	    </asp:TemplateField>
-                	    <asp:BoundField HeaderText="用户名" DataField="username" SortExpression="username" ItemStyle-HorizontalAlign="Center" />
-                	    <asp:BoundField HeaderText="E-mail" DataField="email" ItemStyle-HorizontalAlign="Center" />
+                	    <asp:BoundField HeaderText="用户名" DataField="username" SortExpression="username" 
+                            ItemStyle-HorizontalAlign="Center" ItemStyle-Width="136px" >
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
+                	    <asp:BoundField HeaderText="E-mail" DataField="email" 
+                            ItemStyle-HorizontalAlign="Center" ItemStyle-Width="411px" >
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
+                        </asp:BoundField>
                 	    <asp:TemplateField HeaderText="操作" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="60px">
                 	        <ItemTemplate>
                 	            <asp:ImageButton ID="btnedit" runat="server" OnCommand="edit_click" CommandArgument='<%# Eval("id") %>' ImageUrl="img/icons/user_edit.png" ToolTip="修改资料" Width="16px" Height="16px" />
                 	            <asp:ImageButton ID="btndel" runat="server" CommandName="Delete" ImageUrl="img/icons/user_delete.png" ToolTip="删除" Width="16px" Height="16px" OnClientClick='<%# Eval("id", "return con_del({0});") %>' />
                 	        </ItemTemplate>
+
+<ItemStyle HorizontalAlign="Center" Width="60px"></ItemStyle>
                 	    </asp:TemplateField>
                 	</Columns>
                     </asp:GridView>
                     <asp:HiddenField ID="hidselected" runat="server" Value="" />
-                    <asp:HiddenField id="hiduid" runat="server" Value="" />
-
-
+                    <asp:HiddenField ID="hiduid" runat="server" Value="" />
+<asp:ListView ID="lvtest" runat="server" DataKeyNames="id" DataSourceID="ods" ItemPlaceholderID="layoutTemplate" GroupPlaceholderID="laydiv" GroupItemCount="3">
+    <LayoutTemplate>
+        <table>
+            <tr id="laydiv" runat="server"></tr>
+        </table>
+    </LayoutTemplate>
+    <GroupTemplate>
+        <tr id="tr1" runat="server">
+            <td id="layoutTemplate" runat="server" />   
+        </tr>
+    </GroupTemplate>
+    <ItemTemplate>
+    <td><%# Eval("id") %>,<%# Eval("username") %>,<%# Eval("password") %>,<%# Eval("email") %><br /></td>
+    </ItemTemplate>
+</asp:ListView>
+<asp:DataPager ID="dpager" runat="server" PagedControlID="lvtest" PageSize="8">
+ <Fields>
+    <asp:NumericPagerField NextPageText="..." PreviousPageText="..." />
+    <asp:NextPreviousPagerField FirstPageText="第一页" />
+ </Fields>
+</asp:DataPager>
                     <asp:ObjectDataSource ID="ods" runat="server" DeleteMethod="Delete" SelectMethod="GetList" TypeName="wgiAdUnionSystem.BLL.wgi_sysuser">
                         <DeleteParameters>
                             <asp:Parameter Name="id" Type="Int32" />
@@ -83,20 +132,6 @@
                         </SelectParameters>
                     </asp:ObjectDataSource>
 
-
-                    <div id="pager">
-                    	Page <a href="#"><img src="img/icons/arrow_left.gif" width="16" height="16" /></a> 
-                    	<input size="1" value="1" type="text" name="page" id="page" /> 
-                    	<a href="#"><img src="img/icons/arrow_right.gif" width="16" height="16" /></a>of 42
-                    pages | View <select name="view">
-                    				<option>10</option>
-                                    <option>20</option>
-                                    <option>50</option>
-                                    <option>100</option>
-                    			</select> 
-                    per page | Total <strong>420</strong> records found
-                    </div>
-                    
                 </div>
                 
             </div>
@@ -151,9 +186,18 @@
     
     
     function regtest(pattern,data){return pattern.test(data);}
-    function checkvali(){vali=true;$("#ulfli :input").blur(); if(!vali) obj.html("请检查红框部分，输入正确的数据");  return vali;}
+    function checkvali(){vali=true;$("#ulfli :input").blur(); if(!vali) obj.removeClass().addClass("onerror").html("请检查红框部分，输入正确的数据");  return vali;}
     function addRedBorder(obj){$(obj).addClass("redcont");}
     function removeRed(obj){$(obj).removeClass("redcont");}
+    function ToPage(){
+        var totalPage=Number($(".totalpage").eq(0).html());
+        var topage=Number($(".txttopage").eq(0).val());
+        if(topage>totalPage){
+            alert("超出页码范围");
+            return false;
+        }
+        else return;
+    }
     
     
     //删除前过滤掉操作者本人的ID

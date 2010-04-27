@@ -6,7 +6,8 @@
 <head runat="server">
     <asp:PlaceHolder id="holderheader" runat="server"></asp:PlaceHolder>
     <style type="text/css">
-        #top-panel{height:auto!important; margin:70px auto 20px auto; background:rgb(235,242,248)!important;}
+        #top-panel{height:auto!important; margin:90px auto 20px auto; background:rgb(235,242,248)!important;}
+        #sitetitle{ background:url(img/icons/comment.gif) no-repeat; padding-left:19px; position:relative; top:-32px;}
         #panel{width:380px; margin:20px auto 160px auto;}
         #logtxt{ color:rgb(41,65,69); margin:0 auto 40px 30px; font-weight:600; font-size:1.2em;}
         table, td, th{ border-width:0px!important;}
@@ -25,8 +26,8 @@
 	<div id="container">
     	<div id="header">
         	<h2>广告联盟管理后台</h2>
-
             <div id="top-panel">
+            <span id="sitetitle">Administrator Dashboard</span>
                 <div id="panel">
                 <div id="logtxt">管理员登录</div>
                     <table>

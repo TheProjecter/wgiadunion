@@ -26,8 +26,11 @@ public class validateMember : System.Web.UI.UserControl
 
     public validateMember()
     {
+
         if (Context.User.Identity.IsAuthenticated)
         {
+            userdata = Helper.HelperSession.GetAuthenticatedUserData("|");
+
             if (!(Context.User is UserPrincipal))
             {
                 principal = new UserPrincipal(Context.User.Identity.Name);
@@ -35,7 +38,6 @@ public class validateMember : System.Web.UI.UserControl
                 //用户数据
                 try
                 {
-                    userdata = Helper.HelperSession.GetAuthenticatedUserData("|");
                     suser.userid = int.Parse(userdata[1]);
                     suser.username = userdata[2];
                     suser.lastdate = Convert.ToDateTime(userdata[3]);//上次登录时间
@@ -70,12 +72,26 @@ public class validateMember : System.Web.UI.UserControl
 
     private void ValidatePage_Load(object sender, System.EventArgs e)
     {
-        //
-        if (!Context.User.Identity.IsAuthenticated&&!nocheck)
+        if (!Context.User.Identity.IsAuthenticated && !nocheck)
         {
-            //Response.Redirect(@"~/SysLogin.aspx?url="+Helper.HelperURL.GetCurrentUrl(this));
             Response.Redirect(@"~/member/Default.aspx?url=" + Request.CurrentExecutionFilePath);
             Response.End();
+        }
+        if (Context.User.Identity.IsAuthenticated && userdata[0] != "member")
+        {
+            try
+            {
+                FlowControl.Logout();
+            }
+            catch (Exception)
+            {
+                //throw;
+            }
+            finally
+            {
+                Response.Redirect(@"~/member/Default.aspx?url=" + Request.CurrentExecutionFilePath);
+                Response.End();
+            }
         }
 
     }

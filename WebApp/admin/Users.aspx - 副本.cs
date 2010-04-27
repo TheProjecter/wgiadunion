@@ -16,31 +16,65 @@ public partial class admin_Users : ValidatePage
     private wgiAdUnionSystem.BLL.wgi_sysuser bll = new wgiAdUnionSystem.BLL.wgi_sysuser();
     private wgiAdUnionSystem.Model.wgi_sysuser model = new wgiAdUnionSystem.Model.wgi_sysuser();
 
-    protected string recordCount = "";
+    private int pagesize = 5;
 
     protected void Page_Load(object sender, EventArgs e)
     {
         uLoadControl.initPage(Page, 3, "Dashboard - Admin", plhdTitle, plhdHeader, plhdSlide, plhdFooter);
         if (!IsPostBack)
         {
-            initData();
+            initData("1=1");
         }
 
     }
 
-    private void initData()
+    private void initData(string strWhere)
     {
-        ods.SelectParameters["strWhere"].DefaultValue = "1=1";
-        gridList.DataSourceID = "ods";
-        gridList.DataBind();
+        ods.SelectParameters["strWhere"].DefaultValue = strWhere;
 
         PagedDataSource ps = new PagedDataSource();
+        int currentPage = int.Parse(txtcurrentPage.Text);
         ps.DataSource = ods.Select();
-        recordCount = ps.DataSourceCount.ToString();
+        ps.AllowPaging = true;
+        ps.CurrentPageIndex = currentPage - 1;
+        ps.PageSize = pagesize;
+        this.txtTotalRecord.Text = ps.DataSourceCount.ToString();
+        this.txtTotalPage.Text = ps.PageCount.ToString();
 
-        recordCount = ps.DataSourceCount.ToString();
+        gridList.DataSource = ps;
+        gridList.DataBind();
+
+        //分页按钮控制
+        bnpage.Enabled = true;
+        bppage.Enabled = true;
+        if (ps.PageCount == currentPage)
+        {
+            bnpage.Enabled = false;
+        }
+        if (currentPage == 1)
+        {
+            bppage.Enabled = false;
+        }
 
         this.hiduid.Value = base.user.id.ToString();
+    }
+
+    protected void prePage(object sender, EventArgs e)
+    {
+        txtcurrentPage.Text = (int.Parse(txtcurrentPage.Text) - 1).ToString();
+        initData("1=1");
+    }
+
+    protected void nextPage(object sender, EventArgs e)
+    {
+        txtcurrentPage.Text = (int.Parse(txtcurrentPage.Text) + 1).ToString();
+        initData("1=1");
+    }
+
+    protected void gopage_click(object sender, EventArgs e)
+    {
+        txtcurrentPage.Text = (int.Parse(txtcurrentPage.Text)).ToString();
+        initData("1=1");
     }
 
 
@@ -137,11 +171,15 @@ public partial class admin_Users : ValidatePage
         Response.Redirect(Request.CurrentExecutionFilePath);
     }
 
-    protected void getCustPage(object sender, EventArgs e)
+    protected void gridList_Sorting(object sender, GridViewSortEventArgs e)
     {
-        Button btn = sender as Button;
-        btn.CommandName = "Page";
-        btn.CommandArgument = ((btn.NamingContainer as GridViewRow).FindControl("txtcurrentPage") as TextBox).Text;
+        if (gridList.SortDirection == SortDirection.Ascending)
+        {
+            initData("1=1 order by " + e.SortExpression + " desc");
+        }
+        else
+        {
+            initData("1=1 order by "+e.SortExpression);
+        }
     }
-
 }
