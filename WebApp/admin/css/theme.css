@@ -120,3 +120,12 @@ form#form #button1:hover, form#form #button2:hover {
 	background:#d9eaed;
 	border-bottom:1px solid #c3d7db;
 }
+
+/****************
+		user
+*****************/
+#tips{ border:1px solid #c3d7db;}
+#header #top-panel, #tips, th{ background:rgb(235,242,248);}
+
+/*drag*/
+.f_title{background:#294145;}

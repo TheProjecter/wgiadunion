@@ -119,3 +119,8 @@ form#form #button1:hover, form#form #button2:hover {
 	background:#f0f7e8;
 	border-bottom:1px solid #e7eedf;
 }
+
+/*user*/
+#tips{ border:1px solid #E7EEDF;}
+#header #top-panel, #tips, th{background:#F0F7E8;}
+#logpanel, #logpanel a{color:#555;}
