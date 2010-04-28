@@ -6,7 +6,7 @@
 <head runat="server">
     <asp:PlaceHolder id="holderheader" runat="server"></asp:PlaceHolder>
     <style type="text/css">
-        #top-panel{height:auto!important; margin:90px auto 20px auto; background:rgb(235,242,248)!important;}
+        #header #top-panel{height:auto; margin:90px auto 20px auto;}
         #sitetitle{ background:url(img/icons/comment.gif) no-repeat; padding-left:19px; position:relative; top:-32px;}
         #panel{width:380px; margin:20px auto 160px auto;}
         #logtxt{ color:rgb(41,65,69); margin:0 auto 40px 30px; font-weight:600; font-size:1.2em;}

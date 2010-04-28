@@ -16,10 +16,10 @@ public partial class admin_login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Control header = Page.LoadControl("pageControl/title.ascx");
-        header.ID = "uc_header";
-        (header.FindControl("ltrTitle") as Literal).Text = "广告联盟|后台管理|登录";
-        this.holderfoot.Controls.Add(header);
+        Control title = Page.LoadControl("pageControl/title.ascx");
+        title.ID = "uc_title";
+        (title.FindControl("ltrTitle") as Literal).Text = "广告联盟|后台管理|登录";
+        this.holderheader.Controls.Add(title);
 
         Control ft = Page.LoadControl("pageControl/footer.ascx");
         ft.ID = "uc_footer";

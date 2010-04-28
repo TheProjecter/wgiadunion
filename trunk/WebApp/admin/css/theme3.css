@@ -119,3 +119,7 @@ form#form #button1:hover, form#form #button2:hover {
 	background:#f7f6f1;
 	border-bottom:1px solid #e9e8e3;
 }
+
+/*user*/
+#tips{ border:1px solid #E9E8E3;}
+#header #top-panel, #tips, th{background:#F7F6F0;}

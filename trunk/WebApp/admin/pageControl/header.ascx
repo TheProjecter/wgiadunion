@@ -41,9 +41,9 @@
                 </asp:PlaceHolder>
                 <asp:PlaceHolder id="subMenu3" runat="server" Visible="false">
                     <ul class="submenu3">
-                        <li><a href="#" class="group">管理员管理</a></li>
-                        <li><a href="#" class="group">网站主管理</a></li>
-                        <li><a href="#" class="group">广告主管理</a></li>
+                        <li><a href="Users.aspx" class="group">管理员管理</a></li>
+                        <li><a href="siteUsers.aspx" class="group">网站主管理</a></li>
+                        <li><a href="AdUser.aspx" class="group">广告主管理</a></li>
 					    <li><a href="#adduser" class="useradd">Add user</a></li>
             		    <li><a href="#" class="search">Find user</a></li>
                         <li><a href="#" class="online">Users online</a></li>

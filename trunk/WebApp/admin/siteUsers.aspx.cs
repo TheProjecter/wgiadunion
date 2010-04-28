@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 
-public partial class admin_Users : ValidatePage
+public partial class admin_siteUsers : ValidatePage
 {
     private wgiAdUnionSystem.BLL.wgi_sysuser bll = new wgiAdUnionSystem.BLL.wgi_sysuser();
     private wgiAdUnionSystem.Model.wgi_sysuser model = new wgiAdUnionSystem.Model.wgi_sysuser();
@@ -35,15 +35,24 @@ public partial class admin_Users : ValidatePage
         this.hiduid.Value = base.user.id.ToString();
     }
 
+    protected void deletes(object sender, EventArgs e)
+    { 
+        //过滤掉当前管理员的id  //或者由前端js控不送入管理员的id
+        bll.Delete(this.hidselected.Value);
+        initData();
+        //Response.Redirect(Request.CurrentExecutionFilePath);
+    }
 
+
+    #region 增、改记录部分
     protected void save_click(object sender, CommandEventArgs e)
     {
         if (e.CommandArgument.ToString() == "add")
         {
             //新增用户
-            model.username = txtname.Text;
-            model.email = txtemail.Text;
-            model.password = txtpwd.Text;
+            //model.username = txtname.Text;
+            //model.email = txtemail.Text;
+            //model.password = txtpwd.Text;
 
             try
             {
@@ -62,14 +71,14 @@ public partial class admin_Users : ValidatePage
             //更新用户资料
             try
             {
-                int id = int.Parse(hideditid.Value);
-                model = bll.GetModel(id);
+                //int id = int.Parse(hideditid.Value);
+                //model = bll.GetModel(id);
 
-                model.username = txtname.Text;
-                model.email = txtemail.Text;
-                model.password = txtpwd.Text;
+                //model.username = txtname.Text;
+                //model.email = txtemail.Text;
+                //model.password = txtpwd.Text;
 
-                bll.Update(model);
+                //bll.Update(model);
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), DateTime.Now.ToString(), "alert(\"修改用户资料成功！\");location=location;", true);
 
                 //改变页面控件为新增状态
@@ -84,14 +93,18 @@ public partial class admin_Users : ValidatePage
         else return;
     }
 
+    protected void profile_click(object sender, EventArgs e)
+    { 
+        //
+    }
 
     protected void cancel_click(object sender, EventArgs e)
     {
-        this.txtpwd.Attributes.Add("value", "");
-        this.txtpwdre.Attributes.Add("value", "");
-        this.txtname.Text = "";
-        this.txtemail.Text = "";
-        this.hideditid.Value = "";
+        //this.txtpwd.Attributes.Add("value", "");
+        //this.txtpwdre.Attributes.Add("value", "");
+        //this.txtname.Text = "";
+        //this.txtemail.Text = "";
+        //this.hideditid.Value = "";
     
     }
 
@@ -102,16 +115,16 @@ public partial class admin_Users : ValidatePage
             int id = int.Parse(e.CommandArgument.ToString());
             model = bll.GetModel(id);
 
-            this.txtemail.Text = model.email;
-            this.txtname.Text = model.username;
-            this.txtpwd.Attributes.Add("value", model.password);
-            this.txtpwdre.Attributes.Add("value", model.password);
-            this.hideditid.Value = id.ToString();
+            //this.txtemail.Text = model.email;
+            //this.txtname.Text = model.username;
+            //this.txtpwd.Attributes.Add("value", model.password);
+            //this.txtpwdre.Attributes.Add("value", model.password);
+            //this.hideditid.Value = id.ToString();
 
-            this.lbtnedit.CommandArgument = "edit";
-            this.lbtnedit.Text = "保存";
-            this.lbtncancel.Enabled = true;
-            this.lbtnedit.CssClass = "pageedit";
+            //this.lbtnedit.CommandArgument = "edit";
+            //this.lbtnedit.Text = "保存";
+            //this.lbtncancel.Enabled = true;
+            //this.lbtnedit.CssClass = "pageedit";
 
         }
         catch (Exception ex)
@@ -122,14 +135,11 @@ public partial class admin_Users : ValidatePage
 
     }
 
-    protected void deletes(object sender, EventArgs e)
-    { 
-        //过滤掉当前管理员的id  //或者由前端js控不送入管理员的id
-        bll.Delete(this.hidselected.Value);
-        initData();
-        //Response.Redirect(Request.CurrentExecutionFilePath);
-    }
+    #endregion
 
+
+
+    #region 自定义分页部分
     protected void getCustPage(object sender, EventArgs e)
     {
         Button btn = sender as Button;
@@ -166,5 +176,5 @@ public partial class admin_Users : ValidatePage
 
         this.hidcurpage.Value = (gridList.PageIndex + 1).ToString();
     }
-
+    #endregion
 }
