@@ -31,7 +31,7 @@
        			<div id="rightnow">
                     <h3 class="reallynow">
                         <span>网站主管理</span>
-           <asp:LinkButton ID="lbtndel" runat="server" CssClass="pagedelete2" OnClick="deletes" Text="删除" OnClientClick="return confirm('确认删除？');"></asp:LinkButton>
+           <asp:LinkButton ID="lbtndel" runat="server" CssClass="pagedelete2" OnClick="deletes" Text="删除" OnClientClick="return dels();"></asp:LinkButton>
            <a href="javascript:showfloat(1);" class="app_add">新增</a>
            <asp:LinkButton ID="lbtnsearch" runat="server" CssClass="search" Text="查询" OnClick="searchResault" OnClientClick="return checksearch();"></asp:LinkButton>
            <br clear="all" />
@@ -47,6 +47,10 @@
 				            <asp:Label ID="lblsearch" runat="server"></asp:Label>
 				            <asp:LinkButton ID="lbtnclear" Visible="false" runat="server" Text="清除" CssClass="folder_table" style="padding-left:20px; text-decoration:none;" OnClick="clearsearch"></asp:LinkButton>
 				        </div>
+				        <asp:HiddenField ID="hiduname" runat="server" />
+				        <asp:HiddenField ID="hidrname" runat="server" />
+				        <asp:HiddenField ID="hidemail" runat="server" />
+				        <asp:HiddenField ID="hidsite" runat="server" />
                     </div>
 			  </div>
 			  <br />
@@ -211,6 +215,14 @@
             return false;
         }
         obj.html().removeClass();
+    }
+    
+    function dels(){
+        if($(".checkthis:checked").length==0){
+            alert("请选择需要删除的条目");
+            return false;
+        }
+        return confirm("确认删除？");
     }
     
     

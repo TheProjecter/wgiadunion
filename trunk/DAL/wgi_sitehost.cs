@@ -363,23 +363,28 @@ namespace wgiAdUnionSystem.DAL
         public DataSet GetListOfSearch(string username, string realname, string email, string sitename)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select a.userid,username,email,contact ");
-            strSql.Append(" FROM wgi_sitehost a, wgi_usersite b where a.userid=b.userid ");
+            strSql.Append("select distinct a.userid,username,email,contact ");
+            strSql.Append(" FROM wgi_sitehost a left join wgi_usersite b on a.userid=b.userid ");
+            StringBuilder str2 = new StringBuilder();
             if (username.Trim() != "")
             {
-                strSql.Append(" and a.username='" + username.Trim() + "'");
+                str2.Append(" and a.username='" + username.Trim() + "'");
             }
             if (realname.Trim() != "")
             {
-                strSql.Append(" and a.contact like '%" + realname.Trim() + "%'");
+                str2.Append(" and a.contact like '%" + realname.Trim() + "%'");
             }
             if (email.Trim() != "")
             {
-                strSql.Append(" and a.email='" + email.Trim()+ "'");
+                str2.Append(" and a.email='" + email.Trim()+ "'");
             }
             if (sitename.Trim() != "")
             {
-                strSql.Append(" and b.sitename like '%" + sitename.Trim() + "%'");
+                str2.Append(" and b.sitename like '%" + sitename.Trim() + "%'");
+            }
+            if (!string.IsNullOrEmpty(str2.ToString()))
+            {
+                strSql.Append(" where 1=1 " + str2.ToString());
             }
             Database db = DatabaseFactory.CreateDatabase();
             return db.ExecuteDataSet(CommandType.Text, strSql.ToString());
