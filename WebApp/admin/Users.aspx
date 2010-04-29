@@ -43,7 +43,7 @@
               <asp:LinkButton ID="lbtndel" runat="server" CssClass="pagedelete2" OnClick="deletes" Text="删除" OnClientClick="return filter();"></asp:LinkButton>
               用户列表  
                 	</h3>
-                	<asp:GridView ID="gridList" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="id" AllowPaging="True" OnPreRender="renderview">
+                	<asp:GridView ID="gridList" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="id" AllowPaging="True" OnPreRender="renderview" EmptyDataText="没有查询到数据" EmptyDataRowStyle-HorizontalAlign="Center">
                         <PagerTemplate>
                         <div class="pager">
                         Page&nbsp;

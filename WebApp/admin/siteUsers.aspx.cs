@@ -23,19 +23,14 @@ public partial class admin_siteUsers : ValidatePage
         {
             initData();
         }
-
     }
 
     private void initData()
     {
-        if (Session["username"] == null) Session["username"] = " ";
-        if (Session["realname"] == null) Session["realname"] = " ";
-        if (Session["email"] == null) Session["email"] = " ";
-        if (Session["sitename"] == null) Session["sitename"] = " ";
-        ods.SelectParameters["username"].DefaultValue = Session["username"].ToString() + " ";
-        ods.SelectParameters["realname"].DefaultValue = Session["realname"].ToString() + " ";
-        ods.SelectParameters["email"].DefaultValue = Session["email"].ToString() + " ";
-        ods.SelectParameters["sitename"].DefaultValue = Session["sitename"].ToString() + " ";
+        ods.SelectParameters["username"].DefaultValue = hiduname.Value + " ";
+        ods.SelectParameters["realname"].DefaultValue = hidrname.Value + " ";
+        ods.SelectParameters["email"].DefaultValue = hidemail.Value + " ";
+        ods.SelectParameters["sitename"].DefaultValue = hidsite.Value + " ";
         gridList.DataSourceID = "ods";
         gridList.DataBind();
 
@@ -51,10 +46,10 @@ public partial class admin_siteUsers : ValidatePage
 
     protected void searchResault(object sender, EventArgs e)
     {
-        Session["username"] = txtusername.Text+" ";
-        Session["realname"] = txtrealname.Text + " ";
-        Session["email"] = txtemail.Text + " ";
-        Session["sitename"] = txtsitename.Text + " ";
+        hiduname.Value = txtusername.Text+" ";
+        hidrname.Value = txtrealname.Text + " ";
+        hidemail.Value = txtemail.Text + " ";
+        hidsite.Value = txtsitename.Text + " ";
 
         lblsearch.Text = "搜索内容<";
         if (txtusername.Text.Trim() != "")
@@ -89,17 +84,10 @@ public partial class admin_siteUsers : ValidatePage
 
     protected void clearsearch(object sender, EventArgs e)
     {
-        Session["username"] = " ";
-        Session["realname"] = " ";
-        Session["email"] = " ";
-        Session["sitename"] = " ";
-        initData();
-        lblsearch.Text = "";
+        hiduname.Value = hidemail.Value = hidrname.Value = hidsite.Value = "";
         lbtnclear.Visible = false;
-        txtusername.Text = "";
-        txtemail.Text = "";
-        txtsitename.Text = "";
-        txtrealname.Text = "";
+        txtusername.Text = txtemail.Text = txtsitename.Text = txtrealname.Text = lblsearch.Text = "";
+        initData();
     }
 
 

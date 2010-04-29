@@ -177,6 +177,9 @@
                         </td></tr>
                     </table>
                 </LayoutTemplate>
+                <EmptyDataTemplate>
+                    <center>无网站信息</center>
+                </EmptyDataTemplate>
                 <ItemTemplate>
                     <tr>
                         <td><%# Eval("sitename") %></td>
