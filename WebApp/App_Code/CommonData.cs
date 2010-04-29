@@ -111,7 +111,7 @@ public class CommonData
     {
         DataTable dt = GetBaseTable();
         dt.Rows.Add("尚未审核通过", "0");
-        dt.Rows.Add("正常登录", "1");
+        dt.Rows.Add("状态正常", "1");
         dt.Rows.Add("账号锁定", "2");
         return dt;
     }

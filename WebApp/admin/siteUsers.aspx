@@ -33,19 +33,29 @@
                         <span>网站主管理</span>
            <asp:LinkButton ID="lbtndel" runat="server" CssClass="pagedelete2" OnClick="deletes" Text="删除" OnClientClick="return confirm('确认删除？');"></asp:LinkButton>
            <a href="javascript:showfloat(1);" class="app_add">新增</a>
-           <asp:LinkButton ID="lbtnsearch" runat="server" CssClass="search" Text="查询"></asp:LinkButton>
+           <asp:LinkButton ID="lbtnsearch" runat="server" CssClass="search" Text="查询" OnClick="searchResault" OnClientClick="return checksearch();"></asp:LinkButton>
            <br clear="all" />
                     </h3>
 				    <div class="youhave">
+				        <ul id="ulfli">
+				            <li><span>用户名：</span><asp:TextBox ID="txtusername" runat="server"></asp:TextBox></li>
+				            <li><span>真实姓名：</span><asp:TextBox ID="txtrealname" runat="server"></asp:TextBox></li>
+				            <li><span>网站名：</span><asp:TextBox ID="txtsitename" runat="server"></asp:TextBox></li>
+				            <li><span>E-mail：</span><asp:TextBox ID="txtemail" runat="server"></asp:TextBox></li>
+				        </ul>
+				        <div id="tips"><span style="color:gray; font-weight:600">提示：</span><span id="tipmsg"></span>
+				            <asp:Label ID="lblsearch" runat="server"></asp:Label>
+				            <asp:LinkButton ID="lbtnclear" Visible="false" runat="server" Text="清除" CssClass="folder_table" style="padding-left:20px; text-decoration:none;" OnClick="clearsearch"></asp:LinkButton>
+				        </div>
                     </div>
 			  </div>
 			  <br />
               <div id="box">
                 	<h3 class="boxtitle">
               
-              用户列表——网站主
+              用户列表—网站主
                 	</h3>
-                	<asp:GridView ID="gridList" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="userid" AllowPaging="True" OnPreRender="renderview">
+                	<asp:GridView ID="gridList" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="userid" AllowPaging="True" OnPreRender="renderview" EmptyDataText="没有查询到数据" EmptyDataRowStyle-HorizontalAlign="Center">
                         <PagerTemplate>
                         <div class="pager">
                         Page&nbsp;
@@ -71,7 +81,7 @@
                 	<Columns>
                 	    <asp:TemplateField ItemStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
                 	        <HeaderTemplate><input type="checkbox" class="checkall" /></HeaderTemplate>
-                	        <ItemTemplate><input type="checkbox" class="checkthis" value='<%# Eval("userid") %>' /></ItemTemplate>
+                	        <ItemTemplate><input type="checkbox" class="checkthis" value='<%# Eval("userid") %>' name="ids" /></ItemTemplate>
 
 <ItemStyle HorizontalAlign="Center" Width="40px"></ItemStyle>
                 	    </asp:TemplateField>
@@ -81,12 +91,12 @@
 <ItemStyle HorizontalAlign="Center" Width="50px"></ItemStyle>
                 	    </asp:TemplateField>
                 	    <asp:BoundField HeaderText="用户名" DataField="username" SortExpression="username" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="136px"></asp:BoundField>
-                        <asp:BoundField HeaderText="姓名" DataField="accountname" SortExpression="accountname" ItemStyle-Width="90px" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField HeaderText="姓名" DataField="contact" SortExpression="contact" ItemStyle-Width="90px" ItemStyle-HorizontalAlign="Center" />
                 	    <asp:BoundField HeaderText="E-mail" DataField="email" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="311px" ></asp:BoundField>
                 	    <asp:TemplateField HeaderText="操作" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="60px">
                 	        <ItemTemplate>
-                	            <asp:ImageButton ID="btnprofile" runat="server" OnCommand="profile_click" CommandArgument='<%# Eval("userid") %>' ImageUrl="img/icons/user.png" ToolTip="查看详细" Width="16px" Height="16px" />
-                	            <asp:ImageButton ID="btnedit" runat="server" OnCommand="edit_click" CommandArgument='<%# Eval("userid") %>' ImageUrl="img/icons/user_edit.png" ToolTip="修改资料" Width="16px" Height="16px" />
+                	            <input type="image" src="img/icons/user.png" title="查看详细" class="imgbtn" onclick='showfloat(3,<%# Eval("userid") %>); return false' />
+                	            <input type="image" src="img/icons/user_edit.png" title="编辑" class="imgbtn" onclick='showfloat(2,<%# Eval("userid") %>); return false;' />
                 	            <asp:ImageButton ID="btndel" runat="server" CommandName="Delete" ImageUrl="img/icons/user_delete.png" ToolTip="删除" Width="16px" Height="16px" OnClientClick="return confirm('确认删除？');" />
                 	        </ItemTemplate>
 
@@ -94,16 +104,18 @@
                 	    </asp:TemplateField>
                 	</Columns>
                     </asp:GridView>
-                    <asp:HiddenField ID="hidselected" runat="server" Value="" />
                     <asp:HiddenField ID="hiduid" runat="server" Value="" />
                     <asp:HiddenField ID="hidcurpage" runat="server" Value="" />
 
-                    <asp:ObjectDataSource ID="ods" runat="server" DeleteMethod="Delete" SelectMethod="GetList" TypeName="wgiAdUnionSystem.BLL.wgi_sitehost">
+                    <asp:ObjectDataSource ID="ods" runat="server" DeleteMethod="Delete" SelectMethod="GetListOfSearch" TypeName="wgiAdUnionSystem.BLL.wgi_sitehost">
                         <DeleteParameters>
                             <asp:Parameter Name="userid" Type="Int32" />
                         </DeleteParameters>
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="1=1" Name="strWhere" Type="String" />
+                            <asp:Parameter Name="username" Type="String" />
+                            <asp:Parameter Name="realname" Type="String" />
+                            <asp:Parameter Name="email" Type="String" />
+                            <asp:Parameter Name="sitename" Type="String" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
 
@@ -137,6 +149,7 @@
 </body>
 <script src="js/drag.js" type="text/javascript"></script>
 <script type="text/javascript">
+    var emailreg=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
     $(function(){
         //全选
         $(".checkall").click(function(){$(".checkthis").attr("checked",$(this).attr("checked"));});
@@ -159,9 +172,11 @@
     
     /*
     @type:1:add,2:edit,3,show profile
+    @uid:the userid for edit/show, but no need for create(default by 0)
     */
-    function showfloat(type){
-        var url="addSiteUser.aspx?uid="+$("#hiduid").val()+"&act=";
+    function showfloat(type,userid){
+        var uid=userid||0;
+        var url="addSiteUser.aspx?uid="+uid+"&act=";
         var title="";
         switch(type){
             case 1:
@@ -179,6 +194,23 @@
         }
         $("#userframe").attr("src",url);
         openpop(title);
+    }
+    
+    function checksearch(){
+        var obj=$("#tipmsg");
+        var sobj=$("#lblsearch");
+        if($("#txtusername").val()==""&&$("#txtrealname").val()==""&&$("#txtsitename").val()==""&&$("#txtemail").val()==""){
+            obj.removeClass().addClass("onerror").html("请至少输入一个查询条件");
+            sobj.html("");
+            return false;
+        }
+        var e=$("#txtemail").val();
+        if(e!="" && !emailreg.test(e)){
+            obj.removeClass().addClass("onerror").html("请输入有效email地址");
+            sobj.html("");
+            return false;
+        }
+        obj.html().removeClass();
     }
     
     

@@ -58,5 +58,17 @@ namespace wgiAdUnionSystem.IDAL
 		/// </summary>
 		//DataSet GetList(int PageSize,int PageIndex,string strWhere);
 		#endregion  成员方法
+
+        /// <summary>
+        /// 获得搜索结果列表
+        /// </summary>
+        /// <param name="username">用户名</param>
+        /// <param name="realname">真实姓名</param>
+        /// <param name="email">邮箱</param>
+        /// <param name="sitename">网站名</param>
+        /// <returns></returns>
+        DataSet GetListOfSearch(string username, string realname, string email, string sitename);
+
+        void Delete(string ids);
 	}
 }

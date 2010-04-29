@@ -123,3 +123,5 @@ form#form #button1:hover, form#form #button2:hover {
 /*user*/
 #tips{ border:1px solid #E8E7E1;}
 #header #top-panel, #tips, th{background:#F7F6F0;}
+/*drag*/
+.f_title{background:#993400;}

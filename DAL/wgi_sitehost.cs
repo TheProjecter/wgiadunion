@@ -357,6 +357,49 @@ namespace wgiAdUnionSystem.DAL
 		}
 
 		#endregion  成员方法
+
+
+
+        public DataSet GetListOfSearch(string username, string realname, string email, string sitename)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select a.userid,username,email,contact ");
+            strSql.Append(" FROM wgi_sitehost a, wgi_usersite b where a.userid=b.userid ");
+            if (username.Trim() != "")
+            {
+                strSql.Append(" and a.username='" + username.Trim() + "'");
+            }
+            if (realname.Trim() != "")
+            {
+                strSql.Append(" and a.contact like '%" + realname.Trim() + "%'");
+            }
+            if (email.Trim() != "")
+            {
+                strSql.Append(" and a.email='" + email.Trim()+ "'");
+            }
+            if (sitename.Trim() != "")
+            {
+                strSql.Append(" and b.sitename like '%" + sitename.Trim() + "%'");
+            }
+            Database db = DatabaseFactory.CreateDatabase();
+            return db.ExecuteDataSet(CommandType.Text, strSql.ToString());
+        }
+
+
+        /// <summary>
+        /// 删除一组数据
+        /// </summary>
+        public void Delete(string ids)
+        {
+
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("delete from wgi_sitehost ");
+            strSql.Append(" where userid in (" + ids + ")");
+            Database db = DatabaseFactory.CreateDatabase();
+            DbCommand cmd = db.GetSqlStringCommand(strSql.ToString());
+            db.ExecuteNonQuery(cmd);
+
+        }
 	}
 }
 
