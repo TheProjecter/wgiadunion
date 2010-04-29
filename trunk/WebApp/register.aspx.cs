@@ -21,7 +21,16 @@ public partial class register : System.Web.UI.Page
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
+        string username = this.txtusername.Text;
 
+        wgiAdUnionSystem.BLL.wgi_sitehost bll = new wgiAdUnionSystem.BLL.wgi_sitehost();
+        if (bll.GetListByUsername(username).Tables[0].Rows.Count > 0)
+        {
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), DateTime.Now.ToString(), "alert('用户名已被使用');", true);
+            return;
+        }
+
+        #region 服务器验证
         string strErr = "";
         if (this.txtusername.Text == "")
         {
@@ -93,7 +102,8 @@ public partial class register : System.Web.UI.Page
             MessageBox.Show(this, strErr);
             return;
         }
-        string username = this.txtusername.Text;
+        #endregion
+
         string password = this.txtpassword.Text;
         string email = this.txtemail.Text;
         string mobile = this.txtmobile.Text;
@@ -138,10 +148,16 @@ public partial class register : System.Web.UI.Page
         //model.lastip = lastip;
         model.status = status;
 
-        wgiAdUnionSystem.BLL.wgi_sitehost bll = new wgiAdUnionSystem.BLL.wgi_sitehost();
-        bll.Add(model);
+        try
+        {
+            bll.Add(model);
 
-        Response.Redirect("regSuccess.aspx");
+            Response.Redirect("regSuccess.aspx");
+        }
+        catch (Exception)
+        {
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), DateTime.Now.ToString(), "alert('内部错误');", true);
+        }
 
     }
 

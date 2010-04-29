@@ -397,6 +397,7 @@ form#form #button1:hover, form#form #button2:hover {
 
 /*table
 #gridList th{background:none repeat scroll 0 0 #D9EAED;}*/
+td .imgbtn{ width:16px; height:16px; border:none!important;}
 
 /*ajax input check area*/
 span.onshow,span.onerror,span.onfocus,span.oncorrect{ display:inline-block; height:22px; line-height:22px; color:Gray; padding-left:23px; margin-left:5px; background:url(/Images/ajaxcheck/onShow.gif) no-repeat;}
@@ -404,12 +405,22 @@ span.onerror{background-image:url(/Images/ajaxcheck/onError.gif); color:#a00; fo
 span.onfocus{background-image:url(/Images/ajaxcheck/onFocus.gif); color:#33f; font-weight:600;}
 span.oncorrect{background-image:url(/Images/ajaxcheck/onCorrect.gif); color:#333!important;}
 
+/*operation area*/
+#ulfli{ overflow:hidden;}
+#ulfli li{ list-style:none; float:left; width:237px;}
+#ulfli li span{ display:inline-block; height:24px; line-height:24px;}
+#ulfli li input{ width:149px;}
+#ulfli li span:first-child{ width:65px;}
+.checkall, .checkthis{border:none!important; background:none!important;}
+#tips{ padding:4px 8px;}
+#ulfli li input.redcont{color:red; border-color:red; font-weight:600}
+
 /*******************
 		drag
 *******************/
 #bgopacity{ width:100%; height:100%; background:#fff; position:fixed; top:0; left:0; filter:alpha(opacity=50); opacity:0.5; -m0z-opacity:0.5; display:none;}
 .f_outer{ position:fixed; top:10%; left:25%; display:none;}
-.f_title{height:25px; width:570px; position:relative; z-index:5; font-family:Î¢ÈíÑÅºÚ; text-align:right; color:white; line-height:25px; cursor:move}
+.f_title{height:25px; width:570px; position:relative; z-index:5; font-family:Î¢ÈíÑÅºÚ; text-align:right; color:white; line-height:25px; cursor:move; background:#294145;}
 .f_title span{ margin-right:10px; cursor:pointer; background:url(../img/icons/action_delete.ico) no-repeat; height:16px; width:16px; margin-top:5px; display:inline-block;}
 .f_outer h3{ text-align:center; margin-top:5px; margin-bottom:10px;}
 .f_content{height:430px; width:570px; border:gray solid 1px; z-index:5; position:relative; background:white; }

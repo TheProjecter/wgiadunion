@@ -13,8 +13,8 @@ using System.Xml.Linq;
 
 public partial class admin_siteUsers : ValidatePage
 {
-    private wgiAdUnionSystem.BLL.wgi_sysuser bll = new wgiAdUnionSystem.BLL.wgi_sysuser();
-    private wgiAdUnionSystem.Model.wgi_sysuser model = new wgiAdUnionSystem.Model.wgi_sysuser();
+    private wgiAdUnionSystem.BLL.wgi_sitehost bll = new wgiAdUnionSystem.BLL.wgi_sitehost();
+    private wgiAdUnionSystem.Model.wgi_sitehost model = new wgiAdUnionSystem.Model.wgi_sitehost();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -28,7 +28,14 @@ public partial class admin_siteUsers : ValidatePage
 
     private void initData()
     {
-        ods.SelectParameters["strWhere"].DefaultValue = "1=1";
+        if (Session["username"] == null) Session["username"] = " ";
+        if (Session["realname"] == null) Session["realname"] = " ";
+        if (Session["email"] == null) Session["email"] = " ";
+        if (Session["sitename"] == null) Session["sitename"] = " ";
+        ods.SelectParameters["username"].DefaultValue = Session["username"].ToString() + " ";
+        ods.SelectParameters["realname"].DefaultValue = Session["realname"].ToString() + " ";
+        ods.SelectParameters["email"].DefaultValue = Session["email"].ToString() + " ";
+        ods.SelectParameters["sitename"].DefaultValue = Session["sitename"].ToString() + " ";
         gridList.DataSourceID = "ods";
         gridList.DataBind();
 
@@ -36,107 +43,64 @@ public partial class admin_siteUsers : ValidatePage
     }
 
     protected void deletes(object sender, EventArgs e)
-    { 
-        //过滤掉当前管理员的id  //或者由前端js控不送入管理员的id
-        bll.Delete(this.hidselected.Value);
+    {
+        bll.Delete(Request["ids"]);
         initData();
         //Response.Redirect(Request.CurrentExecutionFilePath);
     }
 
-
-    #region 增、改记录部分
-    protected void save_click(object sender, CommandEventArgs e)
+    protected void searchResault(object sender, EventArgs e)
     {
-        if (e.CommandArgument.ToString() == "add")
+        Session["username"] = txtusername.Text+" ";
+        Session["realname"] = txtrealname.Text + " ";
+        Session["email"] = txtemail.Text + " ";
+        Session["sitename"] = txtsitename.Text + " ";
+
+        lblsearch.Text = "搜索内容<";
+        if (txtusername.Text.Trim() != "")
         {
-            //新增用户
-            //model.username = txtname.Text;
-            //model.email = txtemail.Text;
-            //model.password = txtpwd.Text;
-
-            try
-            {
-                bll.Add(model);
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), DateTime.Now.ToString(), "alert(\"添加用户成功！\");location=location;", true);
-            }
-            catch (Exception ex)
-            {
-                Helper.HelperString.getAlertJumpString("服务器错误<br />" + ex.Message, Request.CurrentExecutionFilePath);
-            }
-
-
+            lblsearch.Text += "用户名：" + txtusername.Text + " ";
         }
-        else if (e.CommandArgument.ToString() == "edit")
+        if (txtrealname.Text.Trim() != "")
         {
-            //更新用户资料
-            try
-            {
-                //int id = int.Parse(hideditid.Value);
-                //model = bll.GetModel(id);
-
-                //model.username = txtname.Text;
-                //model.email = txtemail.Text;
-                //model.password = txtpwd.Text;
-
-                //bll.Update(model);
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), DateTime.Now.ToString(), "alert(\"修改用户资料成功！\");location=location;", true);
-
-                //改变页面控件为新增状态
-                //this.lbtnedit.CommandArgument = "add";
-                //this.lbtnedit.CssClass = "pageedit";
-            }
-            catch (Exception ex)
-            {
-                Helper.HelperString.getAlertJumpString("服务器错误<br />" + ex.Message, Request.CurrentExecutionFilePath);
-            }
+            lblsearch.Text += "姓名：" + txtrealname.Text + " ";
         }
-        else return;
+        if (txtemail.Text.Trim() != "")
+        {
+            lblsearch.Text += "email：" + txtemail.Text + " ";
+        }
+        if (txtsitename.Text.Trim() != "")
+        {
+            lblsearch.Text += "网站名：" + txtsitename.Text;
+        }
+        if (lblsearch.Text == "搜索内容<")
+        {
+            lblsearch.Text = "";
+            lbtnclear.Visible = false;
+        }
+        else
+        {
+            lblsearch.Text += ">";
+            lbtnclear.Visible = true;
+        }
+        initData();
+
     }
 
-    protected void profile_click(object sender, EventArgs e)
-    { 
-        //
-    }
-
-    protected void cancel_click(object sender, EventArgs e)
+    protected void clearsearch(object sender, EventArgs e)
     {
-        //this.txtpwd.Attributes.Add("value", "");
-        //this.txtpwdre.Attributes.Add("value", "");
-        //this.txtname.Text = "";
-        //this.txtemail.Text = "";
-        //this.hideditid.Value = "";
-    
+        Session["username"] = " ";
+        Session["realname"] = " ";
+        Session["email"] = " ";
+        Session["sitename"] = " ";
+        initData();
+        lblsearch.Text = "";
+        lbtnclear.Visible = false;
+        txtusername.Text = "";
+        txtemail.Text = "";
+        txtsitename.Text = "";
+        txtrealname.Text = "";
     }
-
-    protected void edit_click(object sender, CommandEventArgs e)
-    {
-        try
-        {
-            int id = int.Parse(e.CommandArgument.ToString());
-            model = bll.GetModel(id);
-
-            //this.txtemail.Text = model.email;
-            //this.txtname.Text = model.username;
-            //this.txtpwd.Attributes.Add("value", model.password);
-            //this.txtpwdre.Attributes.Add("value", model.password);
-            //this.hideditid.Value = id.ToString();
-
-            //this.lbtnedit.CommandArgument = "edit";
-            //this.lbtnedit.Text = "保存";
-            //this.lbtncancel.Enabled = true;
-            //this.lbtnedit.CssClass = "pageedit";
-
-        }
-        catch (Exception ex)
-        {
-            Helper.HelperString.getAlertJumpString("服务器错误<br />" + ex.Message, Request.CurrentExecutionFilePath);
-        }
-
-
-    }
-
-    #endregion
-
 
 
     #region 自定义分页部分
@@ -164,17 +128,20 @@ public partial class admin_siteUsers : ValidatePage
 
         PagedDataSource ps = new PagedDataSource();
         ps.DataSource = ods.Select();
-        try
+        if (ps.DataSourceCount > 0)
         {
-            (gvr.FindControl("ddlPageSize") as DropDownList).SelectedValue = gridList.PageSize.ToString();
-        }
-        catch (ArgumentOutOfRangeException ae)
-        {
-            (gvr.FindControl("ddlPageSize") as DropDownList).SelectedIndex = 0;
-        }
-        (gvr.FindControl("lblTotalRecord") as Label).Text = ps.DataSourceCount.ToString();
+            try
+            {
+                (gvr.FindControl("ddlPageSize") as DropDownList).SelectedValue = gridList.PageSize.ToString();
+            }
+            catch (ArgumentOutOfRangeException ae)
+            {
+                (gvr.FindControl("ddlPageSize") as DropDownList).SelectedIndex = 0;
+            }
+            (gvr.FindControl("lblTotalRecord") as Label).Text = ps.DataSourceCount.ToString();
 
-        this.hidcurpage.Value = (gridList.PageIndex + 1).ToString();
+            this.hidcurpage.Value = (gridList.PageIndex + 1).ToString();
+        }
     }
     #endregion
 }

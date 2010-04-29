@@ -213,7 +213,27 @@ namespace wgiAdUnionSystem.BLL
 		//}
 
 
+
 		#endregion  成员方法
+
+
+        /// <summary>
+        /// 获得搜索结果列表
+        /// </summary>
+        /// <param name="username">用户名</param>
+        /// <param name="realname">真实姓名</param>
+        /// <param name="email">邮箱</param>
+        /// <param name="sitename">网站名</param>
+        /// <returns></returns>
+        public DataSet GetListOfSearch(string username, string realname, string email, string sitename)
+        {
+            return dal.GetListOfSearch(username, realname, email, sitename);
+        }
+
+        public void Delete(string ids)
+        {
+            dal.Delete(ids);
+        }
 	}
 }
 

@@ -124,3 +124,5 @@ form#form #button1:hover, form#form #button2:hover {
 #tips{ border:1px solid #E7EEDF;}
 #header #top-panel, #tips, th{background:#F0F7E8;}
 #logpanel, #logpanel a{color:#555;}
+/*drag*/
+.f_title{background:#d0e0b9;}
