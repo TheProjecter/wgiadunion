@@ -20,10 +20,11 @@
             <div id="content">
        			<div id="rightnow">
                     <h3 class="reallynow">
-                        <span>管理员管理</span>
+                        <span>提现申请</span>
+                        <asp:LinkButton ID="lbtndel" runat="server" CssClass="pagedelete2" OnClick="deletes" Text="删除" OnClientClick="return filter();"></asp:LinkButton>
                         <asp:LinkButton ID="lbtncancel" runat="server" OnClick="cancel_click" CssClass="pagedelete" Text="取消" Enabled="false"></asp:LinkButton>
                         <asp:LinkButton ID="lbtnedit" runat="server" CommandArgument="add" CssClass="app_add" OnCommand="save_click" Text="新增" OnClientClick="return checkvali();"></asp:LinkButton>
-           <asp:LinkButton ID="lbtnsearch" runat="server" CssClass="search" Text="查询"></asp:LinkButton>
+           <asp:LinkButton ID="lbtnsearch" runat="server" CssClass="search" Text="查询" OnClick="searchResault" OnClientClick="return checksearch();"></asp:LinkButton>
            <br clear="all" />
                     </h3>
 				    <div class="youhave">
@@ -33,14 +34,17 @@
 				            <li><span>重输密码：</span><asp:TextBox ID="txtpwdre" runat="server" TextMode="Password" ToolTip="请再次入密码"></asp:TextBox></li>
 				            <li><span>E-mail：</span><asp:TextBox ID="txtemail" runat="server" ToolTip="请输入有效的邮件地址"></asp:TextBox></li>
 				        </ul>
-				        <div id="tips"><span style="color:gray; font-weight:600">提示：</span><span id="tipmsg"></span></div>
+				        <div id="tips"><span style="color:gray; font-weight:600">提示：</span><span id="tipmsg"></span>
+				            <asp:Label ID="lblsearch" runat="server"></asp:Label>
+				            <asp:LinkButton ID="lbtnclear" Visible="false" runat="server" Text="清除" CssClass="folder_table" style="padding-left:20px; text-decoration:none;" OnClick="clearsearch"></asp:LinkButton>
+				        </div>
 				        <asp:HiddenField ID="hideditid" runat="server" Value="" />
+				        <asp:HiddenField ID="hidquery" runat="server" Value="" />
                     </div>
 			  </div>
 			  <br />
               <div id="box">
                 	<h3 class="boxtitle">
-              <asp:LinkButton ID="lbtndel" runat="server" CssClass="pagedelete2" OnClick="deletes" Text="删除" OnClientClick="return filter();"></asp:LinkButton>
               用户列表  
                 	</h3>
                 	<asp:GridView ID="gridList" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="id" AllowPaging="True" OnPreRender="renderview" EmptyDataText="没有查询到数据" EmptyDataRowStyle-HorizontalAlign="Center">
@@ -186,6 +190,22 @@
         return confirm("确认删除？");
     }
     
+    function checksearch(){
+        var obj=$("#tipmsg");
+        var sobj=$("#lblsearch");
+        if($("#txtname").val()==""&&$("#txtemail").val()==""){
+            obj.removeClass().addClass("onerror").html("请至少输入一个查询条件");
+            sobj.html("");
+            return false;
+        }
+        var e=$("#txtemail").val();
+        if(e!="" && !emailreg.test(e)){
+            obj.removeClass().addClass("onerror").html("请输入有效email地址");
+            sobj.html("");
+            return false;
+        }
+        obj.html("").removeClass();
+    }
 </script>
 
 </html>

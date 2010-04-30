@@ -5,16 +5,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
 <asp:PlaceHolder ID="plhdTitle" runat="server"></asp:PlaceHolder>
-<style type="text/css">
-    #ulfli{ overflow:hidden;}
-    #ulfli li{ list-style:none; float:left; width:237px;}
-    #ulfli li span{ display:inline-block; height:24px; line-height:24px;}
-    #ulfli li input{ width:149px;}
-    #ulfli li span:first-child{ width:65px;}
-    .checkall, .checkthis{border:none!important; background:none!important;}
-    #tips{ padding:4px 8px;}
-    #ulfli li input.redcont{color:red; border-color:red; font-weight:600}
-</style>
 </head>
 <body>
     <form id="form" runat="server">
@@ -214,7 +204,8 @@
             sobj.html("");
             return false;
         }
-        obj.html().removeClass();
+        obj.html("").removeClass();
+        return true;
     }
     
     function dels(){

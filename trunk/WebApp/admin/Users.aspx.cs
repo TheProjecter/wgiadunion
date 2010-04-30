@@ -28,7 +28,12 @@ public partial class admin_Users : ValidatePage
 
     private void initData()
     {
-        ods.SelectParameters["strWhere"].DefaultValue = "1=1";
+        string strWhere = "1=1";
+        if (!string.IsNullOrEmpty(hidquery.Value.Trim()))
+        {
+            strWhere += hidquery.Value;
+        }
+        ods.SelectParameters["strWhere"].DefaultValue = strWhere;
         gridList.DataSourceID = "ods";
         gridList.DataBind();
 
@@ -84,6 +89,42 @@ public partial class admin_Users : ValidatePage
         else return;
     }
 
+    protected void searchResault(object sender, EventArgs e)
+    {
+        string query = "";
+
+        lblsearch.Text = "搜索内容<";
+        if (txtname.Text.Trim() != "")
+        {
+            lblsearch.Text += "用户名：" + txtname.Text + " ";
+            query += " and username='" + txtname.Text + "'";
+        }
+        if (txtemail.Text.Trim() != "")
+        {
+            lblsearch.Text += "email：" + txtemail.Text + " ";
+            query += " and email='" + txtemail.Text + "'";
+        }
+        if (lblsearch.Text == "搜索内容<")
+        {
+            lblsearch.Text = "";
+            lbtnclear.Visible = false;
+        }
+        else
+        {
+            lblsearch.Text += ">";
+            lbtnclear.Visible = true;
+        }
+        hidquery.Value = query;
+        initData();
+
+    }
+
+    protected void clearsearch(object sender, EventArgs e)
+    {
+        lbtnclear.Visible = false;
+        txtname.Text = txtemail.Text = txtpwd.Text = txtpwdre.Text = lblsearch.Text = hidquery.Value = "";
+        initData();
+    }
 
     protected void cancel_click(object sender, EventArgs e)
     {
@@ -130,6 +171,7 @@ public partial class admin_Users : ValidatePage
         //Response.Redirect(Request.CurrentExecutionFilePath);
     }
 
+    #region 自定义分页
     protected void getCustPage(object sender, EventArgs e)
     {
         Button btn = sender as Button;
@@ -166,5 +208,5 @@ public partial class admin_Users : ValidatePage
 
         this.hidcurpage.Value = (gridList.PageIndex + 1).ToString();
     }
-
+    #endregion
 }
