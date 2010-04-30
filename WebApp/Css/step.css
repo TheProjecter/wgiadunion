@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+.step {overflow:hidden;}
+.step li, .step li span {background-image:url(/Images/bg-step.png);background-repeat:no-repeat;text-align:center;}
+.step li {background-position:right -108px;border:medium none;color:#605F5F;float:left;height:29px;line-height:29px;overflow:hidden;padding-left:20px;position:relative;text-align:center;width:207px;}
+.step li span {background-position:0 -108px;display:block;font-size:14px;left:-17px;line-height:29px;position:absolute;width:100%;}
+.step li.finished {background-position:-4px -108px;}
+.step li.finished span {background-position:0 -108px;left:0;}
+.step li.current {background-position:right -51px;border:medium none;height:29px;}
+.step li.current span {background-position:17px -51px;color:#AB4400;font-weight:bold;}
+.step li.last {background-position:right -406px;border-right:1px solid #DBDBDB;}
+.step li.last span {-moz-background-clip:border;-moz-background-inline-policy:continuous;-moz-background-origin:padding;background:transparent none repeat scroll 0 0;left:0;}
+.step li.last-current {background-position:right -166px;border-color:-moz-use-text-color #FFAB0A -moz-use-text-color -moz-use-text-color;border-style:none solid none none;border-width:medium 1px medium medium;height:29px;}
+.step li.last-current span {background-position:15px -166px;color:#AB4400;font-weight:bold;left:-15px;}

@@ -166,8 +166,8 @@ namespace wgiAdUnionSystem.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select id,userid,cash,applydate,status,leftcash,memo_user,memo_admin ");
-			strSql.Append(" FROM wgi_cash ");
+			strSql.Append("select a.id,a.userid,cash,applydate,a.status,leftcash,memo_user,memo_admin,b.username,b.contact,b.email ");
+			strSql.Append(" FROM wgi_cash a left join wgi_sitehost b on b.userid=a.userid");
 			if(strWhere.Trim()!="")
 			{
 				strSql.Append(" where "+strWhere);

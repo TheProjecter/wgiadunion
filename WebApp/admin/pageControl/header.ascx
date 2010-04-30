@@ -32,9 +32,9 @@
                 </asp:PlaceHolder>
                 <asp:PlaceHolder id="subMenu2" runat="server" Visible="false">
                     <ul class="submenu2">
-                        <li><a href="#" class="report">发放佣金</a></li>
-                        <li><a href="#" class="report_seo">佣金历史</a></li>
-                        <li><a href="#" class="search">提现申请</a></li>
+                        <li><a href="#" class="report">提现申请</a></li>
+                        <li><a href="#" class="report_seo">发放佣金</a></li>
+                        <li><a href="#" class="search">佣金历史</a></li>
                         <li><a href="#" class="search">丢单申请</a></li>
                         <li><a href="#" class="feed">发放补偿</a></li>
                     </ul>

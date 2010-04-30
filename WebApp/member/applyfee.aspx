@@ -2,8 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <link href="/Css/mem_modify.css" rel="stylesheet" type="text/css" />
+    <link href="/Css/step.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
         #opdiv .oplist{ margin:15px 20px;}
+        #opdiv li span{ font-size:12px}
+        #opdiv .step01 li{ width:150px;}
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -15,7 +18,39 @@
 		<p class="tabArea"><span>佣金信息</span></p>
 		<div id="opdiv">
 		   <p class="oplist">您可申请支付的佣金是：&nbsp;<asp:Label ID="lblmoney" runat="server" style="color:Red; font-weight:600"></asp:Label>&nbsp;元</p>
-		   <p class="oplist"><asp:Label ID="lblapply" runat="server" Visible="false">您的佣金不到100元不可以申请</asp:Label><asp:Button ID="btnapply" runat="server" CssClass="yelbtn" Text="申请" Visible="false" OnClick="applyclick" /></p>
+		   <p class="oplist"><asp:Label ID="lblapply" runat="server" Visible="false"></asp:Label>
+		       <asp:Button ID="btnapply" runat="server" CssClass="yelbtn" Text="申请" Visible="false" OnClick="applyclick" />
+		       <asp:TextBox ID="txtapplyamount" runat="server" Columns="7" MaxLength="9" Text="100.00" style="text-align:right;" Visible="false"></asp:TextBox>
+		      <asp:Label ID="lblfixtxt" runat="server" Text="元&nbsp;&nbsp;附言：" Visible="false"></asp:Label>
+		       <asp:TextBox ID="txtapplyremark" runat="server" style="width:300px;" Visible="false"></asp:TextBox>
+		    </p>
+		    <div class="oplist">
+		        <asp:HiddenField ID="hidstep" runat="server" />
+		        流程图示：
+		        <br /><br />
+		        <ul class="step step01">
+		            <li step="-1"><span>佣金不到申请条件</span></li>
+		            <li step="0"><span>请提交佣金申请</span></li>
+		            <li step="1"><span>请按<a href="applyinfo.aspx">资料格式</a>递交资料</span></li>
+		            <li step="2" class="last"><span>已收到资料，请耐心等待审核</span></li>
+		        </ul>
+		        <!-- [if IE 6]>
+		        <br clear="all" />
+		        <![endif] -->
+		        <ul class="step">
+		            <li step="3"><span>审核通过，等待打款</span></li>
+		            <li step="4" class="last"><span>佣金已经支付，请查询账户</span></li>
+		        </ul>
+		        <!-- [if IE 6]>
+		        <br clear="all" />
+		        <![endif] -->
+		        <ul class="step">
+		            <li step="5" class="last"><span>审核未通过</span></li>
+		        </ul>
+		        <!-- [if IE 6]>
+		        <br clear="all" />
+		        <![endif] -->
+		    </div>
 		   
 		</div>
 		<p class="tabArea"><span>佣金概览</span></p>
@@ -40,5 +75,16 @@
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="jscode" Runat="Server">
+<script type="text/javascript">
+    $(function(){
+        var step=$("#ctl00_ContentPlaceHolder1_hidstep").val();
+        var obj=$("li:[step='"+step+"']");
+        if(step==2||step==4||step==5){
+            obj.addClass("last-current");
+        }else{
+            obj.addClass("current");
+        }
+    });
+</script>
 </asp:Content>
 
