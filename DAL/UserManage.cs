@@ -68,7 +68,7 @@ namespace wgiAdUnionSystem.DAL
         /// </summary>
         /// <param name="username">用户名</param>
         /// <param name="password">密码</param>
-        /// <param name="msgcode">登录错误代码,0为正常登录,1为用户名错误,2为密码错误,3为用户状态锁定</param>
+        /// <param name="msgcode">登录错误代码,0为正常登录,1为用户名错误,2为密码错误,3,为注册后尚未审核,4为用户状态锁定</param>
         /// <param name="userid">用户标识ID</param>
         public bool LoginMember(string username, string password, out int msgcode, out string userid)
         {
@@ -98,8 +98,13 @@ namespace wgiAdUnionSystem.DAL
                     }
                     if (reader["status"].ToString() == "0")
                     {
-                        msgcode = 3;//用户状态锁定
+                        msgcode = 3;//未通过审核
                         result = false;
+                    }
+                    else if (reader["status"].ToString() == "2")
+                    {
+                        msgcode = 4;//账号锁定
+                        return false;
                     }
                 }
                 else

@@ -72,8 +72,8 @@
     <Columns>
         <asp:BoundField HeaderText="申请人" DataField="contact" SortExpression="contact" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center" />
         <asp:BoundField HeaderText="申请金额(元)" DataField="cash" SortExpression="cash" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center" HtmlEncode="false" DataFormatString="{0:c}" ApplyFormatInEditMode="true" />
-        <asp:BoundField HeaderText="申请日期" DataField="applydate" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center" />
-        <asp:TemplateField HeaderText="申请状态" ItemStyle-Width="28%" ItemStyle-HorizontalAlign="Center">
+        <asp:BoundField HeaderText="申请日期" DataField="applydate" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center" SortExpression="applydate" />
+        <asp:TemplateField HeaderText="申请状态" ItemStyle-Width="28%" ItemStyle-HorizontalAlign="Center" SortExpression="status">
             <ItemTemplate>
                 <%# CommonData.getApplyStatusByValue(Eval("status").ToString()) %>
             </ItemTemplate>

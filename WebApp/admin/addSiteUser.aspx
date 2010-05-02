@@ -24,7 +24,7 @@
 
 	<tr>
 	    <td height="25" width="100px" align="right">账号状态：</td>
-	    <td height="25" width="180px" align="left"><asp:Label Text="" id="txtstatus" runat="server"></asp:Label></td>
+	    <td height="25" width="180px" align="left"><asp:Label Text="" id="txtstatus" runat="server"></asp:Label><asp:DropDownList ID="ddlstatus" runat="server" Visible="false"></asp:DropDownList></td>
 	    <td height="25" width="100px" align="right">账户余额：</td>
 	    <td height="25" width="120px" align="left"><asp:Label Text="" ID="txtbalance" runat="server"></asp:Label></td>
 	</tr>

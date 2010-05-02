@@ -23,10 +23,16 @@ public partial class cookie : System.Web.UI.Page
 
         //写入本站cookie
         string userdata = "union="+union + "|siteid=" + siteid;
-        FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1,"siteuser",System.DateTime.Now,DateTime.Now.AddMonths(1),true,userdata);
-        string entrcyedTicket = FormsAuthentication.Encrypt(authTicket);
 
-        HttpCookie authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, entrcyedTicket);
+        //加密保存
+        //FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1,"siteuser",System.DateTime.Now,DateTime.Now.AddMonths(1),true,userdata);
+        //string entrcyedTicket = FormsAuthentication.Encrypt(authTicket);
+
+        //HttpCookie authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, entrcyedTicket);
+
+        //普通保存
+        HttpCookie authCookie = new HttpCookie("adunioncookie", userdata);
+
         HttpContext.Current.Response.Cookies.Add(authCookie);
 
         //取出最终的广告页面地址
