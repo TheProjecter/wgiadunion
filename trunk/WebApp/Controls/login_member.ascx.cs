@@ -73,7 +73,13 @@ public partial class Controls_login_member : validateMember
                         lblLoginMessage.Text = "用户名密码错误！";
                         break;
                     case 3:
+                        lblLoginMessage.Text = "您的账户尚未被审核通过！";
+                        break;
+                    case 4:
                         lblLoginMessage.Text = "您的账户已被锁定！";
+                        break;
+                    default:
+                        lblLoginMessage.Text = "未知错误！";
                         break;
                 }
             }

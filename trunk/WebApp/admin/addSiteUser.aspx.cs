@@ -106,6 +106,10 @@ public partial class admin_addSiteUser : ValidatePage
             fdst_bank.Visible = false;//不允许编辑用户银行账户资料
             btnsubmit.CommandArgument = "edit";
             btncancel.Visible = false;//编辑状态下尽量不给“重置”的功能，以免误清空原用户数据
+
+            Helper.HelperDropDownList.BindData(ddlstatus, CommonData.getAccountStatus(), "name", "value", model.status.ToString());
+            ddlstatus.Visible = true;
+            txtstatus.Visible = false;
         }
         else if (action == "show")
         { 
@@ -239,6 +243,7 @@ public partial class admin_addSiteUser : ValidatePage
                 model.address = address;
                 model.zipcode = zipcode;
                 model.tel = tel;
+                if (ddlstatus.Visible = true) model.status = int.Parse(ddlstatus.Text);
 
                 bll.Update(model);
 
