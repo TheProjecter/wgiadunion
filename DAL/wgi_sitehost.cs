@@ -106,6 +106,7 @@ namespace wgiAdUnionSystem.DAL
 			}
 			return result;
 		}
+
 		/// <summary>
 		/// 更新一条数据
 		/// </summary>
@@ -404,6 +405,17 @@ namespace wgiAdUnionSystem.DAL
             DbCommand cmd = db.GetSqlStringCommand(strSql.ToString());
             db.ExecuteNonQuery(cmd);
 
+        }
+
+        //更新佣金总额
+        public void UpdateBlance(int userid, decimal c)
+        { 
+            string strSql="update wgi_sitehost set balance=@balance where userid=@userid";
+            Database db=DatabaseFactory.CreateDatabase();
+            DbCommand cmd=db.GetSqlStringCommand(strSql);
+            db.AddInParameter(cmd,"balance",DbType.Decimal,c);
+            db.AddInParameter(cmd,"userid",DbType.Int32,userid);
+            db.ExecuteNonQuery(cmd);
         }
 	}
 }

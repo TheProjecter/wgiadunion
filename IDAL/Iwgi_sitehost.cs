@@ -70,5 +70,6 @@ namespace wgiAdUnionSystem.IDAL
         DataSet GetListOfSearch(string username, string realname, string email, string sitename);
 
         void Delete(string ids);
+        void UpdateBlance(int userid, decimal c);
 	}
 }

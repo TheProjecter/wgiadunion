@@ -1,3 +1,60 @@
+----walker 2010/5/3
+--增加orders表，其实是修改order表，原表未删
+alter table wgi_orders
+   drop constraint FK_WGI_ORDE_REFERENCE_WGI_MYSI
+go
+
+alter table wgi_orders
+   drop constraint FK_WGI_ORDE_REFERENCE_WGI_ADHO
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('wgi_orders')
+            and   type = 'U')
+   drop table wgi_orders
+go
+
+/*==============================================================*/
+/* Table: wgi_orders                                            */
+/*==============================================================*/
+create table wgi_orders (
+   orderid              int                  identity,
+   companyid            int                  null,
+   siteid               int                  null,
+   orderno              varchar(50)          null,
+   cash                 decimal(18,2)        null,
+   time                 datetime             null,
+   consumer             varchar(50)          null,
+   itemno               varchar(200)         null,
+   itemprice            decimal(18,2)        null,
+   itemamount           decimal(18,2)        null,
+   pay                  decimal(18,2)        null,
+   ischeck              int                  null default 0,
+   reason               varchar(200)         null,
+   checktime            datetime             null,
+   constraint PK_WGI_ORDERS primary key (orderid)
+)
+go
+
+declare @Cmtwgi_orders varchar(128)
+select @Cmtwgi_orders = user_name()
+execute sp_addextendedproperty 'MS_Description', 
+   '(另一个订单明细表)',
+   'user', @Cmtwgi_orders, 'table', 'wgi_orders'
+go
+
+alter table wgi_orders
+   add constraint FK_WGI_ORDE_REFERENCE_WGI_MYSI foreign key (siteid)
+      references wgi_usersite (siteid)
+go
+
+alter table wgi_orders
+   add constraint FK_WGI_ORDE_REFERENCE_WGI_ADHO foreign key (companyid)
+      references wgi_adhost (companyid)
+go
+
+
 ----walker 2010/4/24
 --修改wgi_loginlog表，设主键为自增，请自行到数据库更新。。。
 --更使用本文件代码

@@ -234,6 +234,11 @@ namespace wgiAdUnionSystem.BLL
         {
             dal.Delete(ids);
         }
+
+        public void UpdateBlance(int userid, decimal c)
+        {
+            dal.UpdateBlance(userid,c);
+        }
 	}
 }
 

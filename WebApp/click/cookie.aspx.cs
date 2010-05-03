@@ -15,14 +15,17 @@ public partial class cookie : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request["siteid"] == null || Request["union"] == null || Request["url"] == null) return;
+        if (Request["siteid"] == null || Request["union"] == null || Request["url"] == null || Request["shopid"] == null || Request["userid"] == null) return;
 
         //step2:广告商处理逻辑，将贡献者网站和id保存
         string siteid = Request["siteid"];
         string union = Request["union"];
+        string shopid = Request["shopid"];
+        string userid = Request["userid"];
 
         //写入本站cookie
-        string userdata = "union="+union + "|siteid=" + siteid;
+        //string userdata = "union=" + union + "|shopid=" + shopid + "|siteid=" + siteid;
+        string userdata = union + "|" + shopid + "|" + siteid + "|" + userid;
 
         //加密保存
         //FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1,"siteuser",System.DateTime.Now,DateTime.Now.AddMonths(1),true,userdata);
@@ -32,6 +35,7 @@ public partial class cookie : System.Web.UI.Page
 
         //普通保存
         HttpCookie authCookie = new HttpCookie("adunioncookie", userdata);
+        authCookie.Expires = DateTime.Now.AddMonths(1);
 
         HttpContext.Current.Response.Cookies.Add(authCookie);
 

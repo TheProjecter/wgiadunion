@@ -46,7 +46,7 @@ public partial class click : System.Web.UI.Page
                 string adurl = new wgiAdUnionSystem.BLL.wgi_adv().GetModel(adid).advlink;
                 string destination = new wgiAdUnionSystem.BLL.wgi_adhost().GetModel(shopid).cookiepage;
 
-                destination += "?union=wgiadunion&siteid=" + siteid + "&url=" + adurl;
+                destination += "?union=wgiadunion&siteid=" + siteid + "&userid=" + userid + "&shopid=" + shopid + "&url=" + adurl;
                 Response.Clear();
                 Response.Redirect(destination);
                 Response.End();
