@@ -2634,6 +2634,7 @@ Shadow=0</a:DisplayPreferences>
 <o:ReferenceSymbol Id="o5">
 <a:CreationDate>1270405187</a:CreationDate>
 <a:ModificationDate>1270471830</a:ModificationDate>
+<a:CenterTextOffset>(1, 0)</a:CenterTextOffset>
 <a:SourceTextOffset>(-40, -102)</a:SourceTextOffset>
 <a:DestinationTextOffset>(40, 102)</a:DestinationTextOffset>
 <a:Rect>((-25316,18838), (-4247,28184))</a:Rect>
@@ -2700,10 +2701,10 @@ CARD 0 Arial Unicode MS,8,N</a:FontList>
 <o:ReferenceSymbol Id="o16">
 <a:CreationDate>1270407243</a:CreationDate>
 <a:ModificationDate>1270471823</a:ModificationDate>
-<a:CenterTextOffset>(6, 0)</a:CenterTextOffset>
+<a:CenterTextOffset>(7, 0)</a:CenterTextOffset>
 <a:SourceTextOffset>(-21, -1)</a:SourceTextOffset>
 <a:DestinationTextOffset>(21, 1)</a:DestinationTextOffset>
-<a:Rect>((-32987,-2918), (-17463,15982))</a:Rect>
+<a:Rect>((-32985,-2918), (-17461,15982))</a:Rect>
 <a:ListOfPoints>((-24937,-2918),(-25554,15982))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>16711680</a:LineColor>
@@ -2723,7 +2724,7 @@ CARD 0 Arial Unicode MS,8,N</a:FontList>
 <o:ReferenceSymbol Id="o19">
 <a:CreationDate>1270407252</a:CreationDate>
 <a:ModificationDate>1270407655</a:ModificationDate>
-<a:CenterTextOffset>(1, 0)</a:CenterTextOffset>
+<a:CenterTextOffset>(2, 0)</a:CenterTextOffset>
 <a:SourceTextOffset>(-24, 57)</a:SourceTextOffset>
 <a:DestinationTextOffset>(24, -57)</a:DestinationTextOffset>
 <a:Rect>((-24487,-4568), (22688,14482))</a:Rect>
@@ -2746,7 +2747,7 @@ CARD 0 Arial Unicode MS,8,N</a:FontList>
 <o:ReferenceSymbol Id="o21">
 <a:CreationDate>1270407651</a:CreationDate>
 <a:ModificationDate>1270471823</a:ModificationDate>
-<a:CenterTextOffset>(0, 2)</a:CenterTextOffset>
+<a:CenterTextOffset>(0, 3)</a:CenterTextOffset>
 <a:SourceTextOffset>(107, 29)</a:SourceTextOffset>
 <a:DestinationTextOffset>(-106, -29)</a:DestinationTextOffset>
 <a:Rect>((-24920,-14389), (-9770,12163))</a:Rect>
@@ -2769,7 +2770,7 @@ CARD 0 Arial Unicode MS,8,N</a:FontList>
 <o:ReferenceSymbol Id="o24">
 <a:CreationDate>1270408876</a:CreationDate>
 <a:ModificationDate>1270471823</a:ModificationDate>
-<a:CenterTextOffset>(5, 0)</a:CenterTextOffset>
+<a:CenterTextOffset>(6, 0)</a:CenterTextOffset>
 <a:SourceTextOffset>(91, 88)</a:SourceTextOffset>
 <a:DestinationTextOffset>(-92, -89)</a:DestinationTextOffset>
 <a:Rect>((-26425,-1512), (-5293,18116))</a:Rect>
@@ -2857,9 +2858,10 @@ CARD 0 Arial Unicode MS,8,N</a:FontList>
 <o:ReferenceSymbol Id="o34">
 <a:CreationDate>1270409255</a:CreationDate>
 <a:ModificationDate>1270471823</a:ModificationDate>
+<a:CenterTextOffset>(1, 0)</a:CenterTextOffset>
 <a:SourceTextOffset>(-48, 50)</a:SourceTextOffset>
 <a:DestinationTextOffset>(48, -50)</a:DestinationTextOffset>
-<a:Rect>((-25237,36157), (-7469,50914))</a:Rect>
+<a:Rect>((-25237,36157), (-7467,50914))</a:Rect>
 <a:ListOfPoints>((-10926,50914),(-25237,36157))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
 <a:LineColor>16711680</a:LineColor>
@@ -2922,7 +2924,7 @@ CARD 0 Arial Unicode MS,8,N</a:FontList>
 <o:ReferenceSymbol Id="o44">
 <a:CreationDate>1270412467</a:CreationDate>
 <a:ModificationDate>1270412467</a:ModificationDate>
-<a:CenterTextOffset>(2, 0)</a:CenterTextOffset>
+<a:CenterTextOffset>(3, 0)</a:CenterTextOffset>
 <a:Rect>((-9997,40037), (7853,51662))</a:Rect>
 <a:ListOfPoints>((-9997,51662),(7853,40037))</a:ListOfPoints>
 <a:ArrowStyle>1</a:ArrowStyle>
@@ -3386,8 +3388,8 @@ TableComment 0 Arial Unicode MS,8,N</a:FontList>
 <a:Code>mobile</a:Code>
 <a:CreationDate>1270402362</a:CreationDate>
 <a:Creator>walker</a:Creator>
-<a:ModificationDate>1270403126</a:ModificationDate>
-<a:Modifier>walker</a:Modifier>
+<a:ModificationDate>1270471899</a:ModificationDate>
+<a:Modifier>SylonLiu</a:Modifier>
 <a:DataType>varchar(50)</a:DataType>
 <a:Length>50</a:Length>
 </o:Column>

@@ -22,9 +22,10 @@ public partial class adtest : System.Web.UI.Page
     {
         //检查cookie
         HttpCookie uc = Request.Cookies["adunioncookie"];
-        if (!object.Equals(uc, DBNull.Value) && uc != null)
+        if (!object.Equals(uc, DBNull.Value) || uc != null)
         {
             /*需要的数据
+             * 商城ID
              * 订单ID
              * 商品ID（可选）
              * 商品链接（可选）
@@ -34,12 +35,33 @@ public partial class adtest : System.Web.UI.Page
              * 传送数据日期（不同于付款/成效日期，因为这个可以从订单ID追溯到）
              * 订单来源ID（处理成siteid)
              */
-            int orderid, itemid, siteid;
-            string itemurl, price, amount, total;
+            int shopid, siteid, userid;
+            string orderno, itemno, itemurl, consumer;
+            double price, amount, total;
             DateTime time = DateTime.Now;
 
-            Response.Write("has cookie");
+            //来自cookie的信息
+            string[] infos = new string[] { "" };
+            infos = uc.Value.Split(new char[] { '|' });
+            shopid = int.Parse(infos[1]);
+            siteid = int.Parse(infos[2]);
+            userid = int.Parse(infos[3]);
 
+            //来自订单的信息
+            orderno = "A3434239BB3";
+            itemno = "CC34924";
+            itemurl = "testurl";
+            price = 355.50;
+            amount = 1;
+            total = 355.50;
+            consumer = "张三";
+
+
+            //调用webservice
+            //Response.Write(new OrderRecord.order().RecordOrderInfo(shopid,orderno,));
+            OrderRecord.order o = new OrderRecord.order();
+            o.RecordOrderInfo(shopid, userid, orderno, consumer, itemno, siteid, price, amount, total, itemurl);
+            Response.Write(1);
         }
     }
 
