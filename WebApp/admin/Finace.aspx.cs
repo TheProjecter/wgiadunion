@@ -25,11 +25,16 @@ public partial class admin_Finace : ValidatePage
 
     private void initData()
     {
-        string sqlWhere = "1=1";
+        string sqlWhere = "1=1 order by applydate desc";
         sqlWhere += hidquery.Value;
         ods.SelectParameters["strWhere"].DefaultValue = sqlWhere;
         gridList.DataSourceID = "ods";
         gridList.DataBind();
+
+        Helper.HelperDropDownList.BindData(ddlapplyflow, CommonData.getApplyStatus(), "name", "value", 0);
+        ddlapplyflow.Items.Insert(0,new ListItem("--请选择--", ""));
+        ddlapplyflow.SelectedIndex = 0;
+
     }
 
     protected void row_bound(object sender, GridViewRowEventArgs e)
@@ -79,6 +84,11 @@ public partial class admin_Finace : ValidatePage
             lblsearch.Text += "email：" + txtemail.Text + " ";
             sql += " and b.email='" + txtemail.Text + "'";
         }
+        if (ddlapplyflow.Text != "")
+        {
+            lblsearch.Text += "申请流程：" + ddlapplyflow.SelectedItem.Text;
+            sql += " and a.status=" + ddlapplyflow.Text;
+        }
         if (lblsearch.Text == "搜索内容<")
         {
             lblsearch.Text = "";
@@ -98,6 +108,7 @@ public partial class admin_Finace : ValidatePage
     {
         lbtnclear.Visible = false;
         txtusername.Text = txtemail.Text = txtname.Text = hidquery.Value = lblsearch.Text = "";
+        ddlapplyflow.SelectedIndex = 0;
         initData();
     }
 

@@ -1,0 +1,6 @@
+
+body{background:none;}
+#box{padding:10px;}
+#box table.noborder td{border:none;}
+#box table.noborder{border:none!important;}
+#box fieldset table td input{ *width:170px!important;}/*ie7 hack*/

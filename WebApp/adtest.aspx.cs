@@ -60,8 +60,8 @@ public partial class adtest : System.Web.UI.Page
             //调用webservice
             //Response.Write(new OrderRecord.order().RecordOrderInfo(shopid,orderno,));
             OrderRecord.order o = new OrderRecord.order();
-            o.RecordOrderInfo(shopid, userid, orderno, consumer, itemno, siteid, price, amount, total, itemurl);
-            Response.Write(1);
+            string b=o.RecordOrderInfo(shopid, userid, orderno, consumer, itemno, siteid, price, amount, total, itemurl);
+            Response.Write("该用户账户余额：" + b + "元");
         }
     }
 

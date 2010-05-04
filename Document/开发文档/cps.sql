@@ -1,3 +1,19 @@
+----walker 2010/5/4
+--创建订单与用户，网站，广告主的视图
+if exists (select * from sysobjects where name= 'view_orders')
+	drop view view_orders
+go
+create view view_orders
+as
+SELECT     u.username, o.orderid, o.companyid, o.siteid, o.orderno, o.cash, o.time, o.consumer, o.itemno, o.itemprice, o.itemamount, o.pay, o.ischeck, o.reason, o.checktime, 
+                      o.userid, u.contact, a.company, a.url, s.url AS usersite
+FROM         dbo.wgi_orders AS o INNER JOIN
+                      dbo.wgi_usersite AS s ON o.siteid = s.siteid INNER JOIN
+                      dbo.wgi_adhost AS a ON o.companyid = a.companyid INNER JOIN
+                      dbo.wgi_sitehost AS u ON o.userid = u.userid
+
+update wgi_adv set advlink='http://localhost:13679/adtest.aspx'
+
 ----walker 2010/5/3
 --增加orders表，其实是修改order表，原表未删
 alter table wgi_orders
@@ -22,6 +38,7 @@ create table wgi_orders (
    orderid              int                  identity,
    companyid            int                  null,
    siteid               int                  null,
+   userid		        int                  null,
    orderno              varchar(50)          null,
    cash                 decimal(18,2)        null,
    time                 datetime             null,

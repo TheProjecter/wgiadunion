@@ -419,11 +419,12 @@ span.oncorrect{background-image:url(/Images/ajaxcheck/onCorrect.gif); color:#333
 		drag
 *******************/
 #bgopacity{ width:100%; height:100%; background:#fff; position:fixed; top:0; left:0; filter:alpha(opacity=50); opacity:0.5; -m0z-opacity:0.5; display:none;}
-.f_outer{ position:fixed; top:10%; left:25%; display:none;}
-.f_title{height:25px; width:570px; position:relative; z-index:5; font-family:Î¢ÈíÑÅºÚ; text-align:right; color:white; line-height:25px; cursor:move; background:#294145;}
+.f_outer{ position:fixed; top:10%; left:25%; display:none; border:}
+.f_title{height:25px; margin:1px; position:relative; z-index:5; font-family:Î¢ÈíÑÅºÚ; text-align:right; color:white; line-height:25px; cursor:move; background:#294145;}
 .f_title span{ margin-right:10px; cursor:pointer; background:url(../img/icons/delete.gif) no-repeat; height:13px; width:13px; margin-top:6px; display:inline-block;}
 .f_title span:hover{ background-position:0 -14px;}
 .f_outer h3{ text-align:center; margin-top:5px; margin-bottom:10px;}
 .f_content{height:430px; width:570px; border:gray solid 1px; z-index:5; position:relative; background:white; }
 .f_content iframe{ width:100%; height:360px; overflow:scroll;}
 .f_bgc{height:430px; width:570px; background:#aaa; position:absolute; top:6px; left:6px; z-index:1; filter:alpha(opacity=50);opacity:0.5;-moz-opacity:0.5;}
+.f_wider{width:800px!important;}

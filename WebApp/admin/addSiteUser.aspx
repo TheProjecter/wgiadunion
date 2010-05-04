@@ -5,13 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <asp:PlaceHolder id="holderheader" runat="server"></asp:PlaceHolder>
-    <style type="text/css">
-        body{background:none;}
-        #box{padding:10px;}
-        #box table.noborder td{border:none;}
-        #box table.noborder{border:none!important;}
-        #box fieldset table td input{ *width:170px!important;}/*ie7 hack*/
-    </style>
+    <link href="css/float.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <form id="form" runat="server">
