@@ -3,6 +3,7 @@ $(function(){
     var ox;
     var oy;
     var flag=false;
+    var setWidth=false;
     $("*").mousemove(function(e){
 	    if(flag==true){
 	        var finalx,finaly,bodyx,bodyy; 
@@ -29,10 +30,16 @@ function closepop(){
 	$(".f_outer").hide();
 	$(".f_outer h3").html("");
 	$("#bgopacity").hide();
+	$(".f_wider").removeClass("f_wider");
 }
 
-function openpop(title){
+function openpop(title,wider){
+    var w=wider||0;
     $(".f_outer h3").html(title);
-    $(".f_outer").show().css({left:"30%",top:"10%"});
+    if(!wider) $(".f_outer").show().css({left:"30%",top:"10%"});
+    else{
+        $(".f_outer").show().css({left:"20%",top:"10%"});
+        $(".f_content").add(".f_bgc").addClass("f_wider");
+    }
     $("#bgopacity").show();
 }

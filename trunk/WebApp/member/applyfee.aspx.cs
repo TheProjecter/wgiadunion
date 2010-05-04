@@ -36,12 +36,12 @@ public partial class member_applyfee : System.Web.UI.Page
 
         wgiAdUnionSystem.BLL.wgi_cash bll_cash = new wgiAdUnionSystem.BLL.wgi_cash();
 
-        DataTable dt = bll_cash.GetList(" a.userid="+userid+" and b.status<>4 and b.status<>5").Tables[0];
+        DataTable dt = bll_cash.GetList(" a.userid="+userid+" and a.status<4").Tables[0];
         int applycount = dt.Rows.Count;
 
         if (applycount > 1)//多条未处理纪录，说明数据库有误，禁止继续操作
         {
-            Response.Write("您的申请纪录异常，暂时屏蔽您申请佣金的权限，请联系<a href='mailto:walker@wingoi.com'>管理员</a>解决后再来申请佣金！");
+            Response.Write("您的申请纪录异常，暂时屏蔽您申请佣金的权限，请联系<a href='mailto:walker@wingoi.com'>管理员</a>解决后再来申请佣金！<br />异常原因：同时有" + applycount + "条申请佣金记录，多条记录会混淆结算佣金时间");
             Response.End();
             return;
         }

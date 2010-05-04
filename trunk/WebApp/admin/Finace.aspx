@@ -7,6 +7,7 @@
 <asp:PlaceHolder ID="plhdTitle" runat="server"></asp:PlaceHolder>
 <style type="text/css">
     #box table td input{ border:none; text-align:center;}
+    select{margin:0!important;}
 </style>
 </head>
 <body>
@@ -27,12 +28,13 @@
                         <asp:LinkButton ID="lbtnsearch" runat="server" CssClass="search" OnCommand="search_click" Text="查询" OnClientClick="return checksearch();"></asp:LinkButton>
                         <br />
                     </h3>
-				    <div class="youhave">
-				    <ul id="ulfli">
-				        <li><span>姓名：</span><asp:TextBox ID="txtname" runat="server"></asp:TextBox></li>
-				        <li><span>用户名：</span><asp:TextBox ID="txtusername" runat="server"></asp:TextBox></li>
-				        <li><span>email：</span><asp:TextBox ID="txtemail" runat="server"></asp:TextBox></li>
-				    </ul>
+				    <div class="youhave">				    
+				        <ul id="ulfli">
+				            <li><span>用户名：</span><asp:TextBox ID="txtusername" runat="server"></asp:TextBox></li>
+				            <li><span>E-mail：</span><asp:TextBox ID="txtemail" runat="server"></asp:TextBox></li>
+				            <li><span>姓名：</span><asp:TextBox ID="txtname" runat="server"></asp:TextBox></li>
+				            <li><span>申请流程：</span><asp:DropDownList ID="ddlapplyflow" runat="server"></asp:DropDownList></li>
+				        </ul>
 				        <div id="tips"><span style="color:gray; font-weight:600">提示：</span><span id="tipmsg"></span>
 				            <asp:Label ID="lblsearch" runat="server"></asp:Label>
 				            <asp:LinkButton ID="lbtnclear" Visible="false" runat="server" Text="清除" CssClass="folder_table" style="padding-left:20px; text-decoration:none;" OnClick="clearsearch"></asp:LinkButton>
@@ -73,7 +75,7 @@
         <asp:BoundField HeaderText="申请人" DataField="contact" SortExpression="contact" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center" />
         <asp:BoundField HeaderText="申请金额(元)" DataField="cash" SortExpression="cash" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center" HtmlEncode="false" DataFormatString="{0:c}" ApplyFormatInEditMode="true" />
         <asp:BoundField HeaderText="申请日期" DataField="applydate" ItemStyle-Width="20%" ItemStyle-HorizontalAlign="Center" SortExpression="applydate" />
-        <asp:TemplateField HeaderText="申请状态" ItemStyle-Width="28%" ItemStyle-HorizontalAlign="Center" SortExpression="status">
+        <asp:TemplateField HeaderText="申请状态" ItemStyle-Width="25%" ItemStyle-HorizontalAlign="Center" SortExpression="status">
             <ItemTemplate>
                 <%# CommonData.getApplyStatusByValue(Eval("status").ToString()) %>
             </ItemTemplate>
@@ -81,9 +83,10 @@
                 <asp:DropDownList ID="ddlstatus" runat="server" DataSource="<%# CommonData.getApplyStatus() %>"></asp:DropDownList>
             </EditItemTemplate>
         </asp:TemplateField>
-        <asp:TemplateField HeaderText="操作" ItemStyle-Width="12%" ItemStyle-HorizontalAlign="Center">
+        <asp:TemplateField HeaderText="操作" ItemStyle-Width="15%" ItemStyle-HorizontalAlign="Center">
             <ItemTemplate>
-                <input type="image" src="img/icons/user.png" onclick='showfloat(<%# Eval("userid") %>);return false;' class="imgbtn" title="查看申请人" />
+                <input type="image" src="img/icons/coins.png" onclick='showfloat(2,<%# Eval("userid") %>);return false;' class="imgbtn" title="查看明细" />
+                <input type="image" src="img/icons/user.png" onclick='showfloat(1,<%# Eval("userid") %>);return false;' class="imgbtn" title="查看申请人" />
                 <asp:ImageButton ID="lbtndetail" runat="server" ToolTip="编辑" CommandName="Edit" ImageUrl="img/icons/user_edit.png" />
             </ItemTemplate>
             <EditItemTemplate>
@@ -140,19 +143,33 @@
 <script src="js/drag.js" type="text/javascript"></script>
 <script type="text/javascript">
     
-    function showfloat(userid){
+    function showfloat(type,userid){
         var uid=userid;
-        var url="addSiteUser.aspx?uid="+uid+"&act=show";
+        var url="";
         var title="详细资料";
+        var iswider=0;
+        switch(type){
+            case 1:
+                url="addSiteUser.aspx?uid="+uid+"&act=show";
+                title="详细资料";
+            break;
+            case 2:
+                url+="orderDetails.aspx?uid="+uid;
+                title="查询明细";
+                iswider=1;
+            break;
+            default:
+            break;
+        }
         $("#userframe").attr("src",url);
-        openpop(title);
+        openpop(title,iswider);
     }
     
     
     function checksearch(){
         var obj=$("#tipmsg");
         var sobj=$("#lblsearch");
-        if($("#txtusername").val()==""&&$("#txtname").val()==""&&$("#txtemail").val()==""){
+        if($("#txtusername").val()==""&&$("#txtname").val()==""&&$("#txtemail").val()==""&&$("#ddlapplyflow").val()==""){
             obj.removeClass().addClass("onerror").html("请至少输入一个查询条件");
             sobj.html("");
             return false;

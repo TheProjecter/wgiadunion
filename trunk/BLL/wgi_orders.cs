@@ -193,6 +193,16 @@ namespace wgiAdUnionSystem.BLL
 		//}
 
 		#endregion  成员方法
+
+
+        /// <summary>
+        /// 从视图获得所有记录
+        /// </summary>
+        /// <returns></returns>
+        public DataSet GetListFromView(string viewname, string strWhere)
+        {
+            return dal.GetListFromView(viewname, strWhere);
+        }
 	}
 }
 

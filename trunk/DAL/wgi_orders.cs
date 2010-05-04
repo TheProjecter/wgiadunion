@@ -70,15 +70,16 @@ namespace wgiAdUnionSystem.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into wgi_orders(");
-			strSql.Append("companyid,siteid,orderno,cash,time,consumer,itemno,itemprice,itemamount,pay,ischeck,reason,checktime)");
+			strSql.Append("companyid,siteid,userid,orderno,cash,time,consumer,itemno,itemprice,itemamount,pay,ischeck,reason,checktime)");
 
 			strSql.Append(" values (");
-			strSql.Append("@companyid,@siteid,@orderno,@cash,@time,@consumer,@itemno,@itemprice,@itemamount,@pay,@ischeck,@reason,@checktime)");
+			strSql.Append("@companyid,@siteid,@userid,@orderno,@cash,@time,@consumer,@itemno,@itemprice,@itemamount,@pay,@ischeck,@reason,@checktime)");
 			strSql.Append(";select @@IDENTITY");
 			Database db = DatabaseFactory.CreateDatabase();
 			DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
 			db.AddInParameter(dbCommand, "companyid", DbType.Int32, model.companyid);
-			db.AddInParameter(dbCommand, "siteid", DbType.Int32, model.siteid);
+            db.AddInParameter(dbCommand, "siteid", DbType.Int32, model.siteid);
+            db.AddInParameter(dbCommand, "userid", DbType.Int32, model.userid);
 			db.AddInParameter(dbCommand, "orderno", DbType.String, model.orderno);
 			db.AddInParameter(dbCommand, "cash", DbType.Decimal, model.cash);
 			db.AddInParameter(dbCommand, "time", DbType.DateTime, model.time);
@@ -184,7 +185,7 @@ namespace wgiAdUnionSystem.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select orderid,companyid,siteid,orderno,cash,time,consumer,itemno,itemprice,itemamount,pay,ischeck,reason,checktime ");
+			strSql.Append("select orderid,companyid,userid,siteid,orderno,cash,time,consumer,itemno,itemprice,itemamount,pay,ischeck,reason,checktime ");
 			strSql.Append(" FROM wgi_orders ");
 			if(strWhere.Trim()!="")
 			{
@@ -218,7 +219,7 @@ namespace wgiAdUnionSystem.DAL
 		public List<wgiAdUnionSystem.Model.wgi_orders> GetListArray(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select orderid,companyid,siteid,orderno,cash,time,consumer,itemno,itemprice,itemamount,pay,ischeck,reason,checktime ");
+			strSql.Append("select orderid,companyid,userid,siteid,orderno,cash,time,consumer,itemno,itemprice,itemamount,pay,ischeck,reason,checktime ");
 			strSql.Append(" FROM wgi_orders ");
 			if(strWhere.Trim()!="")
 			{
@@ -254,6 +255,11 @@ namespace wgiAdUnionSystem.DAL
 			{
 				model.companyid=(int)ojb;
 			}
+            ojb = dataReader["userid"];
+            if (ojb != null && ojb != DBNull.Value)
+            {
+                model.userid = (int)ojb;
+            }
 			ojb = dataReader["siteid"];
 			if(ojb != null && ojb != DBNull.Value)
 			{
@@ -302,6 +308,23 @@ namespace wgiAdUnionSystem.DAL
 		}
 
 		#endregion  成员方法
+
+
+        /// <summary>
+        /// 从视图获得所有记录
+        /// </summary>
+        /// <returns></returns>
+        public DataSet GetListFromView(string viewname, string strWhere)
+        {
+            string strSql = "select * from " + viewname;
+            if (strWhere.Trim() != "")
+            {
+                strSql += " where " + strWhere;
+            }
+            Database db = DatabaseFactory.CreateDatabase();
+            return db.ExecuteDataSet(CommandType.Text, strSql);
+        }
+
 	}
 }
 

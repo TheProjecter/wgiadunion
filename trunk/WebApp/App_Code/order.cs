@@ -36,7 +36,7 @@ public class order : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public bool RecordOrderInfo(int shopid, int userid, string orderno, string comsumer, string itemno, int siteid, double price, double amount, double total, string itemurl)
+    public string RecordOrderInfo(int shopid, int userid, string orderno, string comsumer, string itemno, int siteid, double price, double amount, double total, string itemurl)
     {
         wgiAdUnionSystem.Model.wgi_orders model = new wgiAdUnionSystem.Model.wgi_orders();
         model.cash = Convert.ToDecimal(total);
@@ -51,9 +51,10 @@ public class order : System.Web.Services.WebService
         model.reason = "";
         model.siteid = siteid;
         model.time = DateTime.Now;//或传入
+        model.userid = userid;
 
         //计算佣金
-        model.pay = Convert.ToDecimal(3);
+        model.pay = Convert.ToDecimal(22);
 
         //添加订单记录
         new wgiAdUnionSystem.BLL.wgi_orders().Add(model);
@@ -64,7 +65,7 @@ public class order : System.Web.Services.WebService
         decimal newBlance= Convert.ToDecimal(host.balance) + Convert.ToDecimal(model.pay);
         bll.UpdateBlance(userid, newBlance);
 
-        return true;
+        return newBlance.ToString();
     }
 
 }

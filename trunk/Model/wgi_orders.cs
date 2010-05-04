@@ -24,6 +24,14 @@ namespace wgiAdUnionSystem.Model
 		private int? _ischeck;
 		private string _reason;
 		private DateTime? _checktime;
+        private int _userid;
+
+
+        public int userid 
+        {
+            set { _userid = value; }
+            get { return _userid; }
+        }
 		/// <summary>
 		/// 
 		/// </summary>

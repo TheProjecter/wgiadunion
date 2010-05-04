@@ -8,6 +8,8 @@
 </head>
 <body>
 <a href="http://localhost:13679/click/click.aspx?shopid=1&adid=30&siteid=4&userid=1&paytype=1&adtype=1" target="_blank">adfdasf</a><img src='http://localhost:13679/click/showCtr.aspx?shopid=1&adid=30&siteid=4&userid=1&paytype=1&adtype=1' alt='' style='display:none;' />
+<br />
+<a href="http://localhost:13679/click/click.aspx?shopid=1&adid=33&siteid=16&userid=12&paytype=1&adtype=2" target="_blank"><img src="http://img.alimama.cn/adbrand/adboard/picture/2010-04-13/112970490001100413200239.gif" alt="" style="border:none; width:300px; height:250px" /></a><img src='http://localhost:13679/click/showCtr.aspx?shopid=1&adid=33&siteid=16&userid=12&paytype=1&adtype=2' alt='' style='display:none;' />
     <%--form id="form1" runat="server">
     <div>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
