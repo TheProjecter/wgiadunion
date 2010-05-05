@@ -26,7 +26,7 @@
         });
         
         function regtest(pattern,data){return pattern.test(data);}
-		function checkvali(){vali=true;$(":input").blur(); if(!vali) $(document).scrollTop(100); else if(!$("#cbx_hasread").attr("checked")) alert("请接受合作协议！"); return vali;}
+		function checkvali(){vali=true;$(":input").blur(); if(!vali) $(document).scrollTop(100); else if(!$("#cbx_hasread").attr("checked")){ alert("请接受合作协议！");vali=false} return vali;}
 		function showterms(){$(".divterms").slideToggle();};
 </script>
 </asp:Content>

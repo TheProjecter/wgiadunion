@@ -17,9 +17,15 @@
      <div id="rightnow">
         <h3 class="reallynow">佣金明细</h3>
         <div class="youhave">
-        <asp:Label ID="lbltime" runat="server"></asp:Label>
-    <br />
-    </div>
+            <div id="tips">
+                用户申请的佣金为：<asp:Label ID="lblapplyamt" runat="server" ForeColor="Red"></asp:Label>元，查询有效佣金为：
+                <asp:Label ID="lblfigureamt" runat="server" ForeColor="Red"></asp:Label>元
+                <br />
+                <asp:Label ID="lbltime" runat="server"></asp:Label>
+                <br />
+                <asp:Label ID="lbladv" runat="server">把交易记录按照广告主不同发到各广告主要求确认？</asp:Label>
+            </div>
+        </div>
      </div>
      <br />   
     <div style="width:inherit; overflow-x:auto; *overflow-y:hidden; position:relative;">
@@ -65,7 +71,6 @@
 </form>
 </body>
 <script type="text/javascript">
-    //window.onscroll=setScroll;
     $(function(){
         $(window).scroll(function(){
             var obj=$("#fixth");
@@ -76,13 +81,19 @@
             }
             else
                 $("#fixth").css({top:1});
-            
         });
+        
         if(window.screen.availHeight>document.body.clientHeight){
             $("table").parent("div").css({position:"relative"});
             var otr=$("th").parent("tr");
             otr.clone().attr("id","fixth").prependTo("table").css({position:"absolute",top:1})
         }
+        
+        var t=0.00;
+        $("tr").each(function(){
+            t+=Number($(this).find("td").eq(11).html());
+        });
+        $("#lblfigureamt").html(t);
     });
 </script>
 </html>
