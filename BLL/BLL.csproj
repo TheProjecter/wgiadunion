@@ -62,6 +62,7 @@
     <Compile Include="wgi_loginlog.cs" />
     <Compile Include="wgi_lostorder.cs" />
     <Compile Include="wgi_notice.cs" />
+    <Compile Include="wgi_noticestat.cs" />
     <Compile Include="wgi_orders.cs" />
     <Compile Include="wgi_usersite.cs" />
     <Compile Include="wgi_order.cs" />

@@ -7,14 +7,14 @@ using wgiAdUnionSystem.DALFactory;
 using wgiAdUnionSystem.IDAL;
 namespace wgiAdUnionSystem.BLL
 {
-	/// <summary>
-	/// 业务逻辑类wgi_notice 的摘要说明。
-	/// </summary>
-	public class wgi_notice
-	{
-		private readonly Iwgi_notice dal=(Iwgi_notice)DataAccess.CreateInstance("wgi_notice");
-		public wgi_notice()
-		{}
+    /// <summary>
+    /// 业务逻辑类wgi_noticestat 的摘要说明。
+    /// </summary>
+    public class wgi_noticestat
+    {
+        private readonly Iwgi_noticestat dal = (Iwgi_noticestat)DataAccess.CreateInstance("wgi_noticestat");
+        public wgi_noticestat()
+        { }
         #region  成员方法
 
         /// <summary>
@@ -36,15 +36,15 @@ namespace wgiAdUnionSystem.BLL
         /// <summary>
         /// 增加一条数据
         /// </summary>
-        public int Add(wgiAdUnionSystem.Model.wgi_notice model)
+        public void Add(wgiAdUnionSystem.Model.wgi_noticestat model)
         {
-            return dal.Add(model);
+            dal.Add(model);
         }
 
         /// <summary>
         /// 更新一条数据
         /// </summary>
-        public void Update(wgiAdUnionSystem.Model.wgi_notice model)
+        public void Update(wgiAdUnionSystem.Model.wgi_noticestat model)
         {
             dal.Update(model);
         }
@@ -61,7 +61,7 @@ namespace wgiAdUnionSystem.BLL
         /// <summary>
         /// 得到一个对象实体
         /// </summary>
-        public wgiAdUnionSystem.Model.wgi_notice GetModel(int id)
+        public wgiAdUnionSystem.Model.wgi_noticestat GetModel(int id)
         {
 
             return dal.GetModel(id);
@@ -70,10 +70,10 @@ namespace wgiAdUnionSystem.BLL
         /// <summary>
         /// 得到一个对象实体，从缓存中。
         /// </summary>
-        public wgiAdUnionSystem.Model.wgi_notice GetModelByCache(int id)
+        public wgiAdUnionSystem.Model.wgi_noticestat GetModelByCache(int id)
         {
 
-            string CacheKey = "wgi_noticeModel-" + id;
+            string CacheKey = "wgi_noticestatModel-" + id;
             object objModel = LTP.Common.DataCache.GetCache(CacheKey);
             if (objModel == null)
             {
@@ -88,7 +88,7 @@ namespace wgiAdUnionSystem.BLL
                 }
                 catch { }
             }
-            return (wgiAdUnionSystem.Model.wgi_notice)objModel;
+            return (wgiAdUnionSystem.Model.wgi_noticestat)objModel;
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace wgiAdUnionSystem.BLL
         /// <summary>
         /// 获得数据列表
         /// </summary>
-        public List<wgiAdUnionSystem.Model.wgi_notice> GetModelList(string strWhere)
+        public List<wgiAdUnionSystem.Model.wgi_noticestat> GetModelList(string strWhere)
         {
             DataSet ds = dal.GetList(strWhere);
             return DataTableToList(ds.Tables[0]);
@@ -116,37 +116,39 @@ namespace wgiAdUnionSystem.BLL
         /// <summary>
         /// 获得数据列表
         /// </summary>
-        public List<wgiAdUnionSystem.Model.wgi_notice> DataTableToList(DataTable dt)
+        public List<wgiAdUnionSystem.Model.wgi_noticestat> DataTableToList(DataTable dt)
         {
-            List<wgiAdUnionSystem.Model.wgi_notice> modelList = new List<wgiAdUnionSystem.Model.wgi_notice>();
+            List<wgiAdUnionSystem.Model.wgi_noticestat> modelList = new List<wgiAdUnionSystem.Model.wgi_noticestat>();
             int rowsCount = dt.Rows.Count;
             if (rowsCount > 0)
             {
-                wgiAdUnionSystem.Model.wgi_notice model;
+                wgiAdUnionSystem.Model.wgi_noticestat model;
                 for (int n = 0; n < rowsCount; n++)
                 {
-                    model = new wgiAdUnionSystem.Model.wgi_notice();
+                    model = new wgiAdUnionSystem.Model.wgi_noticestat();
                     if (dt.Rows[n]["id"].ToString() != "")
                     {
                         model.id = int.Parse(dt.Rows[n]["id"].ToString());
                     }
-                    model.title = dt.Rows[n]["title"].ToString();
-                    model.notice = dt.Rows[n]["notice"].ToString();
-                    if (dt.Rows[n]["pubdate"].ToString() != "")
+                    if (dt.Rows[n]["noticeid"].ToString() != "")
                     {
-                        model.pubdate = DateTime.Parse(dt.Rows[n]["pubdate"].ToString());
+                        model.noticeid = int.Parse(dt.Rows[n]["noticeid"].ToString());
+                    }
+                    if (dt.Rows[n]["usertype"].ToString() != "")
+                    {
+                        model.usertype = int.Parse(dt.Rows[n]["usertype"].ToString());
+                    }
+                    if (dt.Rows[n]["userid"].ToString() != "")
+                    {
+                        model.userid = int.Parse(dt.Rows[n]["userid"].ToString());
                     }
                     if (dt.Rows[n]["unread"].ToString() != "")
                     {
                         model.unread = int.Parse(dt.Rows[n]["unread"].ToString());
                     }
-                    if (dt.Rows[n]["publisher"].ToString() != "")
+                    if (dt.Rows[n]["deleted"].ToString() != "")
                     {
-                        model.publisher = int.Parse(dt.Rows[n]["publisher"].ToString());
-                    }
-                    if (dt.Rows[n]["objid"].ToString() != "")
-                    {
-                        model.objid = int.Parse(dt.Rows[n]["objid"].ToString());
+                        model.deleted = int.Parse(dt.Rows[n]["deleted"].ToString());
                     }
                     modelList.Add(model);
                 }
@@ -172,43 +174,17 @@ namespace wgiAdUnionSystem.BLL
 
         #endregion  成员方法
 
-        /// <summary>
-        /// 更新阅读状态
-        /// </summary>
-        /// <param name="id"></param>
-        public void UpdateReadStatus(string ids, int status)
+
+        public void UpdateDelete(int noticeid, int userid, int usertype)
         {
-            dal.UpdateReadStatus(ids, status);
+            dal.UpdateDelete(noticeid, userid, usertype);
         }
 
-        /// <summary>
-        /// 删除多条消息
-        /// </summary>
-        /// <param name="ids"></param>
-        public void Delete(string ids)
+        public void UpdateRead(int noticeid, int status, int userid, int usertype)
         {
-            dal.DeleteByIds(ids);
+            dal.UpdateRead(noticeid, status, userid, usertype);
         }
 
-
-        /// <summary>
-        /// 得到所有公共消息
-        /// </summary>
-        /// <returns></returns>
-        public DataSet getListOfPublic(int usertype, int userid)
-        {
-            return dal.getListOfPublic(usertype, userid);
-        }
-
-        /// <summary>
-        /// 得到私人消息
-        /// </summary>
-        /// <param name="objid"></param>
-        /// <returns></returns>
-        public DataSet getLIstOfPrivate(int objid, int objtype)
-        {
-            return dal.getLIstOfPrivate(objid,objtype);
-        }
-	}
+    }
 }
 

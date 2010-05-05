@@ -46,13 +46,13 @@ namespace wgiAdUnionSystem.IDAL
 		//DataSet GetList(int PageSize,int PageIndex,string strWhere);
         #endregion  成员方法
         /// <summary>
-        /// 更新阅读状态
+        /// 更新私信状态
         /// </summary>
         /// <param name="id"></param>
         void UpdateReadStatus(string ids, int status);
 
         /// <summary>
-        /// 删除一组数据
+        /// 删除一组私信
         /// </summary>
         void DeleteByIds(string ids);
 
@@ -60,13 +60,15 @@ namespace wgiAdUnionSystem.IDAL
         /// 得到所有公共消息
         /// </summary>
         /// <returns></returns>
-        DataSet getListOfPublic();
+        DataSet getListOfPublic(int usertype, int userid);
 
         /// <summary>
         /// 得到私人消息
         /// </summary>
         /// <param name="objid"></param>
+        /// <param name="objtype"></param>
         /// <returns></returns>
-        DataSet getLIstOfPrivate(int objid);
+        DataSet getLIstOfPrivate(int objid, int objtype);
+
 	}
 }

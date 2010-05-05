@@ -1,3 +1,52 @@
+----wakjer 2010/5/5
+----新增消息阅读状态/删除状态表（群发消息）
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('wgi_noticestat')
+            and   type = 'U')
+   drop table wgi_noticestat
+go
+
+/*==============================================================*/
+/* Table: wgi_noticestat                                        */
+/*==============================================================*/
+create table wgi_noticestat (
+   id                   int                  identity,
+   noticeid             int                  null,
+   usertype             int                  null,
+   userid               int                  null,
+   unread               int                  null default 0,
+   deleted             int                  null default 0
+   constraint PK_WGI_NOTICESTAT primary key (id)
+)
+go
+
+--declare @Cmtwgi_noticestat varchar(128)
+--select @Cmtwgi_noticestat = user_name()
+--execute sp_addextendedproperty 'MS_Description', 
+--   '标记公告/群发信息的阅读、删除状态',
+--   'user', @Cmtwgi_noticestat, 'table', 'wgi_noticestat'
+--go
+--
+--execute sp_addextendedproperty 'MS_Description', 
+--   '0为网站主，1为广告主',
+--   'user', '', 'table', 'wgi_noticestat', 'column', 'usertype'
+--go
+
+
+--创建公共消息视图(为了避免群发出现一样的记录，因此用一个消息表和一个状态表来完成
+--if exists (select * from sysobjects where name='view_pubNotice')
+--drop view view_pubNotice
+--go
+--create view view_pubNotice
+--as
+--select a.id, a.title, a.notice, a.pubdate, a.publisher, 
+--	b.usertype, b.userid, isnull(b.unread,0) unread, b.id statid, isnull(b.deleted,0) deleted, b.noticeid
+--		from wgi_notice a left join wgi_noticestat b 
+--			on a.id=b.noticeid 
+--				where a.objid=-1 and b.noticeid<>null
+
+
 ----walker 2010/5/4
 --创建订单与用户，网站，广告主的视图
 if exists (select * from sysobjects where name= 'view_orders')
@@ -89,6 +138,7 @@ create table wgi_notice(
 	unread int default 0,	--默认未读
 	publisher int default -1, --默认值表示未知系统管理员
 	objid int default -1 --默认值表示公告消息，否则跟上接收人ID
+	objtype int default -1 --默认值表示公告消息，0为网站主，1为广告主
 )
 go
 

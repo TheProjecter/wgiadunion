@@ -35,7 +35,7 @@ public partial class member_messages : System.Web.UI.Page
     private void initData(int uid)
     {
 
-        DataSet ds = new wgiAdUnionSystem.BLL.wgi_notice().getLIstOfPrivate(uid);
+        DataSet ds = new wgiAdUnionSystem.BLL.wgi_notice().getLIstOfPrivate(uid, 0);
         int page;
         if (!int.TryParse(Request["page"], out page))
         {

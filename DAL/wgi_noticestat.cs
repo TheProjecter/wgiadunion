@@ -8,13 +8,13 @@ using System.Data.Common;
 using wgiAdUnionSystem.IDAL;
 namespace wgiAdUnionSystem.DAL
 {
-	/// <summary>
-	/// 数据访问类wgi_notice。
-	/// </summary>
-	public class wgi_notice:Iwgi_notice
-	{
-		public wgi_notice()
-		{}
+    /// <summary>
+    /// 数据访问类wgi_noticestat。
+    /// </summary>
+    public class wgi_noticestat : Iwgi_noticestat
+    {
+        public wgi_noticestat()
+        { }
         #region  成员方法
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace wgiAdUnionSystem.DAL
         /// </summary>
         public int GetMaxId()
         {
-            string strsql = "select max(id)+1 from wgi_notice";
+            string strsql = "select max(id)+1 from wgi_noticestat";
             Database db = DatabaseFactory.CreateDatabase();
             object obj = db.ExecuteScalar(CommandType.Text, strsql);
             if (obj != null && obj != DBNull.Value)
@@ -39,7 +39,7 @@ namespace wgiAdUnionSystem.DAL
         {
             Database db = DatabaseFactory.CreateDatabase();
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select count(1) from wgi_notice where id=@id ");
+            strSql.Append("select count(1) from wgi_noticestat where id=@id ");
             DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
             db.AddInParameter(dbCommand, "id", DbType.Int32, id);
             int cmdresult;
@@ -66,54 +66,45 @@ namespace wgiAdUnionSystem.DAL
         /// <summary>
         /// 增加一条数据
         /// </summary>
-        public int Add(wgiAdUnionSystem.Model.wgi_notice model)
+        public void Add(wgiAdUnionSystem.Model.wgi_noticestat model)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("insert into wgi_notice(");
-            strSql.Append("title,notice,pubdate,unread,publisher,objid)");
+            strSql.Append("insert into wgi_noticestat(");
+            strSql.Append("noticeid,usertype,userid,unread,deleted)");
 
             strSql.Append(" values (");
-            strSql.Append("@title,@notice,@pubdate,@unread,@publisher,@objid)");
-            strSql.Append(";select @@IDENTITY");
+            strSql.Append("@noticeid,@usertype,@userid,@unread,@deleted)");
             Database db = DatabaseFactory.CreateDatabase();
             DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
-            db.AddInParameter(dbCommand, "title", DbType.String, model.title);
-            db.AddInParameter(dbCommand, "notice", DbType.String, model.notice);
-            db.AddInParameter(dbCommand, "pubdate", DbType.DateTime, model.pubdate);
+            //db.AddInParameter(dbCommand, "id", DbType.Int32, model.id);
+            db.AddInParameter(dbCommand, "noticeid", DbType.Int32, model.noticeid);
+            db.AddInParameter(dbCommand, "usertype", DbType.Int32, model.usertype);
+            db.AddInParameter(dbCommand, "userid", DbType.Int32, model.userid);
             db.AddInParameter(dbCommand, "unread", DbType.Int32, model.unread);
-            db.AddInParameter(dbCommand, "publisher", DbType.Int32, model.publisher);
-            db.AddInParameter(dbCommand, "objid", DbType.Int32, model.objid);
-            int result;
-            object obj = db.ExecuteScalar(dbCommand);
-            if (!int.TryParse(obj.ToString(), out result))
-            {
-                return 0;
-            }
-            return result;
+            db.AddInParameter(dbCommand, "deleted", DbType.Int32, model.deleted);
+            db.ExecuteNonQuery(dbCommand);
         }
         /// <summary>
         /// 更新一条数据
         /// </summary>
-        public void Update(wgiAdUnionSystem.Model.wgi_notice model)
+        public void Update(wgiAdUnionSystem.Model.wgi_noticestat model)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("update wgi_notice set ");
-            strSql.Append("title=@title,");
-            strSql.Append("notice=@notice,");
-            strSql.Append("pubdate=@pubdate,");
+            strSql.Append("update wgi_noticestat set ");
+            strSql.Append("noticeid=@noticeid,");
+            strSql.Append("usertype=@usertype,");
+            strSql.Append("userid=@userid,");
             strSql.Append("unread=@unread,");
-            strSql.Append("publisher=@publisher,");
-            strSql.Append("objid=@objid");
+            strSql.Append("deleted=@deleted");
             strSql.Append(" where id=@id ");
             Database db = DatabaseFactory.CreateDatabase();
             DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
             db.AddInParameter(dbCommand, "id", DbType.Int32, model.id);
-            db.AddInParameter(dbCommand, "title", DbType.String, model.title);
-            db.AddInParameter(dbCommand, "notice", DbType.String, model.notice);
-            db.AddInParameter(dbCommand, "pubdate", DbType.DateTime, model.pubdate);
+            db.AddInParameter(dbCommand, "noticeid", DbType.Int32, model.noticeid);
+            db.AddInParameter(dbCommand, "usertype", DbType.Int32, model.usertype);
+            db.AddInParameter(dbCommand, "userid", DbType.Int32, model.userid);
             db.AddInParameter(dbCommand, "unread", DbType.Int32, model.unread);
-            db.AddInParameter(dbCommand, "publisher", DbType.Int32, model.publisher);
-            db.AddInParameter(dbCommand, "objid", DbType.Int32, model.objid);
+            db.AddInParameter(dbCommand, "deleted", DbType.Int32, model.deleted);
             db.ExecuteNonQuery(dbCommand);
 
         }
@@ -125,7 +116,7 @@ namespace wgiAdUnionSystem.DAL
         {
 
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("delete from wgi_notice ");
+            strSql.Append("delete from wgi_noticestat ");
             strSql.Append(" where id=@id ");
             Database db = DatabaseFactory.CreateDatabase();
             DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
@@ -137,16 +128,16 @@ namespace wgiAdUnionSystem.DAL
         /// <summary>
         /// 得到一个对象实体
         /// </summary>
-        public wgiAdUnionSystem.Model.wgi_notice GetModel(int id)
+        public wgiAdUnionSystem.Model.wgi_noticestat GetModel(int id)
         {
 
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select id,title,notice,pubdate,unread,publisher,objid from wgi_notice ");
+            strSql.Append("select id,noticeid,usertype,userid,unread,deleted from wgi_noticestat ");
             strSql.Append(" where id=@id ");
             Database db = DatabaseFactory.CreateDatabase();
             DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
             db.AddInParameter(dbCommand, "id", DbType.Int32, id);
-            wgiAdUnionSystem.Model.wgi_notice model = null;
+            wgiAdUnionSystem.Model.wgi_noticestat model = null;
             using (IDataReader dataReader = db.ExecuteReader(dbCommand))
             {
                 if (dataReader.Read())
@@ -163,8 +154,8 @@ namespace wgiAdUnionSystem.DAL
         public DataSet GetList(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select id,title,notice,pubdate,unread,publisher,objid ");
-            strSql.Append(" FROM wgi_notice ");
+            strSql.Append("select id,noticeid,usertype,userid,unread,deleted ");
+            strSql.Append(" FROM wgi_noticestat ");
             if (strWhere.Trim() != "")
             {
                 strSql.Append(" where " + strWhere);
@@ -181,7 +172,7 @@ namespace wgiAdUnionSystem.DAL
         {
             Database db = DatabaseFactory.CreateDatabase();
             DbCommand dbCommand = db.GetStoredProcCommand("UP_GetRecordByPage");
-            db.AddInParameter(dbCommand, "tblName", DbType.String, "wgi_notice");
+            db.AddInParameter(dbCommand, "tblName", DbType.String, "wgi_noticestat");
             db.AddInParameter(dbCommand, "fldName", DbType.String, "ID");
             db.AddInParameter(dbCommand, "PageSize", DbType.Int32, PageSize);
             db.AddInParameter(dbCommand, "PageIndex", DbType.Int32, PageIndex);
@@ -194,16 +185,16 @@ namespace wgiAdUnionSystem.DAL
         /// <summary>
         /// 获得数据列表（比DataSet效率高，推荐使用）
         /// </summary>
-        public List<wgiAdUnionSystem.Model.wgi_notice> GetListArray(string strWhere)
+        public List<wgiAdUnionSystem.Model.wgi_noticestat> GetListArray(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select id,title,notice,pubdate,unread,publisher,objid ");
-            strSql.Append(" FROM wgi_notice ");
+            strSql.Append("select id,noticeid,usertype,userid,unread,deleted ");
+            strSql.Append(" FROM wgi_noticestat ");
             if (strWhere.Trim() != "")
             {
                 strSql.Append(" where " + strWhere);
             }
-            List<wgiAdUnionSystem.Model.wgi_notice> list = new List<wgiAdUnionSystem.Model.wgi_notice>();
+            List<wgiAdUnionSystem.Model.wgi_noticestat> list = new List<wgiAdUnionSystem.Model.wgi_noticestat>();
             Database db = DatabaseFactory.CreateDatabase();
             using (IDataReader dataReader = db.ExecuteReader(CommandType.Text, strSql.ToString()))
             {
@@ -219,95 +210,61 @@ namespace wgiAdUnionSystem.DAL
         /// <summary>
         /// 对象实体绑定数据
         /// </summary>
-        public wgiAdUnionSystem.Model.wgi_notice ReaderBind(IDataReader dataReader)
+        public wgiAdUnionSystem.Model.wgi_noticestat ReaderBind(IDataReader dataReader)
         {
-            wgiAdUnionSystem.Model.wgi_notice model = new wgiAdUnionSystem.Model.wgi_notice();
+            wgiAdUnionSystem.Model.wgi_noticestat model = new wgiAdUnionSystem.Model.wgi_noticestat();
             object ojb;
             ojb = dataReader["id"];
             if (ojb != null && ojb != DBNull.Value)
             {
                 model.id = (int)ojb;
             }
-            model.title = dataReader["title"].ToString();
-            model.notice = dataReader["notice"].ToString();
-            ojb = dataReader["pubdate"];
+            ojb = dataReader["noticeid"];
             if (ojb != null && ojb != DBNull.Value)
             {
-                model.pubdate = (DateTime)ojb;
+                model.noticeid = (int)ojb;
+            }
+            ojb = dataReader["usertype"];
+            if (ojb != null && ojb != DBNull.Value)
+            {
+                model.usertype = (int)ojb;
+            }
+            ojb = dataReader["userid"];
+            if (ojb != null && ojb != DBNull.Value)
+            {
+                model.userid = (int)ojb;
             }
             ojb = dataReader["unread"];
             if (ojb != null && ojb != DBNull.Value)
             {
                 model.unread = (int)ojb;
             }
-            ojb = dataReader["publisher"];
+            ojb = dataReader["deleted"];
             if (ojb != null && ojb != DBNull.Value)
             {
-                model.publisher = (int)ojb;
-            }
-            ojb = dataReader["objid"];
-            if (ojb != null && ojb != DBNull.Value)
-            {
-                model.objid = (int)ojb;
+                model.deleted = (int)ojb;
             }
             return model;
         }
 
         #endregion  成员方法
 
-        /// <summary>
-        /// 更新私信阅读状态
-        /// </summary>
-        /// <param name="id"></param>
-        public void UpdateReadStatus(string ids, int status)
+
+        public void UpdateDelete(int id, int userid, int usertype)
         {
-            string strSql = "update wgi_notice set unread=@status where id in ( " + ids + " )";
+            string strSql = "update wgi_noticestat set deleted=1 where noticeid =" + id + " and usertype=" + usertype + " and userid=" + userid;
             Database db = DatabaseFactory.CreateDatabase();
             DbCommand cmd = db.GetSqlStringCommand(strSql);
-            db.AddInParameter(cmd, "status", DbType.Int32, status);
             db.ExecuteNonQuery(cmd);
         }
 
-        /// <summary>
-        /// 删除一组点对点消息
-        /// </summary>
-        public void DeleteByIds(string ids)
+        public void UpdateRead(int id, int status, int userid, int usertype)
         {
-
-            StringBuilder strSql = new StringBuilder();
-            strSql.Append("delete from wgi_notice ");
-            strSql.Append(" where id in( " + ids + " ) ");
-            Database db = DatabaseFactory.CreateDatabase();
-            DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
-            db.ExecuteNonQuery(dbCommand);
-
-        }
-
-        /// <summary>
-        /// 得到所有公共消息
-        /// </summary>
-        /// <returns></returns>
-        public DataSet getListOfPublic(int usertype, int userid)
-        {
-            string strSql = "select a.*, isnull((select d.unread from wgi_noticestat d where d.usertype=" + usertype + " and d.userid=" + userid + " and d.noticeid=a.id),0) readed from wgi_notice a ";
-            strSql+=" where objid=-1 and ((select (select top 1 deleted from wgi_noticestat b where b.usertype=" + usertype + " and b.userid=" + userid + " and b.noticeid=a.id))<>1 or (select count(c.noticeid) from wgi_noticestat c  where c.usertype=" + usertype + " and c.userid=" + userid + " and c.noticeid=a.id)=0)";
-            strSql += " order by a.pubdate desc";
+            string strSql = "update wgi_noticestat set unread=" + status + "where noticeid=" + id + " and usertype=" + usertype;
             Database db = DatabaseFactory.CreateDatabase();
             DbCommand cmd = db.GetSqlStringCommand(strSql);
-            return db.ExecuteDataSet(cmd);
-
+            db.ExecuteNonQuery(cmd);
         }
-
-        /// <summary>
-        /// 得到私人消息
-        /// </summary>
-        /// <param name="objid"></param>
-        /// <returns></returns>
-        public DataSet getLIstOfPrivate(int objid, int objtype)
-        {
-            return GetList(" objid=" + objid + " and objtype=" + objtype);
-        }
-
-	}
+    }
 }
 

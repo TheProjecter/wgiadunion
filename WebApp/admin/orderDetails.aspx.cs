@@ -65,6 +65,7 @@ public partial class admin_orderDetails : ValidatePage
         //    Response.End();
         //}
         string totime = ((DateTime)s.Single().applydate).ToString("yyyy-MM-dd HH:mm:ss");//本次申请时间
+        lblapplyamt.Text = ((decimal)s.Single().cash).ToString();
         string fromtime = "";//上次申请时间
         string lbltimetext = "";
         //如果上次成功受理，则还需要起始时间

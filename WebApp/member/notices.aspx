@@ -14,7 +14,7 @@
 		        <li><p><span class="shorttxt" style="padding-right:30px;">发布时间</span><input type="checkbox" style="visibility:hidden;" /><span>标题</span></p></li>
 		        <asp:Repeater ID="rptpager" runat="server">
 		        <ItemTemplate>
-		        <li <%# base.getClassName(Eval("unread").ToString()) %>>
+		        <li <%# base.getClassName(Eval("readed").ToString()) %>>
 		                <p><span class="shorttxt"><%#Eval("pubdate") %></span><input type="checkbox" class="checkthis" name="lists" value='<%#Eval("id") %>' /><span class="longtxt"><%#Eval("title") %></span></p>
 		                <div class="noticecont" status="0"><p><img src="/Images/loading.gif" alt="" style="margin-left:200px;" /></p></div>
 		            </li>		        
