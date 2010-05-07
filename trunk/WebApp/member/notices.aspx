@@ -15,7 +15,7 @@
 		        <asp:Repeater ID="rptpager" runat="server">
 		        <ItemTemplate>
 		        <li <%# base.getClassName(Eval("readed").ToString()) %>>
-		                <p><span class="shorttxt"><%#Eval("pubdate") %></span><input type="checkbox" class="checkthis" name="lists" value='<%#Eval("id") %>' /><span class="longtxt"><%#Eval("title") %></span></p>
+		                <p><span class="shorttxt"><%#Eval("pubdate") %></span><input type="checkbox" class="checkthis" name="lists" value='<%#Eval("id") %>' /><span class="longtxt" uid="<%# base.userid %>"><%#Eval("title") %></span></p>
 		                <div class="noticecont" status="0"><p><img src="/Images/loading.gif" alt="" style="margin-left:200px;" /></p></div>
 		            </li>		        
 		        </ItemTemplate>

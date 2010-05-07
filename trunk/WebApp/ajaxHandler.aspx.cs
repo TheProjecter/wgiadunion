@@ -10,6 +10,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using System.IO;
 
 public partial class ajaxHandler : System.Web.UI.Page
 {
@@ -93,16 +94,42 @@ public partial class ajaxHandler : System.Web.UI.Page
         //更改阅读状态
         try
         {
-            bll.UpdateReadStatus(id.ToString(), 1);
+            string utype = Request.QueryString["utype"];
+            if (utype == "none")
+            {
+                bll.UpdateReadStatus(id.ToString(), 1);
+            }
+            else
+            {
+                int usertype = int.Parse(utype);
+                int userid = int.Parse(Request.QueryString["uid"]);
+
+                wgiAdUnionSystem.BLL.wgi_noticestat bllstat = new wgiAdUnionSystem.BLL.wgi_noticestat();
+                wgiAdUnionSystem.Model.wgi_noticestat modelstat = new wgiAdUnionSystem.Model.wgi_noticestat();
+
+                if (bllstat.GetList(" userid=" + userid + " and usertype=" + usertype + " and noticeid=" + id).Tables[0].Rows.Count == 0)
+                {
+                    modelstat.deleted = 0;
+                    modelstat.noticeid = id;
+                    modelstat.unread = 1;
+                    modelstat.userid = userid;
+                    modelstat.usertype = usertype;
+                    bllstat.Add(modelstat);
+                }
+                else
+                {
+                    bllstat.UpdateRead(id, 1, userid, 0);
+                }
+            }
         }
         catch (Exception)
         {
-            //Response.Write("");
+            Response.Write("读取数据失败！");
+            Response.End();
         }
 
         Response.Write(cont);
         Response.End();   
     }
-
 
 }

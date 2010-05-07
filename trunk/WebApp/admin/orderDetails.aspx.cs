@@ -64,7 +64,7 @@ public partial class admin_orderDetails : ValidatePage
         //    Response.Write("该用户数据异常，请排查<br/>原因：<br/>之前有未处理完的申请");
         //    Response.End();
         //}
-        string totime = ((DateTime)s.Single().applydate).ToString("yyyy-MM-dd HH:mm:ss");//本次申请时间
+        string totime = ((DateTime)s.Single().applydate).AddDays(6).ToString("yyyy-MM-dd HH:mm:ss");//本次申请时间
         lblapplyamt.Text = ((decimal)s.Single().cash).ToString();
         string fromtime = "";//上次申请时间
         string lbltimetext = "";

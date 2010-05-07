@@ -20,10 +20,9 @@
             <div id="tips">
                 用户申请的佣金为：<asp:Label ID="lblapplyamt" runat="server" ForeColor="Red"></asp:Label>元，查询有效佣金为：
                 <asp:Label ID="lblfigureamt" runat="server" ForeColor="Red"></asp:Label>元
+                <asp:Label ID="lbladv" runat="server">把交易记录按照广告主不同发到各广告主要求确认？</asp:Label>
                 <br />
                 <asp:Label ID="lbltime" runat="server"></asp:Label>
-                <br />
-                <asp:Label ID="lbladv" runat="server">把交易记录按照广告主不同发到各广告主要求确认？</asp:Label>
             </div>
         </div>
      </div>
@@ -77,16 +76,16 @@
             var h=obj.css("height");
             var sh=$(document).scrollTop(); 
             if(sh>105){
-                obj.css({top:sh-100});//$(document).scrollTop()-36});
+                obj.css({top:sh-126,display:"block"});//$(document).scrollTop()-36});
             }
             else
-                $("#fixth").css({top:1});
+                $("#fixth").css({top:1,display:"none"});
         });
         
         if(window.screen.availHeight>document.body.clientHeight){
             $("table").parent("div").css({position:"relative"});
             var otr=$("th").parent("tr");
-            otr.clone().attr("id","fixth").prependTo("table").css({position:"absolute",top:1})
+            otr.clone().attr("id","fixth").prependTo("table").css({position:"absolute",top:1,display:"none"})
         }
         
         var t=0.00;

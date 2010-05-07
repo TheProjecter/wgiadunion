@@ -6,13 +6,18 @@ $(function(){
     $("#btnop").click(function(){$("#opration").slideToggle();});
     //读取内容及ajax更改状态
     $(".longtxt").click(function(){
+        var uid=$(this).attr("uid");
         var li=$(this).parents("li");
         var obj=$(this).parent("p").next(".noticecont");
         var id=$(this).prevAll(":checkbox").val();
         $(".noticecont").not(obj).slideUp();obj.slideToggle();
         var status=obj.attr("status");//标识是否在当前页被阅读过
         if(status==0){//没被阅读过，才ajax请求
-            var url="/ajaxHandler.aspx?act=getmsgs&id="+id+"&t="+new Date().getMilliseconds();
+            var url="";
+            if(uid!=undefined){
+                url="/ajaxHandler.aspx?act=getmsgs&id="+id+"&utype=0&uid="+uid+"&t="+new Date().getMilliseconds();
+            }
+            else url="/ajaxHandler.aspx?act=getmsgs&id="+id+"&utype=none&t="+new Date().getMilliseconds();
             $.get(url,function(data){
                 obj.find("p").html(data);
                 obj.attr("status",1);
