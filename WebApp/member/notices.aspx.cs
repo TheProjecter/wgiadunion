@@ -16,7 +16,7 @@ public partial class member_notices : System.Web.UI.Page
 {
 
     private int pagesize = 10;
-    private int userid;
+    protected int userid;
     private wgiAdUnionSystem.BLL.wgi_noticestat bllstat = new wgiAdUnionSystem.BLL.wgi_noticestat();
     private wgiAdUnionSystem.Model.wgi_noticestat modelstat = new wgiAdUnionSystem.Model.wgi_noticestat();
 
