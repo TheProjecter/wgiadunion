@@ -70,5 +70,13 @@ namespace wgiAdUnionSystem.IDAL
         /// <returns></returns>
         DataSet getLIstOfPrivate(int objid, int objtype);
 
+
+
+        /// <summary>
+        /// 得到固定组别的所有公共消息
+        /// </summary>
+        /// <returns></returns>
+        DataSet getListOfGroupPublic(int usertype, int userid);
+
 	}
 }

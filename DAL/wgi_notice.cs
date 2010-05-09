@@ -70,10 +70,10 @@ namespace wgiAdUnionSystem.DAL
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("insert into wgi_notice(");
-            strSql.Append("title,notice,pubdate,unread,publisher,objid)");
+            strSql.Append("title,notice,pubdate,unread,publisher,objid, objtype)");
 
             strSql.Append(" values (");
-            strSql.Append("@title,@notice,@pubdate,@unread,@publisher,@objid)");
+            strSql.Append("@title,@notice,@pubdate,@unread,@publisher,@objid,@objtype)");
             strSql.Append(";select @@IDENTITY");
             Database db = DatabaseFactory.CreateDatabase();
             DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
@@ -83,6 +83,7 @@ namespace wgiAdUnionSystem.DAL
             db.AddInParameter(dbCommand, "unread", DbType.Int32, model.unread);
             db.AddInParameter(dbCommand, "publisher", DbType.Int32, model.publisher);
             db.AddInParameter(dbCommand, "objid", DbType.Int32, model.objid);
+            db.AddInParameter(dbCommand, "objtype", DbType.Int32, model.objtype);
             int result;
             object obj = db.ExecuteScalar(dbCommand);
             if (!int.TryParse(obj.ToString(), out result))
@@ -103,7 +104,8 @@ namespace wgiAdUnionSystem.DAL
             strSql.Append("pubdate=@pubdate,");
             strSql.Append("unread=@unread,");
             strSql.Append("publisher=@publisher,");
-            strSql.Append("objid=@objid");
+            strSql.Append("objid=@objid,");
+            strSql.Append("objtype=@objtype");
             strSql.Append(" where id=@id ");
             Database db = DatabaseFactory.CreateDatabase();
             DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
@@ -114,6 +116,7 @@ namespace wgiAdUnionSystem.DAL
             db.AddInParameter(dbCommand, "unread", DbType.Int32, model.unread);
             db.AddInParameter(dbCommand, "publisher", DbType.Int32, model.publisher);
             db.AddInParameter(dbCommand, "objid", DbType.Int32, model.objid);
+            db.AddInParameter(dbCommand, "objtype", DbType.Int32, model.objtype);
             db.ExecuteNonQuery(dbCommand);
 
         }
@@ -127,6 +130,7 @@ namespace wgiAdUnionSystem.DAL
             StringBuilder strSql = new StringBuilder();
             strSql.Append("delete from wgi_notice ");
             strSql.Append(" where id=@id ");
+            strSql.Append("delete from wgi_noticestat where noticeid=@id; ");//删除消息后，消除该消息的阅读状态
             Database db = DatabaseFactory.CreateDatabase();
             DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
             db.AddInParameter(dbCommand, "id", DbType.Int32, id);
@@ -141,7 +145,7 @@ namespace wgiAdUnionSystem.DAL
         {
 
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select id,title,notice,pubdate,unread,publisher,objid from wgi_notice ");
+            strSql.Append("select id,title,notice,pubdate,unread,publisher,objid, objtype from wgi_notice ");
             strSql.Append(" where id=@id ");
             Database db = DatabaseFactory.CreateDatabase();
             DbCommand dbCommand = db.GetSqlStringCommand(strSql.ToString());
@@ -163,7 +167,7 @@ namespace wgiAdUnionSystem.DAL
         public DataSet GetList(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select id,title,notice,pubdate,unread,publisher,objid ");
+            strSql.Append("select id,title,notice,pubdate,unread,publisher,objid, objtype ");
             strSql.Append(" FROM wgi_notice ");
             if (strWhere.Trim() != "")
             {
@@ -197,7 +201,7 @@ namespace wgiAdUnionSystem.DAL
         public List<wgiAdUnionSystem.Model.wgi_notice> GetListArray(string strWhere)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select id,title,notice,pubdate,unread,publisher,objid ");
+            strSql.Append("select id,title,notice,pubdate,unread,publisher,objid, objtype ");
             strSql.Append(" FROM wgi_notice ");
             if (strWhere.Trim() != "")
             {
@@ -250,6 +254,11 @@ namespace wgiAdUnionSystem.DAL
             {
                 model.objid = (int)ojb;
             }
+            ojb = dataReader["objtype"];
+            if (ojb != null && ojb != DBNull.Value)
+            {
+                model.objtype = (int)ojb;
+            }
             return model;
         }
 
@@ -291,6 +300,22 @@ namespace wgiAdUnionSystem.DAL
         {
             string strSql = "select a.*, isnull((select d.unread from wgi_noticestat d where d.usertype=" + usertype + " and d.userid=" + userid + " and d.noticeid=a.id),0) readed from wgi_notice a ";
             strSql+=" where objid=-1 and ((select (select top 1 deleted from wgi_noticestat b where b.usertype=" + usertype + " and b.userid=" + userid + " and b.noticeid=a.id))<>1 or (select count(c.noticeid) from wgi_noticestat c  where c.usertype=" + usertype + " and c.userid=" + userid + " and c.noticeid=a.id)=0)";
+            strSql += " order by a.pubdate desc";
+            Database db = DatabaseFactory.CreateDatabase();
+            DbCommand cmd = db.GetSqlStringCommand(strSql);
+            return db.ExecuteDataSet(cmd);
+
+        }
+
+
+        /// <summary>
+        /// 得到固定组别的所有公共消息
+        /// </summary>
+        /// <returns></returns>
+        public DataSet getListOfGroupPublic(int usertype, int userid)
+        {
+            string strSql = "select a.*, isnull((select d.unread from wgi_noticestat d where d.usertype=" + usertype + " and d.userid=" + userid + " and d.noticeid=a.id),0) readed from wgi_notice a ";
+            strSql += " where a.objid=-1 and (a.objid=" + usertype + " or a.objtype=-1) and ((select (select top 1 deleted from wgi_noticestat b where b.usertype=" + usertype + " and b.userid=" + userid + " and b.noticeid=a.id))<>1 or (select count(c.noticeid) from wgi_noticestat c  where c.usertype=" + usertype + " and c.userid=" + userid + " and c.noticeid=a.id)=0)";
             strSql += " order by a.pubdate desc";
             Database db = DatabaseFactory.CreateDatabase();
             DbCommand cmd = db.GetSqlStringCommand(strSql);

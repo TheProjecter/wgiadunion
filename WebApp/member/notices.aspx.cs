@@ -37,7 +37,7 @@ public partial class member_notices : System.Web.UI.Page
 
     private void initData()
     {
-        DataSet ds = new wgiAdUnionSystem.BLL.wgi_notice().getListOfPublic(0, userid);
+        DataSet ds = new wgiAdUnionSystem.BLL.wgi_notice().getListOfGroupPublic(0, userid);
         int page;
         if (!int.TryParse(Request["page"], out page))
         {
