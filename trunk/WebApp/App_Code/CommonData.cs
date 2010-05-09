@@ -188,4 +188,17 @@ public class CommonData
         return getApplyStatus().Select("value=" + value)[0]["name"].ToString();
     }
 
+
+    public static DataTable getUsertype()
+    {
+        DataTable dt = GetBaseTable();
+        dt.Rows.Add("所有人", "-1");
+        dt.Rows.Add("联盟会员", "0");
+        dt.Rows.Add("广告主", "1");
+        return dt;
+    }
+    public static string getUsertypeByValue(string value)
+    {
+        return getUsertype().Select("value='" + value + "'")[0]["name"].ToString();
+    }
 }

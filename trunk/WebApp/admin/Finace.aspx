@@ -150,7 +150,7 @@
         var iswider=0;
         switch(type){
             case 1:
-                url="addSiteUser.aspx?uid="+uid+"&act=show";
+                url="addSiteUser.aspx?t="+new Date().getMilliseconds()+"&uid="+uid+"&act=show";
                 title="详细资料";
             break;
             case 2:

@@ -170,7 +170,7 @@
     */
     function showfloat(type,userid){
         var uid=userid||0;
-        var url="addSiteUser.aspx?uid="+uid+"&act=";
+        var url="addSiteUser.aspx?t="+new Date().getMilliseconds()+"&uid="+uid+"&act=";
         var title="";
         switch(type){
             case 1:

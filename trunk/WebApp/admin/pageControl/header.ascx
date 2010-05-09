@@ -11,7 +11,7 @@
                 	<li<asp:Literal ID="menu1" runat="server"></asp:Literal>><a href="Default.aspx">控制面板</a></li>
                     <li<asp:Literal ID="menu2" runat="server"></asp:Literal>><a href="Finace.aspx">财务管理</a></li>
                 	<li<asp:Literal ID="menu3" runat="server"></asp:Literal>><a href="Users.aspx">用户管理</a></li>
-                    <%--li<asp:Literal ID="menu4" runat="server"></asp:Literal>><a href="#">丢单申请</a></li--%>
+                    <li<asp:Literal ID="menu4" runat="server"></asp:Literal>><a href="Notice.aspx">内容管理</a></li>
                     <li<asp:Literal ID="menu5" runat="server"></asp:Literal>><a href="logs.aspx">日志维护</a></li>
                     <li<asp:Literal ID="menu6" runat="server"></asp:Literal>><a href="beckup.aspx">数据备份</a></li>
                     <li<asp:Literal ID="menu7" runat="server"></asp:Literal>><a href="setup.aspx">系统设置</a></li>
@@ -49,11 +49,13 @@
                         <li><a href="#" class="online">Users online</a></li>
                     </ul>
                 </asp:PlaceHolder>
-                <%--asp:PlaceHolder id="subMenu4" runat="server" Visible="false">
+                <asp:PlaceHolder id="subMenu4" runat="server" Visible="false">
                     <ul class="submenu4">
-                        <li><a href="#" class="report">丢单申请</a></li>
+                        <li><a href="Notice.aspx" class="report">公告管理</a></li>
+                        <li><a href="Message.aspx" class="report_seo">站内信管理</a></li>
+                        <li><a href="UnionInfo.aspx" class="report">联盟介绍管理</a></li>
                     </ul>
-                </asp:PlaceHolder--%>
+                </asp:PlaceHolder>
                 <asp:PlaceHolder id="subMenu5" runat="server" Visible="false">
                     <ul class="submenu5">
                         <li><a href="#" class="report">广告主操作日志</a></li>

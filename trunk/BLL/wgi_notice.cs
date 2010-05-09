@@ -209,6 +209,17 @@ namespace wgiAdUnionSystem.BLL
         {
             return dal.getLIstOfPrivate(objid,objtype);
         }
+
+
+        /// <summary>
+        /// 得到固定组别的所有公共消息
+        /// </summary>
+        /// <returns></returns>
+        public DataSet getListOfGroupPublic(int usertype, int userid)
+        {
+            return dal.getListOfGroupPublic(usertype, userid);
+
+        }
 	}
 }
 

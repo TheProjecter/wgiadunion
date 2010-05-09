@@ -17,6 +17,8 @@ namespace wgiAdUnionSystem.Model
 		private int? _unread;
 		private int? _publisher;
 		private int? _objid;
+
+        public int objtype { get; set; }
 		/// <summary>
 		/// 
 		/// </summary>
