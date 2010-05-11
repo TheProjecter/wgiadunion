@@ -330,7 +330,23 @@ namespace wgiAdUnionSystem.DAL
         /// <returns></returns>
         public DataSet getLIstOfPrivate(int objid, int objtype)
         {
-            return GetList(" objid=" + objid + " and objtype=" + objtype);
+            if (object.Equals(objid, null) && object.Equals(objid, DBNull.Value))
+            {
+                return GetList(" objid<>-1 and objtype<>-1 order by pubdate desc");
+            }
+            else return GetList(" objid=" + objid + " and objtype=" + objtype + " order by pubdate desc");
+        }
+
+        public DataSet getPrivateByQuery(string strWhere)
+        {
+            string strSql = "select a.*, b.id adminid, b.username admin from wgi_notice a left join wgi_sysuser b on b.id=a.publisher";
+            if (strWhere.Trim() != "")
+            {
+                strSql += " where " + strWhere;
+            }
+            Database db = DatabaseFactory.CreateDatabase();
+            DbCommand cmd = db.GetSqlStringCommand(strSql);
+            return db.ExecuteDataSet(cmd);
         }
 
 	}

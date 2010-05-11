@@ -220,6 +220,12 @@ namespace wgiAdUnionSystem.BLL
             return dal.getListOfGroupPublic(usertype, userid);
 
         }
+
+        public DataSet getPrivateByQuery(string strWhere)
+        {
+            return dal.getPrivateByQuery(strWhere);
+        }
+
 	}
 }
 

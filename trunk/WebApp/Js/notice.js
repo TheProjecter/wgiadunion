@@ -3,7 +3,8 @@ $(function(){
     $("#checkall").click(function(){$(".checkthis").attr("checked",true)});
     $("#uncheckall").click(function(){$(".checkthis").attr("checked",false);});
     $("#revercheck").click(function(){$(".checkthis").attr("checked",function(){return !($(this).attr("checked"));});});
-    $("#btnop").click(function(){$("#opration").slideToggle();});
+    //$("#btnop").click(function(){$("#opration").slideToggle();});
+    $("#btnop").toggle(function(){$("#opration").find("p").hide().end().animate({height:60},1000,"easeOutBounce").find("p").show();},function(){$("#opration").animate({height:0},200).slideUp(10);});
     //读取内容及ajax更改状态
     $(".longtxt").click(function(){
         var uid=$(this).attr("uid");

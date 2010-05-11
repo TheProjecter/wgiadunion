@@ -12,7 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Collections.Generic;
 
-public partial class admin_ArticalPage : ValidatePage
+public partial class admin_EditPrivateMsg : ValidatePage
 {
 
     protected void Page_Load(object sender, EventArgs e)
@@ -31,7 +31,7 @@ public partial class admin_ArticalPage : ValidatePage
     private void initData()
     {
         string act = Request.QueryString["act"];
-        Helper.HelperDropDownList.BindData(ddlobjtype, CommonData.getUsertype(), "name", "value", 0);
+        //Helper.HelperDropDownList.BindData(ddlobjtype, CommonData.getUsertype(), "name", "value", 0);
         if (act == "add")
         {
             newNotice();
@@ -49,6 +49,16 @@ public partial class admin_ArticalPage : ValidatePage
             Response.Write("非法进入");
             Response.End();
         }
+        string uname="";
+        if (Request.QueryString["objtype"] == "0")
+        {
+            uname = new wgiAdUnionSystem.BLL.wgi_sitehost().GetModel(int.Parse(Request.QueryString["objid"])).username;
+        }
+        else
+        {
+            uname = new wgiAdUnionSystem.BLL.wgi_adhost().GetModel(int.Parse(Request.QueryString["objid"])).username;
+        }
+        lblusername.Text = uname;
     }
 
     private void showNotice()
@@ -71,7 +81,7 @@ public partial class admin_ArticalPage : ValidatePage
         }
         txtcontent.Value=model.notice;
         txttitle.Text=model.title;
-        ddlobjtype.SelectedValue=model.objtype.ToString();
+        //ddlobjtype.SelectedValue=model.objtype.ToString();
     }
 
     protected void sub_click(object sender, EventArgs e)
@@ -83,24 +93,24 @@ public partial class admin_ArticalPage : ValidatePage
             model = bll.GetModel(int.Parse(hidnid.Value));
             model.title = Server.HtmlEncode(txttitle.Text);
             model.notice = txtcontent.Value;
-            model.objtype = int.Parse(ddlobjtype.Text);
+            //model.objtype = int.Parse(ddlobjtype.Text);
             model.publisher = base.user.id;
             //model.pubdate = DateTime.Now;//真有重要更新应发新消息
 
             bll.Update(model);
 
-            ScriptManager.RegisterClientScriptBlock(this, GetType(), DateTime.Now.ToString(), "alert('修改公告成功！');parent.closepop();parent.location=parent.location;", true);
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), DateTime.Now.ToString(), "alert('修改成功！');parent.closepop();parent.location=parent.location;", true);
             return;
         }
         model.notice = txtcontent.Value;
-        model.objid = -1;//-1表示公告，私人消息会有用户id
-        model.objtype = int.Parse(ddlobjtype.Text);
+        model.objid = int.Parse(Request.QueryString["objid"]);
+        model.objtype = int.Parse(Request.QueryString["objtype"]);
         model.pubdate = DateTime.Now;
         model.publisher = base.user.id;
         model.title = Server.HtmlEncode(txttitle.Text);
         model.unread = 0;
 
         bll.Add(model);
-        ScriptManager.RegisterClientScriptBlock(this, GetType(), DateTime.Now.ToString(), "alert('发布公告成功！');parent.closepop();parent.location=parent.location;", true);
+        ScriptManager.RegisterClientScriptBlock(this, GetType(), DateTime.Now.ToString(), "alert('发送成功！');parent.closepop();parent.location=parent.location;", true);
     }
 }

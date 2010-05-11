@@ -44,6 +44,7 @@
 	<!--内容区样式结束-->
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="jscode" Runat="Server">
+<script type="text/javascript" src="/Js/jquery.easing.1.3.js"></script>
 
     <script src="/Js/notice.js" type="text/javascript"></script>
 

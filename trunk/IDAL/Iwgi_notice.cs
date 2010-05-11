@@ -78,5 +78,7 @@ namespace wgiAdUnionSystem.IDAL
         /// <returns></returns>
         DataSet getListOfGroupPublic(int usertype, int userid);
 
+        DataSet getPrivateByQuery(string strWhere);
+
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
@@ -11,7 +12,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 
-public partial class admin_Notice : ValidatePage
+public partial class admin_Message : ValidatePage
 {
     private wgiAdUnionSystem.BLL.wgi_notice bll = new wgiAdUnionSystem.BLL.wgi_notice();
     private wgiAdUnionSystem.Model.wgi_notice model = new wgiAdUnionSystem.Model.wgi_notice();
@@ -27,11 +28,11 @@ public partial class admin_Notice : ValidatePage
 
     private void initData()
     {
-        string sql = "objid=-1 ";
+        string sql = "a.objid<>-1 and a.objtype<>-1 ";
         sql += hidquery.Value;
-        sql += " order by pubdate desc";
+        sql += " order by a.pubdate desc";
         ods.SelectParameters["strWhere"].DefaultValue = sql;
-        gridList.DataSourceID = "ods";
+        gridList.DataSource = ods;
         gridList.DataBind();
 
         Helper.HelperDropDownList.BindData(ddlobjtype, CommonData.getUsertype(), "name", "value", 0);
@@ -47,13 +48,36 @@ public partial class admin_Notice : ValidatePage
 
     protected void searchResault(object sender, EventArgs e)
     {
-
-        lblsearch.Text = "搜索内容<";
         string query = "";
+        lblsearch.Text = "搜索内容<";
+        lblsearch.Text += "&nbsp;发送给：" + ddlobjtype.SelectedItem.Text;
+        query += " and a.objtype=" + ddlobjtype.Text;
+        if (txtobjname.Text.Trim() != "")
+        {
+            lblsearch.Text += "&nbsp;用户名：" + txtobjname.Text;
+            int uid = -1;
+            if (ddlobjtype.Text.Trim() == "0")
+            {
+                List<wgiAdUnionSystem.Model.wgi_sitehost> o = new wgiAdUnionSystem.BLL.wgi_sitehost().GetModelList(" username='" + txtobjname.Text + "' ");
+                if (o.Count() > 0)
+                {
+                    uid = o.SingleOrDefault().userid;
+                }
+            }
+            else if (ddlobjtype.Text.Trim() == "1")
+            {
+                List<wgiAdUnionSystem.Model.wgi_adhost> o = new wgiAdUnionSystem.BLL.wgi_adhost().GetModelList(" username='" + txtobjname.Text + "' ");
+                if (o.Count() > 0)
+                {
+                    uid = o.SingleOrDefault().companyid;
+                }
+            }
+            query += " and a.objid=" + uid + " ";
+        }
         if (txttitle.Text.Trim() != "")
         {
             lblsearch.Text += "标题：" + txttitle.Text + " ";
-            query += " and title like '%" + txttitle.Text + "%' ";
+            query = " and a.title like '%" + txttitle.Text + "%' ";
         }
         if (txtstart.Text.Trim() != "" || txtend.Text.Trim() != "")
         {
@@ -61,21 +85,19 @@ public partial class admin_Notice : ValidatePage
             if (txtstart.Text.Trim() == "")
             {
                 lblsearch.Text += txtend.Text + "之前";
-                query += " and pubdate<'" + txtend.Text + "' ";
+                query += " and a.pubdate<'" + txtend.Text + "' ";
             }
             else if (txtend.Text.Trim() == "")
             {
                 lblsearch.Text += txtstart.Text + "之后";
-                query += " and pubdate>'" + txtstart.Text + "' ";
+                query += " and a.pubdate>'" + txtstart.Text + "' ";
             }
             else
             {
                 lblsearch.Text += Convert.ToDateTime(txtstart.Text).ToString("yyyy-MM-dd") + "-" + Convert.ToDateTime(txtend.Text).ToString("yyyy-MM-dd") + "之间";
-                query += " and pubdate > '" + txtstart.Text + "' and pubdate < '" + txtend.Text + "' ";
+                query += " and a.pubdate > '" + txtstart.Text + "' and a.pubdate < '" + txtend.Text + "' ";
             }
         }
-        lblsearch.Text += "&nbsp;发送给：" + ddlobjtype.SelectedItem.Text;
-        query += " and objtype=" + ddlobjtype.Text;
         if (lblsearch.Text == "搜索内容<")
         {
             lblsearch.Text = "";
@@ -94,9 +116,23 @@ public partial class admin_Notice : ValidatePage
     protected void clearsearch(object sender, EventArgs e)
     {
         lbtnclear.Visible = false;
-        txtend.Text = txtstart.Text = txttitle.Text = hidquery.Value = lblsearch.Text = "";
+        txtend.Text = txtstart.Text = txttitle.Text = hidquery.Value = lblsearch.Text = txtobjname.Text = "";
         ddlobjtype.SelectedIndex = 0;
         initData();
+    }
+
+    protected string getUserName(string objid, string objtype)
+    {
+        string name = "";
+        if (objtype == "0")
+        {
+            name = new wgiAdUnionSystem.BLL.wgi_sitehost().GetModel(int.Parse(objid)).username;
+        }
+        else if (objtype == "1")
+        {
+            name = new wgiAdUnionSystem.BLL.wgi_adhost().GetModel(int.Parse(objid)).username;
+        }
+        return name;
     }
 
 

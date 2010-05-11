@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="siteUsers.aspx.cs" Inherits="admin_siteUsers" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Message.aspx.cs" Inherits="admin_Message" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -20,36 +20,35 @@
             <div id="content">
        			<div id="rightnow">
                     <h3 class="reallynow">
-                        <span>网站主管理</span>
+                        <span>站内信管理</span>
            <asp:LinkButton ID="lbtndel" runat="server" CssClass="pagedelete2" OnClick="deletes" Text="删除" OnClientClick="return dels();"></asp:LinkButton>
-           <a href="javascript:showfloat(1);" class="app_add">新增</a>
            <asp:LinkButton ID="lbtnsearch" runat="server" CssClass="search" Text="查询" OnClick="searchResault" OnClientClick="return checksearch();"></asp:LinkButton>
+           <%--<a href="javascript:showfloat(1);" class="app_add">发布公告</a>--%>
            <br clear="all" />
                     </h3>
 				    <div class="youhave">
 				        <ul id="ulfli">
-				            <li><span>用户名：</span><asp:TextBox ID="txtusername" runat="server"></asp:TextBox></li>
-				            <li><span>真实姓名：</span><asp:TextBox ID="txtrealname" runat="server"></asp:TextBox></li>
-				            <li><span>网站名：</span><asp:TextBox ID="txtsitename" runat="server"></asp:TextBox></li>
-				            <li><span>E-mail：</span><asp:TextBox ID="txtemail" runat="server"></asp:TextBox></li>
+				            <li><span>标题：</span><asp:TextBox ID="txttitle" runat="server"></asp:TextBox></li>
+				            <li style="width:310px;"><span>发布时间：</span><asp:TextBox ID="txtstart" runat="server" Width="95px" Height="16px" CssClass="Wdate" onclick=" WdatePicker({ doubleCalendar: true,readOnly:true, dateFmt: 'yyyy-MM-dd'})"></asp:TextBox>
+<span>至</span>
+                  <asp:TextBox ID="txtend" runat="server"  Width="95px" Height="16px" CssClass="Wdate" onclick=" WdatePicker({ doubleCalendar: true,readOnly:true, dateFmt: 'yyyy-MM-dd',minDate:'#F{$dp.$D(\'txtstart\')}'})"></asp:TextBox></li>
+				            <li style="width:170px;"><span>接收组：</span><asp:DropDownList runat="server" ID="ddlobjtype"></asp:DropDownList></li>
+				            <li><span>接收人：</span><asp:TextBox runat="server" ID="txtobjname"></asp:TextBox></li>
 				        </ul>
 				        <div id="tips"><span style="color:gray; font-weight:600">提示：</span><span id="tipmsg"></span>
 				            <asp:Label ID="lblsearch" runat="server"></asp:Label>
 				            <asp:LinkButton ID="lbtnclear" Visible="false" runat="server" Text="清除" CssClass="folder_table" style="padding-left:20px; text-decoration:none;" OnClick="clearsearch"></asp:LinkButton>
 				        </div>
-				        <asp:HiddenField ID="hiduname" runat="server" />
-				        <asp:HiddenField ID="hidrname" runat="server" />
-				        <asp:HiddenField ID="hidemail" runat="server" />
-				        <asp:HiddenField ID="hidsite" runat="server" />
+				        <asp:HiddenField ID="hidquery" runat="server" />
                     </div>
 			  </div>
 			  <br />
               <div id="box">
                 	<h3 class="boxtitle">
               
-              用户列表—网站主
+              站内信列表
                 	</h3>
-                	<asp:GridView ID="gridList" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="userid" AllowPaging="True" OnPreRender="renderview" EmptyDataText="没有查询到数据" EmptyDataRowStyle-HorizontalAlign="Center">
+                	<asp:GridView ID="gridList" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="id" AllowPaging="True" OnPreRender="renderview" EmptyDataText="没有查询到数据" EmptyDataRowStyle-HorizontalAlign="Center">
                         <PagerTemplate>
                         <div class="pager">
                         Page&nbsp;
@@ -73,44 +72,45 @@
                         </div>
                         </PagerTemplate>
                 	<Columns>
-                	    <asp:TemplateField ItemStyle-Width="40px" ItemStyle-HorizontalAlign="Center">
+                	    <asp:TemplateField ItemStyle-Width="30px" ItemStyle-HorizontalAlign="Center">
                 	        <HeaderTemplate><input type="checkbox" class="checkall" /></HeaderTemplate>
-                	        <ItemTemplate><input type="checkbox" class="checkthis" value='<%# Eval("userid") %>' name="ids" /></ItemTemplate>
+                	        <ItemTemplate><input type="checkbox" class="checkthis" value='<%# Eval("id") %>' name="ids" /></ItemTemplate>
 
-<ItemStyle HorizontalAlign="Center" Width="40px"></ItemStyle>
+<ItemStyle HorizontalAlign="Center" Width="30px"></ItemStyle>
                 	    </asp:TemplateField>
-                	    <asp:TemplateField HeaderText="序号" ItemStyle-Width="50px" ItemStyle-HorizontalAlign="Center" SortExpression="userid">
-                	        <ItemTemplate><%# Container.DataItemIndex+1 %></ItemTemplate>
-
-<ItemStyle HorizontalAlign="Center" Width="50px"></ItemStyle>
-                	    </asp:TemplateField>
-                	    <asp:BoundField HeaderText="用户名" DataField="username" SortExpression="username" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="136px"></asp:BoundField>
-                        <asp:BoundField HeaderText="姓名" DataField="contact" SortExpression="contact" ItemStyle-Width="90px" ItemStyle-HorizontalAlign="Center" />
-                	    <asp:BoundField HeaderText="E-mail" DataField="email" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="281px" ></asp:BoundField>
-                	    <asp:TemplateField HeaderText="操作" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="90px">
+                	    <asp:BoundField DataField="admin" ItemStyle-Width="80px" HeaderText="发送人" ItemStyle-HorizontalAlign="Center" />
+                	    <asp:TemplateField HeaderText=" 接收人" ItemStyle-Width="91px" ItemStyle-HorizontalAlign="Center">
                 	        <ItemTemplate>
-                	            <input type="image" src="img/icons/user.png" title="查看详细" class="imgbtn" onclick='showfloat(3,<%# Eval("userid") %>); return false' />
-                	            <input type="image" src="img/icons/user_edit.png" title="编辑" class="imgbtn" onclick='showfloat(2,<%# Eval("userid") %>); return false;' />
-                	            <asp:ImageButton ID="btndel" runat="server" CommandName="Delete" ImageUrl="img/icons/user_delete.png" ToolTip="删除" Width="16px" Height="16px" OnClientClick="return confirm('确认删除？');" />
-                	            <input type="image" src="img/icons/comment.gif" title="发送站内信" class="imgbtn" onclick='showfloat(4,<%# Eval("userid") %>); return false;' />
+                	            <%# base.getUserName(Eval("objid").ToString(), Eval("objtype").ToString()) %>
+                	        </ItemTemplate>
+                	    </asp:TemplateField>
+                	    <asp:BoundField HeaderText="标题" DataField="title" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="250px"></asp:BoundField>
+                        <asp:BoundField HeaderText="发布时间" DataField="pubdate" SortExpression="pubdate" ItemStyle-Width="130px" ItemStyle-HorizontalAlign="Center" />
+                	    <asp:TemplateField HeaderText="接收组" ItemStyle-Width="86px" ItemStyle-HorizontalAlign="Center" SortExpression="objtype">
+                	        <ItemTemplate>
+                	            <%# CommonData.getUsertypeByValue(Eval("objtype").ToString()) %>&nbsp;
+                	        </ItemTemplate>
+                	    </asp:TemplateField>
+                	    <asp:TemplateField HeaderText="操作" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="40px">
+                	        <ItemTemplate>
+                	            <%--<input type="image" src="img/icons/page_white_link.png" title="预览" class="imgbtn" onclick='showfloat(3,<%# Eval("id") %>); return false' />--%>
+                	            <input type="image" src="img/icons/page_white_edit.png" title="编辑" class="imgbtn" onclick='showfloat(2,<%# Eval("id") %>,<%# Eval("objid")  %>,<%# Eval("objtype") %>); return false;' />
+                	            <asp:ImageButton ID="btndel" runat="server" CommandName="Delete" ImageUrl="img/icons/page_white_delete.png" ToolTip="删除" Width="16px" Height="16px" OnClientClick="return confirm('确认删除？');" />
                 	        </ItemTemplate>
 
-<ItemStyle HorizontalAlign="Center" Width="90px"></ItemStyle>
+<ItemStyle HorizontalAlign="Center" Width="70px"></ItemStyle>
                 	    </asp:TemplateField>
                 	</Columns>
                     </asp:GridView>
                     <asp:HiddenField ID="hiduid" runat="server" Value="" />
                     <asp:HiddenField ID="hidcurpage" runat="server" Value="" />
 
-                    <asp:ObjectDataSource ID="ods" runat="server" DeleteMethod="Delete" SelectMethod="GetListOfSearch" TypeName="wgiAdUnionSystem.BLL.wgi_sitehost">
+                    <asp:ObjectDataSource ID="ods" runat="server" DeleteMethod="Delete" SelectMethod="getPrivateByQuery" TypeName="wgiAdUnionSystem.BLL.wgi_notice">
                         <DeleteParameters>
-                            <asp:Parameter Name="userid" Type="Int32" />
+                            <asp:Parameter Name="id" Type="Int32" />
                         </DeleteParameters>
                         <SelectParameters>
-                            <asp:Parameter Name="username" Type="String" />
-                            <asp:Parameter Name="realname" Type="String" />
-                            <asp:Parameter Name="email" Type="String" />
-                            <asp:Parameter Name="sitename" Type="String" />
+                            <asp:Parameter Name="strWhere" Type="String" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
 
@@ -142,6 +142,8 @@
 <!--内容区结束-->
     </form>
 </body>
+
+<script src="../Js/ca/WdatePicker.js" type="text/javascript"></script>
 <script src="js/drag.js" type="text/javascript"></script>
 <script type="text/javascript">
     var emailreg=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
@@ -169,45 +171,38 @@
     @type:1:add,2:edit,3,show profile
     @uid:the userid for edit/show, but no need for create(default by 0)
     */
-    function showfloat(type,userid){
-        var uid=userid||0;
-        var url="addSiteUser.aspx?t="+new Date().getMilliseconds()+"&uid="+uid+"&act=";
+    function showfloat(type,noticeid,objid,objtype){
+        var nid=noticeid||0;
+        var url="EditPrivateMsg.aspx?t="+new Date().getMilliseconds()+"&noticeid="+nid+"&act=";
         var title="";
-        var iswide=0;
         switch(type){
             case 1:
                 url+="add";
-                title="添加用户";
+                title="发布公告";
             break;
             case 2:
-                url+="edit";
-                title="编辑用户";
+                url+="edit&objid="+objid+"&objtype="+objtype;
+                title="编辑私信";
             break;
-            case 4:
-                url="EditPrivateMsg.aspx?t="+new Date().getMilliseconds()+"&act=add&objtype=0&objid="+uid;
-                title="发送私信";
-                iswide=1;
-                break;
             default:
                 url+="show";
-                title="详细资料";
+                title="预览公告";
             break;
         }
         $("#userframe").attr("src",url);
-        openpop(title,iswide);
+        openpop(title,1);
     }
     
     function checksearch(){
         var obj=$("#tipmsg");
         var sobj=$("#lblsearch");
-        if($("#txtusername").val()==""&&$("#txtrealname").val()==""&&$("#txtsitename").val()==""&&$("#txtemail").val()==""){
-            obj.removeClass().addClass("onerror").html("请至少输入一个查询条件");
+        if($("#txttitle").val()==""&&$("#txtstart").val()==""&&$("#txtend").val()==""&&$("#ddlobjtype").val()=="-1"&&$("#txtobjname").val()==""){
+            obj.removeClass().addClass("onerror").html("请至少输入一个查询条件，查询所有请直接清除");
             sobj.html("");
             return false;
         }
-        var e=$("#txtemail").val();
-        if(e!="" && !emailreg.test(e)){
-            obj.removeClass().addClass("onerror").html("请输入有效email地址");
+        if($("#txtobjname").val()!=""&&$("#ddlobjtype").val()=="-1"){
+            obj.removeClass().addClass("onerror").html("请选择用户的组");
             sobj.html("");
             return false;
         }
