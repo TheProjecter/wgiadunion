@@ -68,8 +68,11 @@ public partial class member_messages : System.Web.UI.Page
 
     protected string getSenderName(string id)
     {
-        if (id == "-1") return "系统管理员";
-        else return "<a href=\"#\">用户</a>";
+        //if (id == "-1") return "系统管理员";
+            //暂不支持会员互发
+        //else return new wgiAdUnionSystem.BLL.wgi_sysuser().GetModel(int.Parse(id)).username;
+        return "系统管理员";
+
     }
 
     //删除
