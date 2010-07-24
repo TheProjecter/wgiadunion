@@ -15,7 +15,7 @@
 		        <asp:Repeater ID="rptpager" runat="server">
 		        <ItemTemplate>
 		        <li <%# base.getClassName(Eval("readed").ToString()) %>>
-		                <p><span class="shorttxt"><%#Eval("pubdate") %></span><input type="checkbox" class="checkthis" name="lists" value='<%#Eval("id") %>' /><span class="longtxt" uid="<%# base.userid %>"><%#Eval("title") %></span></p>
+		                <p><span class="shorttxt"><%# Convert.ToDateTime(Eval("pubdate")).ToString("yyyy-MM-dd HH:mm:ss") %></span><input type="checkbox" class="checkthis" name="lists" value='<%#Eval("id") %>' /><span class="longtxt" uid="<%# base.userid %>"><%#Eval("title") %></span></p>
 		                <div class="noticecont" status="0"><p><img src="/Images/loading.gif" alt="" style="margin-left:200px;" /></p></div>
 		            </li>		        
 		        </ItemTemplate>
@@ -42,6 +42,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="jscode" Runat="Server">
 
+    <script src="../Js/jquery.easing.1.3.js" type="text/javascript"></script>
     <script src="/Js/notice.js" type="text/javascript"></script>
 </asp:Content>
 
